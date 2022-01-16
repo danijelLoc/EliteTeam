@@ -7,9 +7,11 @@ namespace EliteTeam.Controllers
     public class MainFormController
     {
         private readonly IWindowFormsFactory _formsFactory = null;
-        public MainFormController(IWindowFormsFactory windowFormsFactory)
+        private readonly IPlayerRepository _playerRepository = null;
+        public MainFormController(IWindowFormsFactory windowFormsFactory, IPlayerRepository playerRepository)
         {
             _formsFactory = windowFormsFactory;
+            _playerRepository = playerRepository;
         }
 
         public void RunAll()

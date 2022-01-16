@@ -8,7 +8,7 @@ using EliteTeam.Controllers;
 using EliteTeam.MemoryBasedDAL;
 using EliteTeam.PresentationLayer;
 
-namespace EliteTeam
+namespace EliteTeam.AppStarter
 {
     static class Program
     {
@@ -20,8 +20,7 @@ namespace EliteTeam
         {
             WindowFormsFactory _formsFactory = new WindowFormsFactory();
 
-            // a za Account repozitorij koristimo Singleton
-            MainFormController mainController = new MainFormController(_formsFactory);
+            MainFormController mainController = new MainFormController(_formsFactory, PlayerRepository.Shared);
             mainController.RunAll();
             /*Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
