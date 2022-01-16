@@ -16,7 +16,7 @@ namespace EliteTeam.MemoryBasedDAL
 
         public void addPlayer(Player inPlayer)
         {
-            if (_players.Find(x => x.Id == inPlayer.Id) == null)
+            if (_players.Find(x => x.Id == inPlayer.Id) != null)
                 return;
             _players.Add(inPlayer);
         }
@@ -61,12 +61,7 @@ namespace EliteTeam.MemoryBasedDAL
             return _players.FindAll(x => x.ClubId == clubId).FindAll(x => x.Position == position);
         }
 
-        public string getNewID()
-        {
-            return Guid.NewGuid().ToString();
-        }
-
-        public List<Player> getAllPlayers(string name)
+        public List<Player> getAllPlayers()
         {
             return new List<Player>(_players);
         }
@@ -87,6 +82,30 @@ namespace EliteTeam.MemoryBasedDAL
             if (player == null)
                 return null;
             return player.ClubId;
+        }
+
+        public List<Player> getAllFreeAgentPlayers()
+        {
+            return _players.FindAll(x => x.ClubId == null);
+        }
+
+        public void playerSignedForClub(string playerId, string clubId)
+        {
+            var player = _players.Find(x => x.Id == playerId);
+            if (player == null) throw new ArgumentException();
+            player.ClubId = clubId;
+        }
+
+        public void playersSignedForClub(List<string> playerIds, string clubId)
+        {
+            foreach (string playerId in playerIds)
+                playerSignedForClub(playerId, clubId);
+        }
+
+        public void addPlayers(List<Player> inPlayers)
+        {
+            foreach (Player player in inPlayers)
+                addPlayer(player);
         }
     }
 }

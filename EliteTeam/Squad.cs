@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace EliteTeam.Model
+namespace EliteTeam
 {
     public class Squad
     {

@@ -14,10 +14,11 @@ namespace EliteTeam.Model
         public Stats Stats { get; set; }
         public PlayerAI PlayerAI { get; set; }
 
-        public PlayerDescription Description { get { return new PlayerDescription(_id, Name, Age.ToString(), _position.ToString()); } }
+        public PlayerDescription Description { get { return new PlayerDescription(Id, Name, Age.ToString(), _position.ToString()); } }
 
         public Player(PlayerPosition position, string name, int age, Stats stats) : base(name, age)
         {
+            ClubId = null;
             _position = position;
             Stats = stats;
         }

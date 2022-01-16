@@ -69,7 +69,7 @@ namespace EliteTeam.Model
             return stats;
         }
 
-        public static Squad GetRandomSquad()
+        public static List<Player> GetRandomSquad()
         {
             Player p1 = GetRandomPlayer(PlayerPosition.goalkeeper);
 
@@ -86,8 +86,7 @@ namespace EliteTeam.Model
             Player p10 = GetRandomPlayer(PlayerPosition.attacker);
             Player p11 = GetRandomPlayer(PlayerPosition.attacker);
 
-            Squad squad = new Squad(new List<Player>() { p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11 });
-            return squad;
+            return new List<Player>() { p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11 };
         }
 
         public static string RandomName(int len)

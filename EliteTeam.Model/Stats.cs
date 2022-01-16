@@ -7,8 +7,8 @@ namespace EliteTeam.Model
 {
     public class Stats
     {
-        public static int MinValue = 1;
-        public static int MaxValue = 5;
+        public static readonly int MinValue = 1;
+        public static readonly int MaxValue = 5;
 
         private int _shooting;
         private int _passing;

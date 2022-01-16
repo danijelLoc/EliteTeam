@@ -10,16 +10,20 @@ namespace EliteTeam.Model
         private Random r = MathHelper.r;
         private Club homeClub;
         private Club awayClub;
-        private Club clubThatMadeMatchKickOff;
 
+        private IPlayerRepository playerRepository;
         private Player playerInPossesion;
         private Club clubInPossesion;
         private Club clubOutOfPossesion;
+        private MatchSquad squadInPossesion;
+        private MatchSquad squadOutOfPossesion;
+        private MatchSquad squadThatStartedMatch;
 
         Dictionary<string, int> score = new Dictionary<string, int>();
 
-        public void Simulate(Club homeClub, Club awayClub)
+        public void Simulate(Club homeClub, Club awayClub, IPlayerRepository playerRepository, IClubRepository clubRepository, IMatchResultRepository matchRepository)
         {
+            this.playerRepository = playerRepository;
             this.homeClub = homeClub;
             this.awayClub = awayClub;
             MatchKickOff();
@@ -34,42 +38,42 @@ namespace EliteTeam.Model
         public double CalculatePlayerActionSuccessProbability(PlayerAction playerAction)
         {
             double successProbability = 0;
-            double oppositionGoalkeeping = 1.0 * clubOutOfPossesion.ClubSquad.GoalKeeper.Stats.Shooting / Stats.MaxValue;
+            double oppositionGoalkeeping = 1.0 * squadOutOfPossesion.GoalKeeper.Stats.Shooting / Stats.MaxValue;
             double shooting = 1.0 * playerInPossesion.Stats.Shooting / Stats.MaxValue;
             double passing = 1.0 * playerInPossesion.Stats.Passing / Stats.MaxValue;
             switch (playerAction.Type)
             {
                 case PlayerActionType.shoot:
                     successProbability = shooting / (shooting + oppositionGoalkeeping);
-                    successProbability *= 0.5; // its hard to score a goal in football... 
+                    successProbability *= 0.5; // its hard to score a goal in football...
                     break;
                 case PlayerActionType.passToAttack:
                     double oppositionMidDefBallRecovery = 0.001;
-                    oppositionMidDefBallRecovery += clubOutOfPossesion.ClubSquad.Defence.Sum(x => x.Stats.Interceptions);
-                    oppositionMidDefBallRecovery += clubOutOfPossesion.ClubSquad.Midfield.Sum(x => x.Stats.Interceptions);
-                    oppositionMidDefBallRecovery = oppositionMidDefBallRecovery / ((clubOutOfPossesion.ClubSquad.Defence.Count + clubOutOfPossesion.ClubSquad.Midfield.Count) * Stats.MaxValue);
+                    oppositionMidDefBallRecovery += squadOutOfPossesion.Defence.Sum(x => x.Stats.Interceptions);
+                    oppositionMidDefBallRecovery += squadOutOfPossesion.Midfield.Sum(x => x.Stats.Interceptions);
+                    oppositionMidDefBallRecovery = oppositionMidDefBallRecovery / ((squadOutOfPossesion.Defence.Count + squadOutOfPossesion.Midfield.Count) * Stats.MaxValue);
                     successProbability = passing / (passing + oppositionMidDefBallRecovery);
                     successProbability *= 1.2; // interceptions are not that frequent, passing made more accurate
                     break;
                 case PlayerActionType.passToMidfield:
                     double oppositionMidfieldBallRecovery = 0.001;
-                    oppositionMidfieldBallRecovery += clubOutOfPossesion.ClubSquad.Midfield.Sum(x => x.Stats.Interceptions);
-                    oppositionMidfieldBallRecovery = oppositionMidfieldBallRecovery / (clubOutOfPossesion.ClubSquad.Midfield.Count * Stats.MaxValue);
+                    oppositionMidfieldBallRecovery += squadOutOfPossesion.Midfield.Sum(x => x.Stats.Interceptions);
+                    oppositionMidfieldBallRecovery = oppositionMidfieldBallRecovery / (squadOutOfPossesion.Midfield.Count * Stats.MaxValue);
                     successProbability = passing / (passing + oppositionMidfieldBallRecovery);
                     successProbability *= 1.3;
                     break;
                 case PlayerActionType.passToDefence:
                     double oppositionMidAttBallRecovery = 0.001;
-                    oppositionMidAttBallRecovery += clubOutOfPossesion.ClubSquad.Attack.Sum(x => x.Stats.Interceptions);
-                    oppositionMidAttBallRecovery += clubOutOfPossesion.ClubSquad.Midfield.Sum(x => x.Stats.Interceptions);
-                    oppositionMidAttBallRecovery = oppositionMidAttBallRecovery / ((clubOutOfPossesion.ClubSquad.Attack.Count + clubOutOfPossesion.ClubSquad.Midfield.Count) * Stats.MaxValue);
+                    oppositionMidAttBallRecovery += squadOutOfPossesion.Attack.Sum(x => x.Stats.Interceptions);
+                    oppositionMidAttBallRecovery += squadOutOfPossesion.Midfield.Sum(x => x.Stats.Interceptions);
+                    oppositionMidAttBallRecovery = oppositionMidAttBallRecovery / ((squadOutOfPossesion.Attack.Count + squadOutOfPossesion.Midfield.Count) * Stats.MaxValue);
                     successProbability = passing / (passing + oppositionMidAttBallRecovery);
                     successProbability *= 1.5;
                     break;
                 case PlayerActionType.passToGoalkeeper:
                     double oppositionAttackBallRecovery = 0.001;
-                    oppositionAttackBallRecovery += clubOutOfPossesion.ClubSquad.Attack.Sum(x => x.Stats.Interceptions);
-                    oppositionAttackBallRecovery = oppositionAttackBallRecovery / (clubOutOfPossesion.ClubSquad.Attack.Count * Stats.MaxValue);
+                    oppositionAttackBallRecovery += squadOutOfPossesion.Attack.Sum(x => x.Stats.Interceptions);
+                    oppositionAttackBallRecovery = oppositionAttackBallRecovery / (squadOutOfPossesion.Attack.Count * Stats.MaxValue);
                     successProbability = passing / (passing + oppositionAttackBallRecovery);
                     successProbability *= 1.5;
                     break;
@@ -95,19 +99,19 @@ namespace EliteTeam.Model
                         break;
                     case PlayerActionType.passToAttack:
                         // TODO disable player pass to himself !! loop !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                        playerToTakeTheBall = clubInPossesion.ClubSquad.Attack[r.Next(clubInPossesion.ClubSquad.Attack.Count)];
+                        playerToTakeTheBall = squadInPossesion.Attack[r.Next(squadInPossesion.Attack.Count)];
                         PassedTheBall(playerToTakeTheBall);
                         break;
                     case PlayerActionType.passToMidfield:
-                        playerToTakeTheBall = clubInPossesion.ClubSquad.Midfield[r.Next(clubInPossesion.ClubSquad.Midfield.Count)];
+                        playerToTakeTheBall = squadInPossesion.Midfield[r.Next(squadInPossesion.Midfield.Count)];
                         PassedTheBall(playerToTakeTheBall);
                         break;
                     case PlayerActionType.passToDefence:
-                        playerToTakeTheBall = clubInPossesion.ClubSquad.Defence[r.Next(clubInPossesion.ClubSquad.Defence.Count)];
+                        playerToTakeTheBall = squadInPossesion.Defence[r.Next(squadInPossesion.Defence.Count)];
                         PassedTheBall(playerToTakeTheBall);
                         break;
                     case PlayerActionType.passToGoalkeeper:
-                        PassedTheBall(clubInPossesion.ClubSquad.GoalKeeper);
+                        PassedTheBall(squadInPossesion.GoalKeeper);
                         break;
                 }
             }
@@ -117,18 +121,18 @@ namespace EliteTeam.Model
                 switch (action.OpositionReactionType)
                 {
                     case PossibleReactionType.oppositionGoalKeeperMakesASave:
-                        MakesASave(clubOutOfPossesion.ClubSquad.GoalKeeper);
+                        MakesASave(squadOutOfPossesion.GoalKeeper);
                         break;
                     case PossibleReactionType.oppositionDefenceTakesTheBall:
-                        playerToTakeTheBall = clubOutOfPossesion.ClubSquad.Defence[r.Next(clubOutOfPossesion.ClubSquad.Defence.Count)];
+                        playerToTakeTheBall = squadOutOfPossesion.Defence[r.Next(squadOutOfPossesion.Defence.Count)];
                         InterceptedTheBall(playerToTakeTheBall);
                         break;
                     case PossibleReactionType.oppositionMidfieldTakesTheBall:
-                        playerToTakeTheBall = clubOutOfPossesion.ClubSquad.Midfield[r.Next(clubOutOfPossesion.ClubSquad.Midfield.Count)];
+                        playerToTakeTheBall = squadOutOfPossesion.Midfield[r.Next(squadOutOfPossesion.Midfield.Count)];
                         InterceptedTheBall(playerToTakeTheBall);
                         break;
                     case PossibleReactionType.oppositionAttackTakesTheBall:
-                        playerToTakeTheBall = clubOutOfPossesion.ClubSquad.Attack[r.Next(clubOutOfPossesion.ClubSquad.Attack.Count)];
+                        playerToTakeTheBall = squadOutOfPossesion.Attack[r.Next(squadOutOfPossesion.Attack.Count)];
                         InterceptedTheBall(playerToTakeTheBall);
                         break;
                 }
@@ -161,9 +165,9 @@ namespace EliteTeam.Model
 
         private void ChangePossesion()
         {
-            Club temp = clubInPossesion;
-            clubInPossesion = clubOutOfPossesion;
-            clubOutOfPossesion = temp;
+            MatchSquad temp = squadInPossesion;
+            squadInPossesion = squadOutOfPossesion;
+            squadOutOfPossesion = temp;
         }
 
         public void MatchKickOff()
@@ -175,23 +179,27 @@ namespace EliteTeam.Model
             if (p >= 0.5)
             {
                 clubInPossesion = homeClub;
+                squadInPossesion = new MatchSquad(playerRepository, homeClub.Id);
                 clubOutOfPossesion = awayClub;
+                squadOutOfPossesion = new MatchSquad(playerRepository, awayClub.Id);
             }
             else
             {
                 clubInPossesion = awayClub;
+                squadInPossesion = new MatchSquad(playerRepository, awayClub.Id);
                 clubOutOfPossesion = homeClub;
+                squadOutOfPossesion = new MatchSquad(playerRepository, homeClub.Id);
             }
-            clubThatMadeMatchKickOff = clubInPossesion;
+            squadThatStartedMatch = squadInPossesion;
             System.Diagnostics.Debug.WriteLine(clubInPossesion.Name + " starts the game.");
-            playerInPossesion = clubInPossesion.ClubSquad.Midfield[r.Next(clubInPossesion.ClubSquad.Midfield.Count)];
+            playerInPossesion = squadInPossesion.Midfield[r.Next(squadInPossesion.Midfield.Count)];
         }
 
         public void GoalKickOff()
         {
             System.Diagnostics.Debug.WriteLine("Match rasumes!");
             ChangePossesion();
-            playerInPossesion = clubInPossesion.ClubSquad.Midfield[r.Next(clubInPossesion.ClubSquad.Midfield.Count)];
+            playerInPossesion = squadInPossesion.Midfield[r.Next(squadInPossesion.Midfield.Count)];
         }
 
         public void HalfTime()
@@ -199,16 +207,22 @@ namespace EliteTeam.Model
             System.Diagnostics.Debug.WriteLine("\n\nHALF TIME!");
             System.Diagnostics.Debug.WriteLine("Result = " + homeClub.ShortName + " " + score[homeClub.Id] + " : " + awayClub.ShortName + " " + score[awayClub.Id]);
             System.Diagnostics.Debug.WriteLine("Match rasumes!\n\n");
-            if (homeClub.Id == clubThatMadeMatchKickOff.Id)
+            if (homeClub.Id == squadThatStartedMatch.ClubId)
             {
                 clubInPossesion = awayClub;
+                squadInPossesion = new MatchSquad(playerRepository, awayClub.Id);
+                clubOutOfPossesion = homeClub;
+                squadOutOfPossesion = new MatchSquad(playerRepository, homeClub.Id);
             }
             else
             {
                 clubInPossesion = homeClub;
+                squadInPossesion = new MatchSquad(playerRepository, homeClub.Id);
+                clubOutOfPossesion = awayClub;
+                squadOutOfPossesion = new MatchSquad(playerRepository, awayClub.Id);
             }
             System.Diagnostics.Debug.WriteLine(clubInPossesion.Name + " continues the game");
-            playerInPossesion = clubInPossesion.ClubSquad.Midfield[r.Next(clubInPossesion.ClubSquad.Midfield.Count)];
+            playerInPossesion = squadInPossesion.Midfield[r.Next(squadInPossesion.Midfield.Count)];
         }
 
         public void FullTime()

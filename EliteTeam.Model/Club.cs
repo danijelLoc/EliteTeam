@@ -7,32 +7,35 @@ namespace EliteTeam.Model
 {
     public class Club
     {
+        public static readonly int MinNumberOfPlayers = 11;
+
+        private List<string> _squad;
         public string Id { get; }
         public string Name { get; set; }
         public string ShortName { get; set; }
-        public Squad ClubSquad { get; }
-        public Manager ClubManager { get; set; }
+        public List<string> ClubSquad { get { return _squad; } }
+        public string ClubManager { get; set; }
         public Tactic Tactic { get; set; }
 
-        public Club(string name, string shortName, Squad clubSquad, Manager clubManager, Tactic tactic)
+        public Club(string name, string shortName, String clubManager, Tactic tactic)
         {
             Id = Guid.NewGuid().ToString();
             Name = name;
             ShortName = shortName;
-            ClubSquad = clubSquad;
-            SignPlayers();
+            _squad = null;
             ClubManager = clubManager;
         }
 
-        private void SignPlayers()
+        public void SignPlayer(string playerId)
         {
-            foreach (Player player in ClubSquad.Attack)
-                player.Club = this;
-            foreach (Player player in ClubSquad.Midfield)
-                player.Club = this;
-            foreach (Player player in ClubSquad.Defence)
-                player.Club = this;
-            ClubSquad.GoalKeeper.Club = this;
+            if (ClubSquad == null) _squad = new List<string>();
+            _squad.Append(playerId);
+        }
+        public void SignPlayers(List<string> playerIds)
+        {
+            if (ClubSquad == null) _squad = new List<string>();
+            foreach (string playerId in playerIds)
+                SignPlayer(playerId);
         }
     }
 }

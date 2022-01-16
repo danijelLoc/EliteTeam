@@ -7,8 +7,7 @@ namespace EliteTeam.Model
 {
     public class Human
     {
-        protected string _id;
-        public string Id { get { return _id; } }
+        public string Id { get; }
 
         public string Name { get; set; }
 
@@ -16,7 +15,7 @@ namespace EliteTeam.Model
 
         public Human(string name, int age)
         {
-            _id = Guid.NewGuid().ToString();
+            Id = Guid.NewGuid().ToString();
             Name = name;
             Age = age;
         }

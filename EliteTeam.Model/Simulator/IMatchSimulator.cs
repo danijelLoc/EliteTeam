@@ -7,6 +7,6 @@ namespace EliteTeam.Model
 {
     public interface IMatchSimulator
     {
-        void Simulate(Club homeClub, Club awayClub);
+        void Simulate(Club homeClub, Club awayClub, IPlayerRepository playerRepository, IClubRepository clubRepository, IMatchResultRepository matchRepository);
     }
 }
