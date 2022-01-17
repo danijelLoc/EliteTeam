@@ -5,7 +5,7 @@ using EliteTeam.BaseLib;
 
 namespace EliteTeam.Controllers
 {
-    public class MainFormController
+    public class MainFormController : IMainFormController
     {
         private readonly IWindowFormsFactory _formsFactory = null;
         private readonly IPlayerRepository _playerRepository = null;
@@ -13,9 +13,17 @@ namespace EliteTeam.Controllers
         {
             _formsFactory = windowFormsFactory;
             _playerRepository = playerRepository;
+            CreateRandomData();
         }
 
-        public void RunAll()
+        public void ShowPlayers()
+        {
+            var playerController = new PlayerController(_playerRepository);
+            var listForm = _formsFactory.playersListForm();
+            playerController.ShowPlayers(listForm, _playerRepository, this);
+        }
+
+        public void CreateRandomData()
         {
             List<Player> squad1 = PlayerFactory.GetRandomSquad();
             List<Player> squad2 = PlayerFactory.GetRandomSquad();
@@ -28,9 +36,20 @@ namespace EliteTeam.Controllers
             _playerRepository.playersSignedForClub(squad1.ConvertAll(x => x.Id), homeClub.Id);
             _playerRepository.playersSignedForClub(squad2.ConvertAll(x => x.Id), awayClub.Id);
 
-            IMatchSimulator matchSimulator = new MyMatchSimulator();
-            matchSimulator.Simulate(homeClub, awayClub, _playerRepository, null, null);
+            // IMatchSimulator matchSimulator = new MyMatchSimulator();
+            // matchSimulator.Simulate(homeClub, awayClub, _playerRepository, null, null);
         }
 
+        public void AddPlayer()
+        {
+            var playerController = new PlayerController(_playerRepository);
+            var createForm = _formsFactory.cretePlayerForm();
+            playerController.AddNewAccount(createForm, _playerRepository);
+        }
+
+        public void EditPlayer(string playerId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

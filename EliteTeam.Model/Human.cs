@@ -10,13 +10,15 @@ namespace EliteTeam.Model
         public string Id { get; }
 
         public string Name { get; set; }
+        public string Country { get; }
 
         public int Age { get; set; }
 
-        public Human(string name, int age)
+        public Human(string name, int age, string country)
         {
             Id = Guid.NewGuid().ToString();
             Name = name;
+            Country = country;
             Age = age;
         }
     }

@@ -14,7 +14,7 @@ namespace EliteTeam.Model
             string randomName = RandomName(r.Next(3, 8));
             int randomAge = r.Next(17, 32);
             Stats randomStats = RandomStats(position);
-            Player player = new Player(position, randomName, randomAge, randomStats);
+            Player player = new Player(position, randomName, randomAge, "Croatia", randomStats);
             // adding AI to player, AI is not needed before match, it can be changed with better one in next versions
             player.PlayerAI = AIFactory.CreateAI(position);
             return player;

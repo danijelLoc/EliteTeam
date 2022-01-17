@@ -1,11 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\EliteTeam.BaseLib\EliteTeam.BaseLib.csproj" />
+    <ProjectReference Include="..\EliteTeam.Controllers\EliteTeam.Controllers.csproj" />
+    <ProjectReference Include="..\EliteTeam.MemoryBasedDAL\EliteTeam.MemoryBasedDAL.csproj" />
   </ItemGroup>
 
 </Project>

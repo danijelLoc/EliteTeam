@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 using EliteTeam.Controllers;
+using EliteTeam.Model;
 using EliteTeam.MemoryBasedDAL;
-using EliteTeam.PresentationLayer;
 
-namespace EliteTeam.AppStarter
+namespace EliteTeam.PresentationLayer
 {
     static class Program
     {
@@ -18,14 +17,14 @@ namespace EliteTeam.AppStarter
         [STAThread]
         static void Main()
         {
-            WindowFormsFactory _formsFactory = new WindowFormsFactory();
+            WindowsFormsFactory _formsFactory = new WindowsFormsFactory();
 
             MainFormController mainController = new MainFormController(_formsFactory, PlayerRepository.Shared);
-            mainController.RunAll();
-            /*Application.SetHighDpiMode(HighDpiMode.SystemAware);
+            //mainController.RunAll();
+            Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());*/
+            Application.Run(new frmMainForm(mainController));
 
         }
     }

@@ -7,6 +7,7 @@ namespace EliteTeam.Model
 {
     public class Club
     {
+        // TODO no same name clubs
         public static readonly int MinNumberOfPlayers = 11;
 
         private List<string> _squad;

@@ -16,7 +16,7 @@ namespace EliteTeam.Model
 
         public PlayerDescription Description { get { return new PlayerDescription(Id, Name, Age.ToString(), _position.ToString()); } }
 
-        public Player(PlayerPosition position, string name, int age, Stats stats) : base(name, age)
+        public Player(PlayerPosition position, string name, int age, string country, Stats stats) : base(name, age, country)
         {
             ClubId = null;
             _position = position;
