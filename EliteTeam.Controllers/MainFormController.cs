@@ -10,11 +10,14 @@ namespace EliteTeam.Controllers
         private readonly IWindowFormsFactory _formsFactory = null;
         private readonly IPlayerRepository _playerRepository = null;
         private readonly IClubRepository _clubRepository = null;
-        public MainFormController(IWindowFormsFactory windowFormsFactory, IPlayerRepository playerRepository, IClubRepository clubRepository)
+        private readonly IMatchResultRepository _matchResultRepository = null;
+
+        public MainFormController(IWindowFormsFactory windowFormsFactory, IPlayerRepository playerRepository, IClubRepository clubRepository, IMatchResultRepository matchResultRepository)
         {
             _formsFactory = windowFormsFactory;
             _playerRepository = playerRepository;
             _clubRepository = clubRepository;
+            _matchResultRepository = matchResultRepository;
             CreateRandomData();
         }
 
@@ -73,6 +76,13 @@ namespace EliteTeam.Controllers
 
             // IMatchSimulator matchSimulator = new MyMatchSimulator();
             // matchSimulator.Simulate(homeClub, awayClub, _playerRepository, null, null);
+        }
+
+        public void ShowMatchCreator()
+        {
+            var matchController = new MatchController(_matchResultRepository, _clubRepository);
+            var createMatchForm = _formsFactory.matchCreatorForm();
+            matchController.ShowMatchCreator(createMatchForm, this);
         }
     }
 }

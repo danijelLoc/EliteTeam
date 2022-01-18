@@ -43,24 +43,25 @@ namespace EliteTeam.PresentationLayer
             this.button1.TabIndex = 0;
             this.button1.Text = "Simulate Match";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(394, 225);
+            this.button2.Location = new System.Drawing.Point(394, 267);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(206, 36);
             this.button2.TabIndex = 1;
-            this.button2.Text = "Players";
+            this.button2.Text = "All Players";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(394, 277);
+            this.button3.Location = new System.Drawing.Point(394, 207);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(206, 35);
             this.button3.TabIndex = 2;
-            this.button3.Text = "Clubs";
+            this.button3.Text = "All Clubs";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 

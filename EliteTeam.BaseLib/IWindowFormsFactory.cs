@@ -8,5 +8,7 @@ namespace EliteTeam.BaseLib
         public IClubsListView clubsListForm();
         public ICreatePlayerView cretePlayerForm();
         public ICreateClubView creteClubForm();
+        public ICreateMatchView matchCreatorForm();
+        public IMatchView matcForm();
     }
 }

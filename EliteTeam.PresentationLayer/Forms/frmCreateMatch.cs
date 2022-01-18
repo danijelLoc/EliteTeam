@@ -11,21 +11,27 @@ using EliteTeam.BaseLib;
 
 namespace EliteTeam.PresentationLayer
 {
-    public partial class frmMatchSimulation : Form, IMatchView
+    public partial class frmCreateMatch : Form, ICreateMatchView
     {
-        public frmMatchSimulation()
+        IMatchController _matchController = null;
+        public frmCreateMatch()
         {
             InitializeComponent();
         }
 
+        public string HomeClubName { get { return comboBoxHome.SelectedItem.ToString(); } }
+
+        public string AwayClubName { get { return comboBoxAway.SelectedItem.ToString(); } }
+
         public void CloseView()
         {
-            throw new NotImplementedException();
+            this.Close();
         }
 
         public void ShowModaless(IMatchController matchController)
         {
-            throw new NotImplementedException();
+            _matchController = matchController;
+            this.Show();
         }
     }
 }

@@ -36,5 +36,10 @@ namespace EliteTeam.PresentationLayer
         {
             _mainController.ShowClubs();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            _mainController.ShowMatchCreator();
+        }
     }
 }

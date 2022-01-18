@@ -1,7 +1,7 @@
 ﻿
 namespace EliteTeam.PresentationLayer
 {
-    partial class frmInitialiseMatch
+    partial class frmCreateMatch
     {
         /// <summary>
         /// Required designer variable.
@@ -41,6 +41,7 @@ namespace EliteTeam.PresentationLayer
             // 
             // comboBoxHome
             // 
+            this.comboBoxHome.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxHome.FormattingEnabled = true;
             this.comboBoxHome.Location = new System.Drawing.Point(139, 296);
             this.comboBoxHome.Name = "comboBoxHome";
@@ -49,6 +50,7 @@ namespace EliteTeam.PresentationLayer
             // 
             // comboBoxAway
             // 
+            this.comboBoxAway.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxAway.FormattingEnabled = true;
             this.comboBoxAway.Location = new System.Drawing.Point(458, 296);
             this.comboBoxAway.Name = "comboBoxAway";
@@ -91,7 +93,7 @@ namespace EliteTeam.PresentationLayer
             this.label1.TabIndex = 5;
             this.label1.Text = "VS";
             // 
-            // frmInitialiseMatch
+            // frmCreateMatch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -103,9 +105,9 @@ namespace EliteTeam.PresentationLayer
             this.Controls.Add(this.comboBoxAway);
             this.Controls.Add(this.comboBoxHome);
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Name = "frmInitialiseMatch";
+            this.Name = "frmCreateMatch";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "InitialiseMatch";
+            this.Text = "Create Match";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHome)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAway)).EndInit();
             this.ResumeLayout(false);

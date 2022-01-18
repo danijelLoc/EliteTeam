@@ -8,6 +8,7 @@ namespace EliteTeam.BaseLib
 {
     public interface IMainFormController
     {
+        public void ShowMatchCreator();
         public void ShowPlayers();
         public void ShowClubs();
         public void AddPlayer();

@@ -24,5 +24,15 @@ namespace EliteTeam.PresentationLayer
         {
             return new frmCreateClub();
         }
+
+        public ICreateMatchView matchCreatorForm()
+        {
+            return new frmCreateMatch();
+        }
+
+        public IMatchView matcForm()
+        {
+            return new frmMatchSimulation();
+        }
     }
 }
