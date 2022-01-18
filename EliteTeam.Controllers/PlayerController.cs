@@ -8,7 +8,7 @@ using EliteTeam.BaseLib;
 
 namespace EliteTeam.Controllers
 {
-    public class PlayerController
+    public class PlayerController : IPlayerController
     {
         private IPlayerRepository _playerRepository;
 
@@ -17,27 +17,29 @@ namespace EliteTeam.Controllers
             _playerRepository = playerRepository;
         }
 
-        public void ShowPlayersTest()
+        public void AddPlayer(Player player)
         {
-            System.Diagnostics.Debug.WriteLine(_playerRepository.getAllPlayersIDs());
+            _playerRepository.addPlayer(player);
         }
 
-        public void AddNewAccount(ICreatePlayerView inForm, IPlayerRepository playerRepository)
+        public List<Player> GetPlayers()
         {
-            if (inForm.ShowViewModal())
-            {
-
-            }
+            return _playerRepository.getAllPlayers();
         }
 
-        public void ShowPlayers(IPlayersListView inForm, IPlayerRepository playerRepository, IMainFormController mainController)
+        public void RemovePlayer(string playerId)
         {
-            // dohvati sve accounte i proslijedi ih View-u
-            List<Player> listPlayers = playerRepository.getAllPlayers();
+            _playerRepository.deletePlayer(playerId);
+        }
 
-            // zašto proslijeđujemo i mainController?
-            // zato što na ovom View-u imamo "Add new account" i "Edit new account" funkcionalnost!
-            inForm.ShowModaless(mainController, listPlayers);
+        public void ShowAddNewPlayer(ICreatePlayerView inForm)
+        {
+            inForm.ShowModaless(this);
+        }
+
+        public void ShowPlayers(IPlayersListView inForm, IMainFormController mainFormController)
+        {
+            inForm.ShowModaless(this, mainFormController);
         }
     }
 }

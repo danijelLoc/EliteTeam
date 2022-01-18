@@ -20,7 +20,19 @@ namespace EliteTeam.Controllers
         {
             var playerController = new PlayerController(_playerRepository);
             var listForm = _formsFactory.playersListForm();
-            playerController.ShowPlayers(listForm, _playerRepository, this);
+            playerController.ShowPlayers(listForm, this);
+        }
+
+        public void AddPlayer()
+        {
+            var playerController = new PlayerController(_playerRepository);
+            var createForm = _formsFactory.cretePlayerForm();
+            playerController.ShowAddNewPlayer(createForm);
+        }
+
+        public void EditPlayer(string playerId)
+        {
+            throw new NotImplementedException();
         }
 
         public void CreateRandomData()
@@ -38,18 +50,6 @@ namespace EliteTeam.Controllers
 
             // IMatchSimulator matchSimulator = new MyMatchSimulator();
             // matchSimulator.Simulate(homeClub, awayClub, _playerRepository, null, null);
-        }
-
-        public void AddPlayer()
-        {
-            var playerController = new PlayerController(_playerRepository);
-            var createForm = _formsFactory.cretePlayerForm();
-            playerController.AddNewAccount(createForm, _playerRepository);
-        }
-
-        public void EditPlayer(string playerId)
-        {
-            throw new NotImplementedException();
         }
     }
 }

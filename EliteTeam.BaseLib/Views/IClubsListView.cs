@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EliteTeam.BaseLib
+namespace EliteTeam.BaseLib.Views
 {
-    public interface ICreatePlayerView
+    public interface IClubsListView
     {
-        public bool ShowViewModal();
     }
 }

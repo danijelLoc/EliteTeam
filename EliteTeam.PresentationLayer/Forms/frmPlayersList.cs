@@ -10,10 +10,10 @@ namespace EliteTeam.PresentationLayer
     public partial class frmPlayersList : Form, IPlayersListView
     {
         private List<Player> _listPlayers = null;
-        private IMainFormController _mainController = null;
-
+        private IMainFormController _mainFormController = null;
         public frmPlayersList()
         {
+
             InitializeComponent();
         }
 
@@ -22,10 +22,10 @@ namespace EliteTeam.PresentationLayer
 
         }
 
-        public void ShowModaless(IMainFormController mainController, List<Player> listPlayers)
+        public void ShowModaless(IPlayerController playerController, IMainFormController mainFormController)
         {
-            _mainController = mainController;
-            _listPlayers = listPlayers;
+            _mainFormController = mainFormController;
+            _listPlayers = playerController.GetPlayers();
 
             UpdateList();
 
@@ -56,13 +56,13 @@ namespace EliteTeam.PresentationLayer
                 int ind = listViewPlayers.SelectedItems[0].Index;
                 string playerId = _listPlayers[ind].Id;
 
-                _mainController.EditPlayer(playerId);
+                _mainFormController.EditPlayer(playerId);
             }
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            _mainController.AddPlayer();
+            _mainFormController.AddPlayer();
         }
     }
 }
