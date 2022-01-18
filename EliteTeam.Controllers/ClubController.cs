@@ -44,7 +44,10 @@ namespace EliteTeam.Controllers
 
         public void TryToAddClub(ICreateClubView inForm)
         {
-            throw new NotImplementedException();
+            Tactic tactic = (Tactic)Enum.Parse(typeof(Tactic), inForm.Tactic);
+            Club newClub = new Club(inForm.ClubName, inForm.ShortClubName, inForm.ManagerName, tactic);
+            _clubRepository.addClub(newClub);
+            inForm.CloseView();
         }
     }
 }

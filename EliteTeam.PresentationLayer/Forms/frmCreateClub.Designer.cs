@@ -135,6 +135,7 @@ namespace EliteTeam.PresentationLayer
             this.buttonCreate.TabIndex = 10;
             this.buttonCreate.Text = "Create Club";
             this.buttonCreate.UseVisualStyleBackColor = true;
+            this.buttonCreate.Click += new System.EventHandler(this.buttonCreate_Click);
             // 
             // frmCreateClub
             // 

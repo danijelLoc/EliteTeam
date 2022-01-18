@@ -35,6 +35,7 @@ namespace EliteTeam.PresentationLayer
         public void ShowModaless(IClubController clubController)
         {
             _clubController = clubController;
+            comboBoxTactic.Items.AddRange(_clubController.getTacticOptions());
             this.Show();
         }
 
