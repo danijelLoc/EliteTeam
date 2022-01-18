@@ -11,6 +11,7 @@ namespace EliteTeam.PresentationLayer
     {
         private List<Player> _listPlayers = null;
         private IMainFormController _mainFormController = null;
+        private IPlayerController _playerController = null;
         public frmPlayersList()
         {
 
@@ -25,15 +26,15 @@ namespace EliteTeam.PresentationLayer
         public void ShowModaless(IPlayerController playerController, IMainFormController mainFormController)
         {
             _mainFormController = mainFormController;
-            _listPlayers = playerController.GetPlayers();
-
+            _playerController = playerController;
             UpdateList();
 
             this.Show();
         }
 
-        private void UpdateList()
+        public void UpdateList()
         {
+            _listPlayers = _playerController.GetPlayers();
             for (int i = 0; i < _listPlayers.Count(); i++)
             {
                 Player player = _listPlayers[i];

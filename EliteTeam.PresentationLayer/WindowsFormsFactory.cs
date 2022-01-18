@@ -14,5 +14,15 @@ namespace EliteTeam.PresentationLayer
         {
             return new frmCreatePlayer();
         }
+
+        public IClubsListView clubsListForm()
+        {
+            return new frmClubList();
+        }
+
+        public ICreateClubView creteClubForm()
+        {
+            return new frmCreateClub();
+        }
     }
 }

@@ -67,7 +67,7 @@ namespace EliteTeam.PresentationLayer
             this.txtHomeGoals.Font = new System.Drawing.Font("Segoe UI", 22.25455F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtHomeGoals.Location = new System.Drawing.Point(378, 49);
             this.txtHomeGoals.Name = "txtHomeGoals";
-            this.txtHomeGoals.Size = new System.Drawing.Size(38, 46);
+            this.txtHomeGoals.Size = new System.Drawing.Size(39, 47);
             this.txtHomeGoals.TabIndex = 2;
             this.txtHomeGoals.Text = "0";
             // 
@@ -78,7 +78,7 @@ namespace EliteTeam.PresentationLayer
             this.txtAwayGoals.Font = new System.Drawing.Font("Segoe UI", 22.25455F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtAwayGoals.Location = new System.Drawing.Point(466, 49);
             this.txtAwayGoals.Name = "txtAwayGoals";
-            this.txtAwayGoals.Size = new System.Drawing.Size(38, 46);
+            this.txtAwayGoals.Size = new System.Drawing.Size(39, 47);
             this.txtAwayGoals.TabIndex = 3;
             this.txtAwayGoals.Text = "0";
             // 
@@ -147,6 +147,7 @@ namespace EliteTeam.PresentationLayer
             this.Controls.Add(this.txtAwayClubName);
             this.Controls.Add(this.txtHomeClubName);
             this.Name = "frmMatchSimulation";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Match";
             this.ResumeLayout(false);
             this.PerformLayout();

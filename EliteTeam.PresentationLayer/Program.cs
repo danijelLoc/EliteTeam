@@ -18,9 +18,8 @@ namespace EliteTeam.PresentationLayer
         static void Main()
         {
             WindowsFormsFactory _formsFactory = new WindowsFormsFactory();
+            MainFormController mainController = new MainFormController(_formsFactory, PlayerRepository.Shared, ClubRepository.Shared);
 
-            MainFormController mainController = new MainFormController(_formsFactory, PlayerRepository.Shared);
-            //mainController.RunAll();
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

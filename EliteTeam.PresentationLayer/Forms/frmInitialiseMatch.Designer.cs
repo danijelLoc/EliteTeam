@@ -102,7 +102,9 @@ namespace EliteTeam.PresentationLayer
             this.Controls.Add(this.pictureBoxHome);
             this.Controls.Add(this.comboBoxAway);
             this.Controls.Add(this.comboBoxHome);
+            this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Name = "frmInitialiseMatch";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "InitialiseMatch";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHome)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAway)).EndInit();

@@ -187,6 +187,7 @@ namespace EliteTeam.PresentationLayer
             // 
             // comboBoxPosition
             // 
+            this.comboBoxPosition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxPosition.FormattingEnabled = true;
             this.comboBoxPosition.Location = new System.Drawing.Point(168, 125);
             this.comboBoxPosition.Name = "comboBoxPosition";
@@ -195,6 +196,7 @@ namespace EliteTeam.PresentationLayer
             // 
             // comboBoxPassing
             // 
+            this.comboBoxPassing.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxPassing.FormattingEnabled = true;
             this.comboBoxPassing.Location = new System.Drawing.Point(168, 189);
             this.comboBoxPassing.Name = "comboBoxPassing";
@@ -203,6 +205,7 @@ namespace EliteTeam.PresentationLayer
             // 
             // comboBoxShooting
             // 
+            this.comboBoxShooting.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxShooting.FormattingEnabled = true;
             this.comboBoxShooting.Location = new System.Drawing.Point(168, 220);
             this.comboBoxShooting.Name = "comboBoxShooting";
@@ -211,6 +214,7 @@ namespace EliteTeam.PresentationLayer
             // 
             // comboBoxDribbling
             // 
+            this.comboBoxDribbling.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxDribbling.FormattingEnabled = true;
             this.comboBoxDribbling.Location = new System.Drawing.Point(168, 253);
             this.comboBoxDribbling.Name = "comboBoxDribbling";
@@ -219,6 +223,7 @@ namespace EliteTeam.PresentationLayer
             // 
             // comboBoxSpeed
             // 
+            this.comboBoxSpeed.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxSpeed.FormattingEnabled = true;
             this.comboBoxSpeed.Location = new System.Drawing.Point(168, 286);
             this.comboBoxSpeed.Name = "comboBoxSpeed";
@@ -227,6 +232,7 @@ namespace EliteTeam.PresentationLayer
             // 
             // comboBoxStamina
             // 
+            this.comboBoxStamina.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxStamina.FormattingEnabled = true;
             this.comboBoxStamina.Location = new System.Drawing.Point(571, 289);
             this.comboBoxStamina.Name = "comboBoxStamina";
@@ -235,6 +241,7 @@ namespace EliteTeam.PresentationLayer
             // 
             // comboBoxStrenght
             // 
+            this.comboBoxStrenght.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxStrenght.FormattingEnabled = true;
             this.comboBoxStrenght.Location = new System.Drawing.Point(571, 189);
             this.comboBoxStrenght.Name = "comboBoxStrenght";
@@ -243,6 +250,7 @@ namespace EliteTeam.PresentationLayer
             // 
             // comboBoxInterception
             // 
+            this.comboBoxInterception.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxInterception.FormattingEnabled = true;
             this.comboBoxInterception.Location = new System.Drawing.Point(571, 222);
             this.comboBoxInterception.Name = "comboBoxInterception";
@@ -251,6 +259,7 @@ namespace EliteTeam.PresentationLayer
             // 
             // comboBoxGoalkeeping
             // 
+            this.comboBoxGoalkeeping.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxGoalkeeping.FormattingEnabled = true;
             this.comboBoxGoalkeeping.Location = new System.Drawing.Point(571, 255);
             this.comboBoxGoalkeeping.Name = "comboBoxGoalkeeping";
@@ -265,6 +274,7 @@ namespace EliteTeam.PresentationLayer
             this.buttonCreate.TabIndex = 24;
             this.buttonCreate.Text = "Create Player";
             this.buttonCreate.UseVisualStyleBackColor = true;
+            this.buttonCreate.Click += new System.EventHandler(this.buttonCreate_Click);
             // 
             // frmCreatePlayer
             // 
@@ -296,6 +306,7 @@ namespace EliteTeam.PresentationLayer
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
             this.Name = "frmCreatePlayer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Player Creator";

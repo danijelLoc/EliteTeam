@@ -9,7 +9,10 @@ namespace EliteTeam.BaseLib
     public interface IMainFormController
     {
         public void ShowPlayers();
+        public void ShowClubs();
         public void AddPlayer();
+        public void AddClub();
         void EditPlayer(string playerId);
+        void EditClub(string playerId);
     }
 }

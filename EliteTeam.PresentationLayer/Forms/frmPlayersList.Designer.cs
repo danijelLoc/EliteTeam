@@ -83,6 +83,7 @@ namespace EliteTeam.PresentationLayer
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.listViewPlayers);
+            this.MaximizeBox = false;
             this.Name = "frmPlayersList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PlayersList";

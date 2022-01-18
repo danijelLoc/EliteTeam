@@ -78,7 +78,6 @@ namespace EliteTeam.PresentationLayer
             this.label4.Size = new System.Drawing.Size(41, 19);
             this.label4.TabIndex = 3;
             this.label4.Text = "Tactic";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // textBoxName
             // 
@@ -103,6 +102,7 @@ namespace EliteTeam.PresentationLayer
             // 
             // comboBoxTactic
             // 
+            this.comboBoxTactic.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxTactic.FormattingEnabled = true;
             this.comboBoxTactic.Location = new System.Drawing.Point(166, 218);
             this.comboBoxTactic.Name = "comboBoxTactic";
@@ -111,15 +111,16 @@ namespace EliteTeam.PresentationLayer
             // 
             // pictureBoxLogo
             // 
-            this.pictureBoxLogo.Location = new System.Drawing.Point(518, 66);
+            this.pictureBoxLogo.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.pictureBoxLogo.Location = new System.Drawing.Point(487, 44);
             this.pictureBoxLogo.Name = "pictureBoxLogo";
-            this.pictureBoxLogo.Size = new System.Drawing.Size(213, 218);
+            this.pictureBoxLogo.Size = new System.Drawing.Size(213, 201);
             this.pictureBoxLogo.TabIndex = 8;
             this.pictureBoxLogo.TabStop = false;
             // 
             // buttonLogo
             // 
-            this.buttonLogo.Location = new System.Drawing.Point(518, 290);
+            this.buttonLogo.Location = new System.Drawing.Point(487, 251);
             this.buttonLogo.Name = "buttonLogo";
             this.buttonLogo.Size = new System.Drawing.Size(213, 26);
             this.buttonLogo.TabIndex = 9;
@@ -128,7 +129,7 @@ namespace EliteTeam.PresentationLayer
             // 
             // buttonCreate
             // 
-            this.buttonCreate.Location = new System.Drawing.Point(518, 376);
+            this.buttonCreate.Location = new System.Drawing.Point(487, 345);
             this.buttonCreate.Name = "buttonCreate";
             this.buttonCreate.Size = new System.Drawing.Size(213, 47);
             this.buttonCreate.TabIndex = 10;
@@ -139,7 +140,7 @@ namespace EliteTeam.PresentationLayer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(745, 420);
             this.Controls.Add(this.buttonCreate);
             this.Controls.Add(this.buttonLogo);
             this.Controls.Add(this.pictureBoxLogo);
@@ -152,6 +153,7 @@ namespace EliteTeam.PresentationLayer
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "frmCreateClub";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Club Creator";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.ResumeLayout(false);

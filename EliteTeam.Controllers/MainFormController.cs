@@ -9,10 +9,12 @@ namespace EliteTeam.Controllers
     {
         private readonly IWindowFormsFactory _formsFactory = null;
         private readonly IPlayerRepository _playerRepository = null;
-        public MainFormController(IWindowFormsFactory windowFormsFactory, IPlayerRepository playerRepository)
+        private readonly IClubRepository _clubRepository = null;
+        public MainFormController(IWindowFormsFactory windowFormsFactory, IPlayerRepository playerRepository, IClubRepository clubRepository)
         {
             _formsFactory = windowFormsFactory;
             _playerRepository = playerRepository;
+            _clubRepository = clubRepository;
             CreateRandomData();
         }
 
@@ -35,6 +37,25 @@ namespace EliteTeam.Controllers
             throw new NotImplementedException();
         }
 
+        public void ShowClubs()
+        {
+            var clubController = new ClubController(_clubRepository);
+            var clubListForm = _formsFactory.clubsListForm();
+            clubController.ShowClubs(clubListForm, this);
+        }
+
+        public void AddClub()
+        {
+            var clubController = new ClubController(_clubRepository);
+            var createClubForm = _formsFactory.creteClubForm();
+            clubController.ShowAddNewClub(createClubForm);
+        }
+
+        public void EditClub(string playerId)
+        {
+            throw new NotImplementedException();
+        }
+
         public void CreateRandomData()
         {
             List<Player> squad1 = PlayerFactory.GetRandomSquad();
@@ -47,6 +68,8 @@ namespace EliteTeam.Controllers
             awayClub.SignPlayers(squad2.ConvertAll(x => x.Id));
             _playerRepository.playersSignedForClub(squad1.ConvertAll(x => x.Id), homeClub.Id);
             _playerRepository.playersSignedForClub(squad2.ConvertAll(x => x.Id), awayClub.Id);
+            _clubRepository.addClub(homeClub);
+            _clubRepository.addClub(awayClub);
 
             // IMatchSimulator matchSimulator = new MyMatchSimulator();
             // matchSimulator.Simulate(homeClub, awayClub, _playerRepository, null, null);

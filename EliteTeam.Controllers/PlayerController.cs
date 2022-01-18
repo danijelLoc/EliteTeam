@@ -17,14 +17,21 @@ namespace EliteTeam.Controllers
             _playerRepository = playerRepository;
         }
 
-        public void AddPlayer(Player player)
-        {
-            _playerRepository.addPlayer(player);
-        }
-
         public List<Player> GetPlayers()
         {
             return _playerRepository.getAllPlayers();
+        }
+
+        public object[] getPositionOptions()
+        {
+            object[] positions = new object[4] { PlayerPosition.attacker, PlayerPosition.midfielder, PlayerPosition.defender, PlayerPosition.goalkeeper };
+            return positions;
+        }
+
+        public object[] getStatsRangeOptions()
+        {
+            object[] statsOptions = new object[5] { 1, 2, 3, 4, 5 };
+            return statsOptions;
         }
 
         public void RemovePlayer(string playerId)
@@ -40,6 +47,23 @@ namespace EliteTeam.Controllers
         public void ShowPlayers(IPlayersListView inForm, IMainFormController mainFormController)
         {
             inForm.ShowModaless(this, mainFormController);
+        }
+
+        public void TryToAddPlayer(ICreatePlayerView inForm)
+        {
+            Stats playerStats = new Stats();
+            playerStats.Passing = inForm.Passing;
+            playerStats.Shooting = inForm.Shooting;
+            playerStats.Dribling = inForm.Dribling;
+            playerStats.Speed = inForm.Speed;
+            playerStats.Strenght = inForm.Strenght;
+            playerStats.Interceptions = inForm.Interceptions;
+            playerStats.Goalkeeping = inForm.Goalkeeping;
+            playerStats.Stamina = inForm.Stamina;
+            PlayerPosition position = (PlayerPosition)Enum.Parse(typeof(PlayerPosition), inForm.Position);
+            Player newPlayer = new Player(position, inForm.PlayerName, inForm.Age, inForm.Country, playerStats);
+            _playerRepository.addPlayer(newPlayer);
+            inForm.CloseView();
         }
     }
 }
