@@ -83,6 +83,7 @@ namespace EliteTeam.PresentationLayer
             this.buttonSimulate.TabIndex = 4;
             this.buttonSimulate.Text = "Simulate Match";
             this.buttonSimulate.UseVisualStyleBackColor = true;
+            this.buttonSimulate.Click += new System.EventHandler(this.buttonSimulate_Click);
             // 
             // label1
             // 
@@ -105,6 +106,7 @@ namespace EliteTeam.PresentationLayer
             this.Controls.Add(this.comboBoxAway);
             this.Controls.Add(this.comboBoxHome);
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.MaximizeBox = false;
             this.Name = "frmCreateMatch";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Create Match";

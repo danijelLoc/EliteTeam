@@ -8,10 +8,11 @@ namespace EliteTeam.Model
         Club getClubByID(string ClubId);
         List<string> getClubPlayersIds(string ClubId);
         List<Club> getAllClubs();
-        List<Club> getClubsWithName(string name);
+        Club getClubWithName(string name);
         List<string> getAllClubsIDs();
         bool doesClubExists(string name);
         void addClub(Club inClub);
         void deleteClub(string inClubID);
+        void deleteClubWithName(string name);
     }
 }

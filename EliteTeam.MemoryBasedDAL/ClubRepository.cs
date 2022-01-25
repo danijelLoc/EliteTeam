@@ -10,6 +10,7 @@ namespace EliteTeam.MemoryBasedDAL
     public class ClubRepository : IClubRepository
     {
         private List<Club> _clubs = null;
+        // GetInstance sa != null umhesto shared !!!!!!!!!!!!!!!!!!!!!!! kao kod njega
         public static ClubRepository Shared = new ClubRepository();
 
         private ClubRepository()
@@ -19,7 +20,7 @@ namespace EliteTeam.MemoryBasedDAL
 
         public void addClub(Club inClub)
         {
-            if (_clubs.Find(x => x.Id == inClub.Id) != null)
+            if (_clubs.Find(x => x.Id == inClub.Id || x.Name == inClub.Name) != null)
                 return;
             _clubs.Add(inClub);
         }
@@ -27,6 +28,11 @@ namespace EliteTeam.MemoryBasedDAL
         public void deleteClub(string inClubID)
         {
             _clubs.RemoveAll(x => x.Id == inClubID);
+        }
+
+        public void deleteClubWithName(string name)
+        {
+            _clubs.RemoveAll(x => x.Name == name);
         }
 
         public bool doesClubExists(string name)
@@ -56,9 +62,9 @@ namespace EliteTeam.MemoryBasedDAL
             return club.ClubSquad;
         }
 
-        public List<Club> getClubsWithName(string name)
+        public Club getClubWithName(string name)
         {
-            return _clubs.FindAll(x => x.Name == name);
+            return _clubs.Find(x => x.Name == name);
         }
 
         public int getNumberOfClubs()

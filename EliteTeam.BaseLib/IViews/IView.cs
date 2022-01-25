@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace EliteTeam.BaseLib
 {
-    public interface IMatchView
+    public interface IView
     {
-        void ShowModaless(IMatchController matchController);
         void CloseView();
+        void ShowMessage(string message);
     }
 }

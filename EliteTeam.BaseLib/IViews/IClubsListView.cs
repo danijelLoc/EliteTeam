@@ -8,6 +8,7 @@ namespace EliteTeam.BaseLib
 {
     public interface IClubsListView
     {
+        // TODO SHOWMESSAGE, TRY CATCH -> controller
         public void UpdateList();
         void ShowModaless(IClubController clubController, IMainFormController mainFormController);
     }

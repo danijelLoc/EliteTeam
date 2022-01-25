@@ -14,6 +14,7 @@ namespace EliteTeam.PresentationLayer
     public partial class frmCreateMatch : Form, ICreateMatchView
     {
         IMatchController _matchController = null;
+        IMainFormController _mainFormController = null;
         public frmCreateMatch()
         {
             InitializeComponent();
@@ -28,10 +29,28 @@ namespace EliteTeam.PresentationLayer
             this.Close();
         }
 
-        public void ShowModaless(IMatchController matchController)
+        public void ShowModaless(IMatchController matchController, IMainFormController mainFormController)
         {
             _matchController = matchController;
+            _mainFormController = mainFormController;
+            foreach (var club in matchController.GetClubs())
+            {
+                comboBoxHome.Items.Add(club.Name);
+                comboBoxAway.Items.Add(club.Name);
+            }
             this.Show();
+        }
+
+        private void buttonSimulate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                _matchController.TryToCreateMatch(this, _mainFormController);
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
         }
     }
 }

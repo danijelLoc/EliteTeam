@@ -21,6 +21,20 @@ namespace EliteTeam.Controllers
             CreateRandomData();
         }
 
+        public void ShowMatchCreator()
+        {
+            var matchController = new MatchController(_matchResultRepository, _clubRepository, _playerRepository);
+            var createMatchForm = _formsFactory.matchCreatorForm();
+            matchController.ShowMatchCreator(createMatchForm, this);
+        }
+
+        public void ShowMatch(MatchSquad homeSquad, MatchSquad awaySquad)
+        {
+            var matchController = new MatchController(_matchResultRepository, _clubRepository, _playerRepository);
+            var matchForm = _formsFactory.matcForm();
+            matchController.ShowMatch(matchForm, homeSquad, awaySquad);
+        }
+
         public void ShowPlayers()
         {
             var playerController = new PlayerController(_playerRepository);
@@ -78,11 +92,6 @@ namespace EliteTeam.Controllers
             // matchSimulator.Simulate(homeClub, awayClub, _playerRepository, null, null);
         }
 
-        public void ShowMatchCreator()
-        {
-            var matchController = new MatchController(_matchResultRepository, _clubRepository);
-            var createMatchForm = _formsFactory.matchCreatorForm();
-            matchController.ShowMatchCreator(createMatchForm, this);
-        }
+
     }
 }
