@@ -9,6 +9,6 @@ namespace EliteTeam.BaseLib
         public ICreatePlayerView cretePlayerForm();
         public ICreateClubView creteClubForm();
         public ICreateMatchView matchCreatorForm();
-        public IMatchView matcForm();
+        public IMatchView matchForm();
     }
 }

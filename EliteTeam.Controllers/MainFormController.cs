@@ -31,7 +31,7 @@ namespace EliteTeam.Controllers
         public void ShowMatch(MatchSquad homeSquad, MatchSquad awaySquad)
         {
             var matchController = new MatchController(_matchResultRepository, _clubRepository, _playerRepository);
-            var matchForm = _formsFactory.matcForm();
+            var matchForm = _formsFactory.matchForm();
             matchController.ShowMatch(matchForm, homeSquad, awaySquad);
         }
 

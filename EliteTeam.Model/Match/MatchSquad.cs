@@ -8,19 +8,19 @@ namespace EliteTeam.Model
     public struct MatchSquad
     {
         // CLUB instead of id
-        public string ClubId { get; }
+        public Club Club { get; }
         public List<Player> Attack { get; }
         public List<Player> Midfield { get; }
         public List<Player> Defence { get; }
         public Player GoalKeeper { get; }
 
-        public MatchSquad(IPlayerRepository playerRepository, string clubId)
+        public MatchSquad(IPlayerRepository playerRepository, Club club)
         {
-            ClubId = clubId;
-            Attack = playerRepository.getAllPlayersInPositionAtClub(PlayerPosition.attacker, clubId);
-            Midfield = playerRepository.getAllPlayersInPositionAtClub(PlayerPosition.midfielder, clubId);
-            Defence = playerRepository.getAllPlayersInPositionAtClub(PlayerPosition.defender, clubId);
-            var goalKeepers = playerRepository.getAllPlayersInPositionAtClub(PlayerPosition.goalkeeper, clubId);
+            Club = club;
+            Attack = playerRepository.getAllPlayersInPositionAtClub(PlayerPosition.attacker, club.Id);
+            Midfield = playerRepository.getAllPlayersInPositionAtClub(PlayerPosition.midfielder, club.Id);
+            Defence = playerRepository.getAllPlayersInPositionAtClub(PlayerPosition.defender, club.Id);
+            var goalKeepers = playerRepository.getAllPlayersInPositionAtClub(PlayerPosition.goalkeeper, club.Id);
             GoalKeeper = goalKeepers.Count > 0 ? goalKeepers[0] : null;
         }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EliteTeam.BaseLib
 {
-    public interface IMainView
+    public interface IMainView : IView
     {
     }
 }

@@ -45,6 +45,16 @@ namespace EliteTeam.PresentationLayer
             }
         }
 
+        public void CloseView()
+        {
+            this.Close();
+        }
+
+        public void ShowMessage(string message)
+        {
+            MessageBox.Show(message);
+        }
+
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             _mainFormController.AddClub();

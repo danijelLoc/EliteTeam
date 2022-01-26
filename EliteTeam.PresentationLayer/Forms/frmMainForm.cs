@@ -41,5 +41,14 @@ namespace EliteTeam.PresentationLayer
         {
             _mainController.ShowMatchCreator();
         }
+        public void CloseView()
+        {
+            this.Close();
+        }
+
+        public void ShowMessage(string message)
+        {
+            MessageBox.Show(message);
+        }
     }
 }

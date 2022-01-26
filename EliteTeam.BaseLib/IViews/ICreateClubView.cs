@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace EliteTeam.BaseLib
 {
-    public interface ICreateClubView
+    public interface ICreateClubView : IView
     {
         void ShowModaless(IClubController clubController);
-        void CloseView();
         public string ClubName { get; }
         public string ShortClubName { get; }
         public string ManagerName { get; }

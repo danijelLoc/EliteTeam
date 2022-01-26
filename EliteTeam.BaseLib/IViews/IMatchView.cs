@@ -10,5 +10,6 @@ namespace EliteTeam.BaseLib
     public interface IMatchView : IView
     {
         void ShowModaless(IMatchController matchController, MatchSquad homeSquad, MatchSquad awaySquad);
+        void UpdateResult(int homeGoals, int awayGoals);
     }
 }

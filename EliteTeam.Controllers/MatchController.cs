@@ -13,6 +13,7 @@ namespace EliteTeam.Controllers
         private IMatchResultRepository _matchResultRepository;
         private IClubRepository _clubRepository;
         private IPlayerRepository _playerRepository;
+        private IMatchSimulationController matchSimulationController;
 
         public MatchController(IMatchResultRepository matchResultRepository, IClubRepository clubRepository, IPlayerRepository playerRepository)
         {
@@ -33,13 +34,16 @@ namespace EliteTeam.Controllers
 
         public void ShowMatch(IMatchView matchView, MatchSquad homeSquad, MatchSquad awaySquad)
         {
-            throw new NotImplementedException();
+            matchView.ShowModaless(this, homeSquad, awaySquad);
+            MatchSimulationController matchSimulation = new MatchSimulationController(_matchResultRepository);
+            matchSimulation.Simulate(matchView, homeSquad, awaySquad);
         }
 
 
         public void ShowMatchCreator(ICreateMatchView createMatchView, IMainFormController mainFormController)
         {
             createMatchView.ShowModaless(this, mainFormController);
+
         }
         public void TryToCreateMatch(ICreateMatchView matchCreatorView, IMainFormController mainFormController)
         {
@@ -47,8 +51,8 @@ namespace EliteTeam.Controllers
                 throw new ArgumentException("Selected same club twice, please select different clubs.");
             var homeClub = _clubRepository.getClubWithName(matchCreatorView.HomeClubName);
             var awayClub = _clubRepository.getClubWithName(matchCreatorView.AwayClubName);
-            MatchSquad homeMatchSquad = new MatchSquad(_playerRepository, homeClub.Id);
-            MatchSquad awayMatchSquad = new MatchSquad(_playerRepository, awayClub.Id);
+            MatchSquad homeMatchSquad = new MatchSquad(_playerRepository, homeClub);
+            MatchSquad awayMatchSquad = new MatchSquad(_playerRepository, awayClub);
             if (!homeMatchSquad.IsSquadValid())
                 throw new ArgumentException("Home match  squad is not valid, lack of players or goalkeeper.");
             if (!awayMatchSquad.IsSquadValid())

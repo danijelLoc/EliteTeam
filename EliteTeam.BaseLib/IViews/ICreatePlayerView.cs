@@ -7,10 +7,9 @@ using EliteTeam.Model;
 
 namespace EliteTeam.BaseLib
 {
-    public interface ICreatePlayerView
+    public interface ICreatePlayerView : IView
     {
         void ShowModaless(IPlayerController playerController);
-        void CloseView();
         string PlayerName { get; }
         string Country { get; }
         int Age { get; }

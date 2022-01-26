@@ -32,6 +32,16 @@ namespace EliteTeam.PresentationLayer
             this.Show();
         }
 
+        public void CloseView()
+        {
+            this.Close();
+        }
+
+        public void ShowMessage(string message)
+        {
+            MessageBox.Show(message);
+        }
+
         public void UpdateList()
         {
             _listPlayers = _playerController.GetPlayers();

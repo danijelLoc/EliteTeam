@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace EliteTeam.BaseLib
 {
-    public interface ICreateMatchView
+    public interface ICreateMatchView : IView
     {
         void ShowModaless(IMatchController matchController, IMainFormController mainFormController);
-        void CloseView();
         public string HomeClubName { get; }
         public string AwayClubName { get; }
     }

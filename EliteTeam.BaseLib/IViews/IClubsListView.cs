@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace EliteTeam.BaseLib
 {
-    public interface IClubsListView
+    public interface IClubsListView : IView
     {
-        // TODO SHOWMESSAGE, TRY CATCH -> controller
         public void UpdateList();
         void ShowModaless(IClubController clubController, IMainFormController mainFormController);
     }

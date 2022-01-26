@@ -52,11 +52,6 @@ namespace EliteTeam.PresentationLayer
             this.Show();
         }
 
-        public void CloseView()
-        {
-            this.Close();
-        }
-
         private void buttonCreate_Click(object sender, EventArgs e)
         {
             try
@@ -68,6 +63,16 @@ namespace EliteTeam.PresentationLayer
                 MessageBox.Show("EXCEPTION: " + exc.Message);
             }
 
+        }
+
+        public void CloseView()
+        {
+            this.Close();
+        }
+
+        public void ShowMessage(string message)
+        {
+            MessageBox.Show(message);
         }
     }
 }

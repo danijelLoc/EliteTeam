@@ -32,6 +32,11 @@ namespace EliteTeam.PresentationLayer
             this.Close();
         }
 
+        public void ShowMessage(string message)
+        {
+            MessageBox.Show(message);
+        }
+
         public void ShowModaless(IClubController clubController)
         {
             _clubController = clubController;

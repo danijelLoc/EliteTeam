@@ -30,9 +30,9 @@ namespace EliteTeam.PresentationLayer
             return new frmCreateMatch();
         }
 
-        public IMatchView matcForm()
+        public IMatchView matchForm()
         {
-            return new frmMatchSimulation();
+            return new frmMatch();
         }
     }
 }

@@ -11,18 +11,18 @@ namespace EliteTeam.Model
         public string AwayClubId { get; }
         public int HomeClubGoals { get; }
         public int AwayClubGoals { get; }
-        public DateTime KickOffDate { get; }
+        public DateTime KickOffTime { get; }
 
-        public MatchResult(string homeClubName, string homwClubId, string awayClubName, string awayClubId, int homeClubGoals, int awayClubGoals, DateTime date)
+        public MatchResult(Club homeClub, Club awayClub, int homeClubGoals, int awayClubGoals, DateTime kickOffTime)
         {
             Id = Guid.NewGuid().ToString();
-            HomeClubName = homeClubName;
-            HomeClubId = HomeClubId;
-            AwayClubName = awayClubName;
-            AwayClubId = awayClubId;
+            HomeClubName = homeClub.Name;
+            HomeClubId = homeClub.Id;
+            AwayClubName = awayClub.Name;
+            AwayClubId = awayClub.Id;
             HomeClubGoals = homeClubGoals;
             AwayClubGoals = awayClubGoals;
-            KickOffDate = date;
+            KickOffTime = kickOffTime;
         }
     }
 }
