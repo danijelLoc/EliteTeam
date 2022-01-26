@@ -7,8 +7,7 @@ namespace EliteTeam.Model
 {
     public class PlayerFactory
     {
-        // TODO REMOVE DETEMINISTIC SEED !!!!!!!!!!!!!!!!!
-        static Random r = new Random(10);
+        static Random r = MathHelper.r;
         public static Player GetRandomPlayer(PlayerPosition position)
         {
             string randomName = RandomName(r.Next(3, 8));

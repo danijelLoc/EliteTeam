@@ -13,7 +13,7 @@ namespace EliteTeam.Controllers
         private IMatchResultRepository _matchResultRepository;
         private IClubRepository _clubRepository;
         private IPlayerRepository _playerRepository;
-        private IMatchSimulationController matchSimulationController;
+        private IMatchSimulationController _matchSimulationController;
 
         public MatchController(IMatchResultRepository matchResultRepository, IClubRepository clubRepository, IPlayerRepository playerRepository)
         {
@@ -35,8 +35,9 @@ namespace EliteTeam.Controllers
         public void ShowMatch(IMatchView matchView, MatchSquad homeSquad, MatchSquad awaySquad)
         {
             matchView.ShowModaless(this, homeSquad, awaySquad);
-            MatchSimulationController matchSimulation = new MatchSimulationController(_matchResultRepository);
-            matchSimulation.Simulate(matchView, homeSquad, awaySquad);
+            var simulator = new MatchSimulationController(_matchResultRepository);
+            simulator.CreateSimulation(matchView, homeSquad, awaySquad);
+            matchView.StartSimulation(simulator);
         }
 
 

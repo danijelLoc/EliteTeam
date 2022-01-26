@@ -7,7 +7,7 @@ namespace EliteTeam.Model
 {
     public class MathHelper
     {
-        public static Random r = new Random();
+        public static Random r = new Random(Guid.NewGuid().GetHashCode());
         public static int keepInRange(int inputValue, int min, int max)
         {
             return inputValue >= max ? max : (inputValue <= min ? min : inputValue);

@@ -43,6 +43,12 @@ namespace EliteTeam.PresentationLayer
                 comboBoxHome.Items.Add(club.Name);
                 comboBoxAway.Items.Add(club.Name);
             }
+            if (matchController.GetClubs().Count > 1)
+            {
+                comboBoxHome.SelectedIndex = 0;
+                comboBoxAway.SelectedIndex = 1;
+            }
+
             this.Show();
         }
 
