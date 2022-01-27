@@ -56,7 +56,7 @@ namespace EliteTeam.Controllers
 
         public void ShowClubs()
         {
-            var clubController = new ClubController(_clubRepository);
+            var clubController = new ClubController(_clubRepository, _playerRepository);
             var clubListView = _viewsFactory.ClubsListView();
             clubController.ShowClubs(clubListView, this);
         }
@@ -70,7 +70,7 @@ namespace EliteTeam.Controllers
 
         public void AddClub()
         {
-            var clubController = new ClubController(_clubRepository);
+            var clubController = new ClubController(_clubRepository, _playerRepository);
             var createClubView = _viewsFactory.ClubCreatorView();
             clubController.ShowAddNewClub(createClubView);
         }
@@ -84,8 +84,12 @@ namespace EliteTeam.Controllers
         {
             List<Player> squad1 = PlayerFactory.GetRandomSquad();
             List<Player> squad2 = PlayerFactory.GetRandomSquad();
+            List<Player> squad3 = PlayerFactory.GetRandomSquad();
+            List<Player> squad4 = PlayerFactory.GetRandomSquad();
             _playerRepository.addPlayers(squad1);
             _playerRepository.addPlayers(squad2);
+            _playerRepository.addPlayers(squad3);
+            _playerRepository.addPlayers(squad4);
             Club homeClub = new Club("Dinamo", "DIN", "Danijel", Tactic.possesion);
             Club awayClub = new Club("Rijeka", "RIJ", "Paulo", Tactic.counterAttack);
             homeClub.SignPlayers(squad1.ConvertAll(x => x.Id));

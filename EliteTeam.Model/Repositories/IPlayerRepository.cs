@@ -19,11 +19,14 @@ namespace EliteTeam.Model
         List<Player> getAllPlayersInClub(string clubId);
         List<Player> getAllFreeAgentPlayers();
         List<Player> getAllPlayersInPositionAtClub(PlayerPosition position, string clubId);
-        void playerSignedForClub(string playerId, string clubId);
-        void playersSignedForClub(List<string> playerIds, string clubId);
-        bool doesPlayerExists(string name);
         void addPlayer(Player inPlayer);
         void addPlayers(List<Player> inPlayers);
         void deletePlayer(string inPlyerID);
+
+        void playerSignedForClub(string playerId, string clubId);
+        void playerFiredFromClub(string playerId, string clubId);
+        void playersSignedForClub(List<string> playerIds, string clubId);
+        bool doesPlayerExists(string name);
+
     }
 }

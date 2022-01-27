@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using EliteTeam.Model;
+
 namespace EliteTeam.BaseLib
 {
     public interface ICreateClubView : IView
@@ -13,6 +15,7 @@ namespace EliteTeam.BaseLib
         public string ShortClubName { get; }
         public string ManagerName { get; }
         public string Tactic { get; }
+        public List<Player> SquadPlayers { get; }
 
     }
 }

@@ -107,5 +107,12 @@ namespace EliteTeam.MemoryBasedDAL
             foreach (Player player in inPlayers)
                 addPlayer(player);
         }
+
+        public void playerFiredFromClub(string playerId, string clubId)
+        {
+            var player = _players.Find(x => x.Id == playerId);
+            if (player == null) throw new ArgumentException();
+            player.ClubId = null;
+        }
     }
 }

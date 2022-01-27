@@ -8,10 +8,8 @@ namespace EliteTeam.Model
     public class Human
     {
         public string Id { get; }
-
         public string Name { get; set; }
         public string Country { get; }
-
         public int Age { get; set; }
 
         public Human(string name, int age, string country)

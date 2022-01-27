@@ -55,9 +55,9 @@ namespace EliteTeam.Controllers
                 MatchSquad homeMatchSquad = new MatchSquad(_playerRepository, homeClub);
                 MatchSquad awayMatchSquad = new MatchSquad(_playerRepository, awayClub);
                 if (!homeMatchSquad.IsSquadValid())
-                    throw new ArgumentException("Home match  squad is not valid, lack of players or goalkeeper.");
+                    throw new ArgumentException("Home match squad is not valid, lack of players or goalkeeper.");
                 if (!awayMatchSquad.IsSquadValid())
-                    throw new ArgumentException("Away match  squad is not valid, lack of players or goalkeeper.");
+                    throw new ArgumentException("Away match squad is not valid, lack of players or goalkeeper.");
                 matchCreatorView.CloseView();
                 mainViewController.ShowMatch(homeMatchSquad, awayMatchSquad);
             }
