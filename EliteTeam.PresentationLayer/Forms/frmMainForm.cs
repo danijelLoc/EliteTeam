@@ -41,6 +41,12 @@ namespace EliteTeam.PresentationLayer
         {
             _mainController.ShowMatchCreator();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            _mainController.ShowMatchResults();
+        }
+
         public void CloseView()
         {
             this.Close();

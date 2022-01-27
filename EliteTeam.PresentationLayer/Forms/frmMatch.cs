@@ -14,19 +14,18 @@ namespace EliteTeam.PresentationLayer
 {
     public partial class frmMatch : Form, IMatchView
     {
-        private int matchLength = 90;
-        private int matchTimeMinutes = 0;
-        private int matchTimeSeconds = 0;
         private Timer matchTimer;
         private IMatchController _matchController;
         private IMatchSimulationController _matchSimulationController;
+
         public frmMatch()
         {
             InitializeComponent();
         }
 
-        public void ShowModaless(IMatchController matchController, MatchSquad homeSquad, MatchSquad awaySquad)
+        public void ShowModaless(IMatchSimulationController simulationController, IMatchController matchController, MatchSquad homeSquad, MatchSquad awaySquad)
         {
+            _matchSimulationController = simulationController;
             _matchController = matchController;
             txtHomeClubName.Text = homeSquad.Club.Name;
             txtAwayClubName.Text = awaySquad.Club.Name;
@@ -36,56 +35,55 @@ namespace EliteTeam.PresentationLayer
         }
 
 
-        public void StartSimulation(IMatchSimulationController simulationController)
+        public void Start()
         {
-            _matchSimulationController = simulationController;
             matchTimer = new Timer();
-            matchTimer.Tick += new EventHandler(MinutePassed);
+            matchTimer.Tick += new EventHandler(OnTimerTick);
             matchTimer.Interval = 200;
             matchTimer.Start();
+            buttonResume.Text = "Resume";
+            buttonPause.Enabled = true;
+            buttonResume.Enabled = false;
+        }
+        public void Pause()
+        {
+            matchTimer.Stop();
+            buttonResume.Enabled = true;
+            buttonPause.Enabled = false;
         }
 
-        public void MinutePassed(object sender, EventArgs e)
+        public void Stop()
         {
-            AddTime(1, 0);
-            txtMinutes.Text = matchTimeMinutes < 10 ? "0" + matchTimeMinutes.ToString() : matchTimeMinutes.ToString();
-            txtSeconds.Text = matchTimeSeconds < 10 ? "0" + matchTimeSeconds.ToString() : matchTimeSeconds.ToString();
-            progressBarTime.Value = matchTimeMinutes;
-            _matchSimulationController.NextAction(this, matchTimeMinutes, matchTimeSeconds);
+            matchTimer.Stop();
+            buttonResume.Enabled = false;
+            buttonPause.Enabled = false;
+        }
 
-            // Pause at half time
-            if (matchTimeMinutes == 45)
-                Pause();
-
-            // stop after 90 minutes
-            if (matchTimeMinutes >= matchLength)
+        public void Resume()
+        {
+            if (!_matchSimulationController.MatchHasStarted)
+                Start();
+            else
             {
-                matchTimer.Stop();
+                matchTimer.Start();
                 buttonResume.Enabled = false;
-                buttonPause.Enabled = false;
-                return;
+                buttonPause.Enabled = true;
             }
-
         }
 
-        private void AddTime(int minutes, int seconds)
+        public void OnTimerTick(object sender, EventArgs e)
         {
-            matchTimeMinutes += minutes;
-            matchTimeSeconds += seconds;
-
-            matchTimeMinutes += matchTimeSeconds / 60;
-            matchTimeSeconds %= 60;
+            _matchSimulationController.NextAction(this);
         }
 
-        public void CloseView()
+
+        public void UpdateTime(int minutes, int seconds)
         {
-            this.Close();
+            progressBarTime.Value = minutes;
+            txtMinutes.Text = minutes < 10 ? "0" + minutes.ToString() : minutes.ToString();
+            txtSeconds.Text = seconds < 10 ? "0" + seconds.ToString() : seconds.ToString();
         }
 
-        public void ShowMessage(string message)
-        {
-            MessageBox.Show(message);
-        }
 
         public void UpdateResult(int homeGoals, int awayGoals)
         {
@@ -99,28 +97,17 @@ namespace EliteTeam.PresentationLayer
             item.SubItems.Add(actionLog);
             item.SubItems.Add(actionSummary);
             listMatchLog.Items.Add(item);
+
             // color for goal and stopage
             if (actionSummary == "GOAL !!!")
                 item.ForeColor = Color.Green;
-            else if (actionSummary == "Half Time" || actionSummary == "Match End")
-                item.ForeColor = Color.Orange;
-            // scroll to bottom
+            else if (actionSummary == "Half Time" || actionSummary == "Match End" || actionSummary == "Kickoff")
+                item.ForeColor = Color.Blue;
+
             listMatchLog.Items[listMatchLog.Items.Count - 1].EnsureVisible();
         }
 
-        private void Pause()
-        {
-            matchTimer.Stop();
-            buttonResume.Enabled = true;
-            buttonPause.Enabled = false;
-        }
 
-        private void Resume()
-        {
-            matchTimer.Start();
-            buttonResume.Enabled = false;
-            buttonPause.Enabled = true;
-        }
 
         private void buttonResume_Click(object sender, EventArgs e)
         {
@@ -131,7 +118,15 @@ namespace EliteTeam.PresentationLayer
         {
             Pause();
         }
+        public void CloseView()
+        {
+            this.Close();
+        }
 
+        public void ShowMessage(string message)
+        {
+            MessageBox.Show(message);
+        }
 
     }
 }

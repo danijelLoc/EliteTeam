@@ -12,8 +12,8 @@ namespace EliteTeam.BaseLib
         public List<Club> GetClubs();
         public object[] getTacticOptions();
         public void RemoveClub(string clubId);
-        public void ShowAddNewClub(ICreateClubView inForm);
-        public void TryToAddClub(ICreateClubView inForm);
-        public void ShowClubs(IClubsListView inForm, IMainController mainController);
+        public void ShowAddNewClub(ICreateClubView inView);
+        public void TryToAddClub(ICreateClubView inView);
+        public void ShowClubs(IClubsListView inView, IMainController mainController);
     }
 }

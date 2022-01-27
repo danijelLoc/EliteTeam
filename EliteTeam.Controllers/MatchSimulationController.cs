@@ -9,24 +9,10 @@ namespace EliteTeam.Controllers
 {
     public class MatchSimulationController : IMatchSimulationController
     {
-        public readonly int halfTimeMinute = 45;
-        public readonly int fullTimeMinute = 90;
-        private int currentMinute;
-        private int secondInCurrentMinute;
-        private string CurrentTimeString
-        {
-            get
-            {
-                var minute = currentMinute < 10 ? "0" + currentMinute.ToString() : currentMinute.ToString();
-                var second = secondInCurrentMinute < 10 ? "0" + secondInCurrentMinute.ToString() : secondInCurrentMinute.ToString();
-                return minute + ":" + second;
-            }
-        }
+        private bool _started = false;
         private Random r = MathHelper.r;
-
-        private IMatchResultRepository _resultRepository;
         private IMatchView matchView;
-
+        private IMatchController _matchController;
         private MatchSquad homeSquad;
         private MatchSquad awaySquad;
         private MatchSquad squadInPossesion;
@@ -37,9 +23,25 @@ namespace EliteTeam.Controllers
         private DateTime kickOffTime;
         private Dictionary<string, int> score = null;
 
-        public MatchSimulationController(IMatchResultRepository resultRepository)
+        public readonly int halfTimeMinute = 45;
+        public readonly int fullTimeMinute = 90;
+        private int matchTimeMinutes;
+        private int matchTimeSeconds;
+        private string CurrentTimeString
         {
-            _resultRepository = resultRepository;
+            get
+            {
+                var minute = matchTimeMinutes < 10 ? "0" + matchTimeMinutes.ToString() : matchTimeMinutes.ToString();
+                var second = matchTimeSeconds < 10 ? "0" + matchTimeSeconds.ToString() : matchTimeSeconds.ToString();
+                return minute + ":" + second;
+            }
+        }
+        public bool MatchHasStarted { get { return _started; } }
+
+
+        public MatchSimulationController(IMatchController matchController)
+        {
+            _matchController = matchController;
         }
 
         public void CreateSimulation(IMatchView matchView, MatchSquad homeSquad, MatchSquad awaySquad)
@@ -48,16 +50,15 @@ namespace EliteTeam.Controllers
             this.homeSquad = homeSquad;
             this.awaySquad = awaySquad;
             this.matchView = matchView;
-            MatchKickOff();
         }
 
-        public void NextAction(IMatchView matchView, int currentMinute, int secondInCurrentMinute)
+        public void NextAction(IMatchView matchView)
         {
-            this.currentMinute = currentMinute;
-            this.secondInCurrentMinute = secondInCurrentMinute;
-            if (currentMinute == halfTimeMinute && secondInCurrentMinute == 0)
+            if (matchTimeMinutes == 0 && matchTimeSeconds == 0)
+                MatchKickOff();
+            else if (matchTimeMinutes == halfTimeMinute && matchTimeSeconds == 0)
                 HalfTime();
-            else if (currentMinute == fullTimeMinute)
+            else if (matchTimeMinutes >= fullTimeMinute)
                 FullTime();
             else
             {
@@ -123,12 +124,9 @@ namespace EliteTeam.Controllers
                 switch (action.Type)
                 {
                     case PlayerActionType.shoot:
-                        matchView.UpdateMatchLog(CurrentTimeString, "\t\t" + playerInPossesion.Name + " (" + squadInPossesion.Club.ShortName + ":" + playerInPossesion.Position + ")" + " scored a goal !!", "GOAL !!!");
-                        score[squadInPossesion.Club.Id] += 1;
-                        GoalKickOff();
-                        break;
+                        ScoreAGoal(playerInPossesion);
+                        return;
                     case PlayerActionType.passToAttack:
-                        // TODO disable player pass to himself !! loop !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                         playerToTakeTheBall = squadInPossesion.Attack[r.Next(squadInPossesion.Attack.Count)];
                         PassedTheBall(playerToTakeTheBall);
                         break;
@@ -167,14 +165,31 @@ namespace EliteTeam.Controllers
                         break;
                 }
             }
+            // action takes time
+            AddTime(1, 0);
+        }
+
+        private void ScoreAGoal(Player playerToScore)
+        {
+            score[squadInPossesion.Club.Id] += 1;
+            matchView.UpdateMatchLog(CurrentTimeString, playerToScore.Name + " (" + squadInPossesion.Club.ShortName + ":" + playerToScore.Position + ")" + " scored a goal !!!", "GOAL !!!");
+            GoalKickOff();
         }
 
         private void PassedTheBall(Player playerToTakeTheBall)
         {
-            if (playerInPossesion.Id == playerToTakeTheBall.Id) return;
-            matchView.UpdateMatchLog(CurrentTimeString, playerInPossesion.Name + " (" + squadInPossesion.Club.ShortName + ":" + playerInPossesion.Position + ")" +
-                " passed ball to " + playerToTakeTheBall.Name + " (" + playerToTakeTheBall.Position + ")", "Pass");
-            playerInPossesion = playerToTakeTheBall;
+            if (playerInPossesion.Id == playerToTakeTheBall.Id)
+            {
+                matchView.UpdateMatchLog(CurrentTimeString, playerInPossesion.Name + " (" + squadInPossesion.Club.ShortName + ":" + playerInPossesion.Position + ")" +
+                " dribbles the ball.", "Dribble");
+                // TODO add real dribbling and prevent pass to yourself
+            }
+            else
+            {
+                matchView.UpdateMatchLog(CurrentTimeString, playerInPossesion.Name + " (" + squadInPossesion.Club.ShortName + ":" + playerInPossesion.Position + ")" +
+                    " passed ball to " + playerToTakeTheBall.Name + " (" + playerToTakeTheBall.Position + ")", "Pass");
+                playerInPossesion = playerToTakeTheBall;
+            }
         }
 
         private void InterceptedTheBall(Player playerToTakeTheBall)
@@ -218,24 +233,29 @@ namespace EliteTeam.Controllers
             }
             squadThatStartedMatch = squadInPossesion;
             playerInPossesion = squadInPossesion.Midfield[r.Next(squadInPossesion.Midfield.Count)];
-            matchView.UpdateMatchLog(CurrentTimeString, "MATCH STARTS!", "Kickoff");
+            matchView.UpdateMatchLog(CurrentTimeString, playerInPossesion.Name + " (" + squadInPossesion.Club.ShortName + ") " + "starts the game !", "Kickoff");
             kickOffTime = DateTime.Now;
+            _started = true;
+            NextPlayerAction();
             UpdateResultOnView();
         }
 
         private void GoalKickOff()
         {
-            matchView.UpdateMatchLog(CurrentTimeString, "Match rasumes!", "Goal Kickoff");
+            UpdateResultOnView();
+            // goal kicoff takes time
+            AddTime(1, 0);
+            // maybe time is up after stopage time addition
+            if (matchTimeMinutes == 90)
+                return;
             ChangePossesion();
             playerInPossesion = squadInPossesion.Midfield[r.Next(squadInPossesion.Midfield.Count)];
-            UpdateResultOnView();
+            matchView.UpdateMatchLog(CurrentTimeString, playerInPossesion.Name + " (" + squadInPossesion.Club.ShortName + ") " + "resumes the game.", "Goal Kickoff");
+            NextAction(matchView);
         }
 
         private void HalfTime()
         {
-            UpdateResultOnView();
-            matchView.UpdateMatchLog(CurrentTimeString, "\n\nHALF TIME!", "Half Time");
-            System.Diagnostics.Debug.WriteLine("Result = " + homeSquad.Club.ShortName + " " + score[homeSquad.Club.Id] + " : " + awaySquad.Club.ShortName + " " + score[awaySquad.Club.Id]);
             if (homeSquad.Club.Id == squadThatStartedMatch.Club.Id)
             {
                 squadInPossesion = awaySquad;
@@ -246,15 +266,31 @@ namespace EliteTeam.Controllers
                 squadInPossesion = homeSquad;
                 squadOutOfPossesion = awaySquad;
             }
-            System.Diagnostics.Debug.WriteLine(squadInPossesion.Club.Name + " continues the game");
             playerInPossesion = squadInPossesion.Midfield[r.Next(squadInPossesion.Midfield.Count)];
+            matchView.UpdateMatchLog(CurrentTimeString, playerInPossesion.Name + " (" + squadInPossesion.Club.ShortName + ") " + "starts the second half !", "Half Time");
+            NextPlayerAction();
+            //matchView.Pause();
         }
 
         private void FullTime()
         {
-            matchView.UpdateMatchLog(CurrentTimeString, "\n\nFINAL WHISTLE!", "Match End");
-            System.Diagnostics.Debug.WriteLine("Result = " + homeSquad.Club.Name + " " + score[homeSquad.Club.Id] + " : " + awaySquad.Club.Name + " " + score[awaySquad.Club.Id]);
+            matchView.UpdateMatchLog(CurrentTimeString, "\n\nFINAL WHISTLE !", "Match End");
+            matchView.Stop();
             SaveMatchResult();
+        }
+
+        private void AddTime(int minutes, int seconds)
+        {
+            matchTimeMinutes += minutes;
+            matchTimeSeconds += seconds;
+
+            matchTimeMinutes += matchTimeSeconds / 60;
+            matchTimeSeconds %= 60;
+
+            if (matchTimeMinutes > 90)
+                return;
+
+            matchView.UpdateTime(matchTimeMinutes, matchTimeSeconds);
         }
 
         private void SaveMatchResult()
@@ -262,7 +298,7 @@ namespace EliteTeam.Controllers
             int homeGoals = score[homeSquad.Club.Id];
             int awayGoals = score[awaySquad.Club.Id];
             MatchResult matchResult = new MatchResult(homeSquad.Club, awaySquad.Club, homeGoals, awayGoals, kickOffTime);
-            _resultRepository.addMatchResult(matchResult);
+            _matchController.TryToAddMatchResult(matchView, matchResult);
         }
 
         private void UpdateResultOnView()

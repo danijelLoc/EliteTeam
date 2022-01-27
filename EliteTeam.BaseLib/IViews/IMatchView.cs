@@ -9,9 +9,13 @@ namespace EliteTeam.BaseLib
 {
     public interface IMatchView : IView
     {
-        void ShowModaless(IMatchController matchController, MatchSquad homeSquad, MatchSquad awaySquad);
-        void StartSimulation(IMatchSimulationController simulationController);
+        void ShowModaless(IMatchSimulationController simulationController, IMatchController matchController, MatchSquad homeSquad, MatchSquad awaySquad);
+        void Start();
+        void Resume();
+        void Pause();
+        void Stop();
         void UpdateResult(int homeGoals, int awayGoals);
+        void UpdateTime(int minutes, int seconds);
         void UpdateMatchLog(string actionTime, string actionLog, string actionSummary);
     }
 }

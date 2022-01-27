@@ -14,7 +14,8 @@ namespace EliteTeam.BaseLib
         public List<Club> GetClubs();
         public List<MatchResult> GetMatchResults();
         public void TryToCreateMatch(ICreateMatchView matchCreatorView, IMainController mainController);
-        public void TryToAddMatchResult(IMatchView matchView);
+        public void TryToAddMatchResult(IMatchView matchView, MatchResult matchResult);
+        public void ShowMatchResults(IMatchResultsListView inView, IMainController mainController);
 
     }
 }

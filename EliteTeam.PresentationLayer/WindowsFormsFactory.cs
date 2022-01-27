@@ -34,5 +34,10 @@ namespace EliteTeam.PresentationLayer
         {
             return new frmMatch();
         }
+
+        public IMatchResultsListView MatchResultsListView()
+        {
+            return new frmMatchResultsList();
+        }
     }
 }

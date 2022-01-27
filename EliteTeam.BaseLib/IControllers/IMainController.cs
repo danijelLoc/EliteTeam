@@ -13,6 +13,7 @@ namespace EliteTeam.BaseLib
         public void ShowMatch(MatchSquad homeSquad, MatchSquad awaySquad);
         public void ShowPlayers();
         public void ShowClubs();
+        public void ShowMatchResults();
         public void AddPlayer();
         public void AddClub();
         void EditPlayer(string playerId);

@@ -33,10 +33,9 @@ namespace EliteTeam.Controllers
 
         public void ShowMatch(IMatchView matchView, MatchSquad homeSquad, MatchSquad awaySquad)
         {
-            matchView.ShowModaless(this, homeSquad, awaySquad);
-            IMatchSimulationController simulator = new MatchSimulationController(_matchResultRepository);
+            IMatchSimulationController simulator = new MatchSimulationController(this);
+            matchView.ShowModaless(simulator, this, homeSquad, awaySquad);
             simulator.CreateSimulation(matchView, homeSquad, awaySquad);
-            matchView.StartSimulation(simulator);
         }
 
 
@@ -66,14 +65,24 @@ namespace EliteTeam.Controllers
             {
                 matchCreatorView.ShowMessage(exc.Message);
             }
-
         }
 
-        public void TryToAddMatchResult(IMatchView matchView)
+        public void TryToAddMatchResult(IMatchView matchView, MatchResult matchResult)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _matchResultRepository.addMatchResult(matchResult);
+                matchView.ShowMessage("Match Result Saved");
+            }
+            catch (Exception exc)
+            {
+                matchView.ShowMessage(exc.Message);
+            }
         }
 
-
+        public void ShowMatchResults(IMatchResultsListView inView, IMainController mainController)
+        {
+            inView.ShowModaless(this, mainController);
+        }
     }
 }

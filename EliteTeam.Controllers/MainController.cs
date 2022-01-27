@@ -61,6 +61,13 @@ namespace EliteTeam.Controllers
             clubController.ShowClubs(clubListView, this);
         }
 
+        public void ShowMatchResults()
+        {
+            var matchController = new MatchController(_matchResultRepository, _clubRepository, _playerRepository);
+            var matchResultsView = _viewsFactory.MatchResultsListView();
+            matchController.ShowMatchResults(matchResultsView, this);
+        }
+
         public void AddClub()
         {
             var clubController = new ClubController(_clubRepository);

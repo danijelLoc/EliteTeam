@@ -15,17 +15,17 @@ namespace EliteTeam.PresentationLayer
     public partial class frmClubList : Form, IClubsListView
     {
         private IClubController _clubController = null;
-        private IMainController _mainFormController = null;
+        private IMainController _mainController = null;
         private List<Club> _clubs = null;
         public frmClubList()
         {
             InitializeComponent();
         }
 
-        public void ShowModaless(IClubController clubController, IMainController mainFormController)
+        public void ShowModaless(IClubController clubController, IMainController mainController)
         {
             _clubController = clubController;
-            _mainFormController = mainFormController;
+            _mainController = mainController;
             UpdateList();
             this.Show();
         }
@@ -57,7 +57,7 @@ namespace EliteTeam.PresentationLayer
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            _mainFormController.AddClub();
+            _mainController.AddClub();
         }
     }
 }

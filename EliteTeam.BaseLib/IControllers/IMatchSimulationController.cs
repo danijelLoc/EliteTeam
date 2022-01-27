@@ -9,6 +9,7 @@ namespace EliteTeam.BaseLib
     public interface IMatchSimulationController
     {
         void CreateSimulation(IMatchView matchView, MatchSquad homeSquad, MatchSquad awaySquad);
-        void NextAction(IMatchView matchView, int currentMinute, int secondInCurrentMinute);
+        bool MatchHasStarted { get; }
+        void NextAction(IMatchView matchView);
     }
 }

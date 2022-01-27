@@ -169,6 +169,7 @@ namespace EliteTeam.PresentationLayer
             // 
             // buttonPause
             // 
+            this.buttonPause.Enabled = false;
             this.buttonPause.Location = new System.Drawing.Point(361, 128);
             this.buttonPause.Name = "buttonPause";
             this.buttonPause.Size = new System.Drawing.Size(86, 26);
@@ -179,12 +180,11 @@ namespace EliteTeam.PresentationLayer
             // 
             // buttonResume
             // 
-            this.buttonResume.Enabled = false;
             this.buttonResume.Location = new System.Drawing.Point(453, 128);
             this.buttonResume.Name = "buttonResume";
             this.buttonResume.Size = new System.Drawing.Size(86, 26);
             this.buttonResume.TabIndex = 13;
-            this.buttonResume.Text = "Resume";
+            this.buttonResume.Text = "Start";
             this.buttonResume.UseVisualStyleBackColor = true;
             this.buttonResume.Click += new System.EventHandler(this.buttonResume_Click);
             // 

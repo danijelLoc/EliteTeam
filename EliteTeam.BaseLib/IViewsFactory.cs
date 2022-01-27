@@ -10,5 +10,6 @@ namespace EliteTeam.BaseLib
         public ICreateClubView ClubCreatorView();
         public ICreateMatchView MatchCreatorView();
         public IMatchView MatchView();
+        public IMatchResultsListView MatchResultsListView();
     }
 }
