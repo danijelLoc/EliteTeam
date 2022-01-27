@@ -10,7 +10,7 @@ namespace EliteTeam.PresentationLayer
     public partial class frmPlayersList : Form, IPlayersListView
     {
         private List<Player> _listPlayers = null;
-        private IMainFormController _mainFormController = null;
+        private IMainController _mainFormController = null;
         private IPlayerController _playerController = null;
         public frmPlayersList()
         {
@@ -23,7 +23,7 @@ namespace EliteTeam.PresentationLayer
 
         }
 
-        public void ShowModaless(IPlayerController playerController, IMainFormController mainFormController)
+        public void ShowModaless(IPlayerController playerController, IMainController mainFormController)
         {
             _mainFormController = mainFormController;
             _playerController = playerController;

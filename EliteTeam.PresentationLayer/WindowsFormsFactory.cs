@@ -3,34 +3,34 @@ using EliteTeam.BaseLib;
 
 namespace EliteTeam.PresentationLayer
 {
-    public class WindowsFormsFactory : IWindowFormsFactory
+    public class WindowsFormsFactory : IViewsFactory
     {
-        public IPlayersListView playersListForm()
+        public IPlayersListView PlayersListView()
         {
             return new frmPlayersList();
         }
 
-        public ICreatePlayerView cretePlayerForm()
+        public ICreatePlayerView PlayerCreatorView()
         {
             return new frmCreatePlayer();
         }
 
-        public IClubsListView clubsListForm()
+        public IClubsListView ClubsListView()
         {
             return new frmClubList();
         }
 
-        public ICreateClubView creteClubForm()
+        public ICreateClubView ClubCreatorView()
         {
             return new frmCreateClub();
         }
 
-        public ICreateMatchView matchCreatorForm()
+        public ICreateMatchView MatchCreatorView()
         {
             return new frmCreateMatch();
         }
 
-        public IMatchView matchForm()
+        public IMatchView MatchView()
         {
             return new frmMatch();
         }

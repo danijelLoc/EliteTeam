@@ -54,15 +54,7 @@ namespace EliteTeam.PresentationLayer
 
         private void buttonCreate_Click(object sender, EventArgs e)
         {
-            try
-            {
-                _playerController.TryToAddPlayer(this);
-            }
-            catch (Exception exc)
-            {
-                MessageBox.Show("EXCEPTION: " + exc.Message);
-            }
-
+            _playerController.TryToAddPlayer(this);
         }
 
         public void CloseView()

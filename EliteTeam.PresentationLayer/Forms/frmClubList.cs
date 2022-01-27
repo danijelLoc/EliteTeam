@@ -15,14 +15,14 @@ namespace EliteTeam.PresentationLayer
     public partial class frmClubList : Form, IClubsListView
     {
         private IClubController _clubController = null;
-        private IMainFormController _mainFormController = null;
+        private IMainController _mainFormController = null;
         private List<Club> _clubs = null;
         public frmClubList()
         {
             InitializeComponent();
         }
 
-        public void ShowModaless(IClubController clubController, IMainFormController mainFormController)
+        public void ShowModaless(IClubController clubController, IMainController mainFormController)
         {
             _clubController = clubController;
             _mainFormController = mainFormController;

@@ -32,22 +32,29 @@ namespace EliteTeam.Controllers
             _clubRepository.deleteClub(clubId);
         }
 
-        public void ShowAddNewClub(ICreateClubView inForm)
+        public void ShowAddNewClub(ICreateClubView inView)
         {
-            inForm.ShowModaless(this);
+            inView.ShowModaless(this);
         }
 
-        public void ShowClubs(IClubsListView inForm, IMainFormController mainFormController)
+        public void ShowClubs(IClubsListView inView, IMainController mainController)
         {
-            inForm.ShowModaless(this, mainFormController);
+            inView.ShowModaless(this, mainController);
         }
 
-        public void TryToAddClub(ICreateClubView inForm)
+        public void TryToAddClub(ICreateClubView inView)
         {
-            Tactic tactic = (Tactic)Enum.Parse(typeof(Tactic), inForm.Tactic);
-            Club newClub = new Club(inForm.ClubName, inForm.ShortClubName, inForm.ManagerName, tactic);
-            _clubRepository.addClub(newClub);
-            inForm.CloseView();
+            try
+            {
+                Tactic tactic = (Tactic)Enum.Parse(typeof(Tactic), inView.Tactic);
+                Club newClub = new Club(inView.ClubName, inView.ShortClubName, inView.ManagerName, tactic);
+                _clubRepository.addClub(newClub);
+                inView.CloseView();
+            }
+            catch (Exception exc)
+            {
+                inView.ShowMessage(exc.Message);
+            }
         }
     }
 }

@@ -8,7 +8,7 @@ namespace EliteTeam.BaseLib
 {
     public interface ICreateMatchView : IView
     {
-        void ShowModaless(IMatchController matchController, IMainFormController mainFormController);
+        void ShowModaless(IMatchController matchController, IMainController mainController);
         public string HomeClubName { get; }
         public string AwayClubName { get; }
     }

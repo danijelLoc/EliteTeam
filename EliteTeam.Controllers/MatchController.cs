@@ -13,7 +13,6 @@ namespace EliteTeam.Controllers
         private IMatchResultRepository _matchResultRepository;
         private IClubRepository _clubRepository;
         private IPlayerRepository _playerRepository;
-        private IMatchSimulationController _matchSimulationController;
 
         public MatchController(IMatchResultRepository matchResultRepository, IClubRepository clubRepository, IPlayerRepository playerRepository)
         {
@@ -35,31 +34,39 @@ namespace EliteTeam.Controllers
         public void ShowMatch(IMatchView matchView, MatchSquad homeSquad, MatchSquad awaySquad)
         {
             matchView.ShowModaless(this, homeSquad, awaySquad);
-            var simulator = new MatchSimulationController(_matchResultRepository);
+            IMatchSimulationController simulator = new MatchSimulationController(_matchResultRepository);
             simulator.CreateSimulation(matchView, homeSquad, awaySquad);
             matchView.StartSimulation(simulator);
         }
 
 
-        public void ShowMatchCreator(ICreateMatchView createMatchView, IMainFormController mainFormController)
+        public void ShowMatchCreator(ICreateMatchView createMatchView, IMainController mainController)
         {
-            createMatchView.ShowModaless(this, mainFormController);
+            createMatchView.ShowModaless(this, mainController);
 
         }
-        public void TryToCreateMatch(ICreateMatchView matchCreatorView, IMainFormController mainFormController)
+        public void TryToCreateMatch(ICreateMatchView matchCreatorView, IMainController mainViewController)
         {
-            if (matchCreatorView.AwayClubName == matchCreatorView.HomeClubName)
-                throw new ArgumentException("Selected same club twice, please select different clubs.");
-            var homeClub = _clubRepository.getClubWithName(matchCreatorView.HomeClubName);
-            var awayClub = _clubRepository.getClubWithName(matchCreatorView.AwayClubName);
-            MatchSquad homeMatchSquad = new MatchSquad(_playerRepository, homeClub);
-            MatchSquad awayMatchSquad = new MatchSquad(_playerRepository, awayClub);
-            if (!homeMatchSquad.IsSquadValid())
-                throw new ArgumentException("Home match  squad is not valid, lack of players or goalkeeper.");
-            if (!awayMatchSquad.IsSquadValid())
-                throw new ArgumentException("Away match  squad is not valid, lack of players or goalkeeper.");
-            matchCreatorView.CloseView();
-            mainFormController.ShowMatch(homeMatchSquad, awayMatchSquad);
+            try
+            {
+                if (matchCreatorView.AwayClubName == matchCreatorView.HomeClubName)
+                    throw new ArgumentException("Selected same club twice, please select different clubs.");
+                var homeClub = _clubRepository.getClubWithName(matchCreatorView.HomeClubName);
+                var awayClub = _clubRepository.getClubWithName(matchCreatorView.AwayClubName);
+                MatchSquad homeMatchSquad = new MatchSquad(_playerRepository, homeClub);
+                MatchSquad awayMatchSquad = new MatchSquad(_playerRepository, awayClub);
+                if (!homeMatchSquad.IsSquadValid())
+                    throw new ArgumentException("Home match  squad is not valid, lack of players or goalkeeper.");
+                if (!awayMatchSquad.IsSquadValid())
+                    throw new ArgumentException("Away match  squad is not valid, lack of players or goalkeeper.");
+                matchCreatorView.CloseView();
+                mainViewController.ShowMatch(homeMatchSquad, awayMatchSquad);
+            }
+            catch (Exception exc)
+            {
+                matchCreatorView.ShowMessage(exc.Message);
+            }
+
         }
 
         public void TryToAddMatchResult(IMatchView matchView)

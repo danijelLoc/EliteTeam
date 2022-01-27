@@ -9,6 +9,6 @@ namespace EliteTeam.BaseLib
     public interface IClubsListView : IView
     {
         public void UpdateList();
-        void ShowModaless(IClubController clubController, IMainFormController mainFormController);
+        void ShowModaless(IClubController clubController, IMainController mainController);
     }
 }

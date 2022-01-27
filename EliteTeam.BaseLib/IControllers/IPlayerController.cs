@@ -15,6 +15,6 @@ namespace EliteTeam.BaseLib
         public void RemovePlayer(string playerId);
         public void ShowAddNewPlayer(ICreatePlayerView inForm);
         public void TryToAddPlayer(ICreatePlayerView inForm);
-        public void ShowPlayers(IPlayersListView inForm, IMainFormController mainFormController);
+        public void ShowPlayers(IPlayersListView inForm, IMainController mainController);
     }
 }

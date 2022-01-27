@@ -15,8 +15,8 @@ namespace EliteTeam.PresentationLayer
 {
     public partial class frmMainForm : Form, IMainView
     {
-        private MainFormController _mainController;
-        public frmMainForm(MainFormController mainFormController)
+        private MainController _mainController;
+        public frmMainForm(MainController mainFormController)
         {
             _mainController = mainFormController;
             InitializeComponent();

@@ -10,6 +10,6 @@ namespace EliteTeam.BaseLib
     public interface IPlayersListView : IView
     {
         public void UpdateList();
-        void ShowModaless(IPlayerController playerController, IMainFormController mainFormController);
+        void ShowModaless(IPlayerController playerController, IMainController mainController);
     }
 }

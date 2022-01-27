@@ -14,7 +14,7 @@ namespace EliteTeam.PresentationLayer
     public partial class frmCreateMatch : Form, ICreateMatchView
     {
         IMatchController _matchController = null;
-        IMainFormController _mainFormController = null;
+        IMainController _mainFormController = null;
         public frmCreateMatch()
         {
             InitializeComponent();
@@ -34,7 +34,7 @@ namespace EliteTeam.PresentationLayer
             MessageBox.Show(message);
         }
 
-        public void ShowModaless(IMatchController matchController, IMainFormController mainFormController)
+        public void ShowModaless(IMatchController matchController, IMainController mainFormController)
         {
             _matchController = matchController;
             _mainFormController = mainFormController;
@@ -54,14 +54,7 @@ namespace EliteTeam.PresentationLayer
 
         private void buttonSimulate_Click(object sender, EventArgs e)
         {
-            try
-            {
-                _matchController.TryToCreateMatch(this, _mainFormController);
-            }
-            catch (Exception exc)
-            {
-                MessageBox.Show(exc.Message);
-            }
+            _matchController.TryToCreateMatch(this, _mainFormController);
         }
     }
 }

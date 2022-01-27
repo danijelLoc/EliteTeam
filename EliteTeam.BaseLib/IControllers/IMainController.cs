@@ -7,7 +7,7 @@ using EliteTeam.Model;
 
 namespace EliteTeam.BaseLib
 {
-    public interface IMainFormController
+    public interface IMainController
     {
         public void ShowMatchCreator();
         public void ShowMatch(MatchSquad homeSquad, MatchSquad awaySquad);

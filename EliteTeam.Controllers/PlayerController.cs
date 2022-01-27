@@ -39,31 +39,38 @@ namespace EliteTeam.Controllers
             _playerRepository.deletePlayer(playerId);
         }
 
-        public void ShowAddNewPlayer(ICreatePlayerView inForm)
+        public void ShowAddNewPlayer(ICreatePlayerView inView)
         {
-            inForm.ShowModaless(this);
+            inView.ShowModaless(this);
         }
 
-        public void ShowPlayers(IPlayersListView inForm, IMainFormController mainFormController)
+        public void ShowPlayers(IPlayersListView inView, IMainController mainViewController)
         {
-            inForm.ShowModaless(this, mainFormController);
+            inView.ShowModaless(this, mainViewController);
         }
 
-        public void TryToAddPlayer(ICreatePlayerView inForm)
+        public void TryToAddPlayer(ICreatePlayerView inView)
         {
-            Stats playerStats = new Stats();
-            playerStats.Passing = inForm.Passing;
-            playerStats.Shooting = inForm.Shooting;
-            playerStats.Dribling = inForm.Dribling;
-            playerStats.Speed = inForm.Speed;
-            playerStats.Strenght = inForm.Strenght;
-            playerStats.Interceptions = inForm.Interceptions;
-            playerStats.Goalkeeping = inForm.Goalkeeping;
-            playerStats.Stamina = inForm.Stamina;
-            PlayerPosition position = (PlayerPosition)Enum.Parse(typeof(PlayerPosition), inForm.Position);
-            Player newPlayer = new Player(position, inForm.PlayerName, inForm.Age, inForm.Country, playerStats);
-            _playerRepository.addPlayer(newPlayer);
-            inForm.CloseView();
+            try
+            {
+                Stats playerStats = new Stats();
+                playerStats.Passing = inView.Passing;
+                playerStats.Shooting = inView.Shooting;
+                playerStats.Dribling = inView.Dribling;
+                playerStats.Speed = inView.Speed;
+                playerStats.Strenght = inView.Strenght;
+                playerStats.Interceptions = inView.Interceptions;
+                playerStats.Goalkeeping = inView.Goalkeeping;
+                playerStats.Stamina = inView.Stamina;
+                PlayerPosition position = (PlayerPosition)Enum.Parse(typeof(PlayerPosition), inView.Position);
+                Player newPlayer = new Player(position, inView.PlayerName, inView.Age, inView.Country, playerStats);
+                _playerRepository.addPlayer(newPlayer);
+                inView.CloseView();
+            }
+            catch (Exception exc)
+            {
+                inView.ShowMessage(exc.Message);
+            }
         }
     }
 }

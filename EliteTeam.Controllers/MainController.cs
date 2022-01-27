@@ -5,16 +5,16 @@ using EliteTeam.BaseLib;
 
 namespace EliteTeam.Controllers
 {
-    public class MainFormController : IMainFormController
+    public class MainController : IMainController
     {
-        private readonly IWindowFormsFactory _formsFactory = null;
+        private readonly IViewsFactory _viewsFactory = null;
         private readonly IPlayerRepository _playerRepository = null;
         private readonly IClubRepository _clubRepository = null;
         private readonly IMatchResultRepository _matchResultRepository = null;
 
-        public MainFormController(IWindowFormsFactory windowFormsFactory, IPlayerRepository playerRepository, IClubRepository clubRepository, IMatchResultRepository matchResultRepository)
+        public MainController(IViewsFactory viewsFactory, IPlayerRepository playerRepository, IClubRepository clubRepository, IMatchResultRepository matchResultRepository)
         {
-            _formsFactory = windowFormsFactory;
+            _viewsFactory = viewsFactory;
             _playerRepository = playerRepository;
             _clubRepository = clubRepository;
             _matchResultRepository = matchResultRepository;
@@ -24,29 +24,29 @@ namespace EliteTeam.Controllers
         public void ShowMatchCreator()
         {
             var matchController = new MatchController(_matchResultRepository, _clubRepository, _playerRepository);
-            var createMatchForm = _formsFactory.matchCreatorForm();
-            matchController.ShowMatchCreator(createMatchForm, this);
+            var matchCreatorView = _viewsFactory.MatchCreatorView();
+            matchController.ShowMatchCreator(matchCreatorView, this);
         }
 
         public void ShowMatch(MatchSquad homeSquad, MatchSquad awaySquad)
         {
             var matchController = new MatchController(_matchResultRepository, _clubRepository, _playerRepository);
-            var matchForm = _formsFactory.matchForm();
-            matchController.ShowMatch(matchForm, homeSquad, awaySquad);
+            var matchView = _viewsFactory.MatchView();
+            matchController.ShowMatch(matchView, homeSquad, awaySquad);
         }
 
         public void ShowPlayers()
         {
             var playerController = new PlayerController(_playerRepository);
-            var listForm = _formsFactory.playersListForm();
-            playerController.ShowPlayers(listForm, this);
+            var listView = _viewsFactory.PlayersListView();
+            playerController.ShowPlayers(listView, this);
         }
 
         public void AddPlayer()
         {
             var playerController = new PlayerController(_playerRepository);
-            var createForm = _formsFactory.cretePlayerForm();
-            playerController.ShowAddNewPlayer(createForm);
+            var createView = _viewsFactory.PlayerCreatorView();
+            playerController.ShowAddNewPlayer(createView);
         }
 
         public void EditPlayer(string playerId)
@@ -57,15 +57,15 @@ namespace EliteTeam.Controllers
         public void ShowClubs()
         {
             var clubController = new ClubController(_clubRepository);
-            var clubListForm = _formsFactory.clubsListForm();
-            clubController.ShowClubs(clubListForm, this);
+            var clubListView = _viewsFactory.ClubsListView();
+            clubController.ShowClubs(clubListView, this);
         }
 
         public void AddClub()
         {
             var clubController = new ClubController(_clubRepository);
-            var createClubForm = _formsFactory.creteClubForm();
-            clubController.ShowAddNewClub(createClubForm);
+            var createClubView = _viewsFactory.ClubCreatorView();
+            clubController.ShowAddNewClub(createClubView);
         }
 
         public void EditClub(string playerId)

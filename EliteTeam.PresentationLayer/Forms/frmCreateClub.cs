@@ -46,14 +46,7 @@ namespace EliteTeam.PresentationLayer
 
         private void buttonCreate_Click(object sender, EventArgs e)
         {
-            try
-            {
-                _clubController.TryToAddClub(this);
-            }
-            catch (Exception exc)
-            {
-                MessageBox.Show(exc.Message);
-            }
+            _clubController.TryToAddClub(this);
         }
     }
 }
