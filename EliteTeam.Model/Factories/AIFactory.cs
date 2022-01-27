@@ -2,9 +2,9 @@
 
 namespace EliteTeam.Model
 {
-    class AIFactory
+    public class AIFactory
     {
-        public static PlayerAI CreateAI(PlayerPosition playerPosition)
+        public static IPlayerAI CreateAI(PlayerPosition playerPosition)
         {
             switch (playerPosition)
             {

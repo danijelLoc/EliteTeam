@@ -12,6 +12,6 @@ namespace EliteTeam.BaseLib
         void ShowModaless(IMatchController matchController, MatchSquad homeSquad, MatchSquad awaySquad);
         void StartSimulation(IMatchSimulationController simulationController);
         void UpdateResult(int homeGoals, int awayGoals);
-        void UpdateMatchLog(string actionLog, string actionSummary);
+        void UpdateMatchLog(string actionTime, string actionLog, string actionSummary);
     }
 }

@@ -93,9 +93,10 @@ namespace EliteTeam.PresentationLayer
             txtAwayGoals.Text = awayGoals.ToString();
         }
 
-        public void UpdateMatchLog(string actionLog, string actionSummary)
+        public void UpdateMatchLog(string actionTime, string actionLog, string actionSummary)
         {
-            ListViewItem item = new ListViewItem(actionLog);
+            ListViewItem item = new ListViewItem(actionTime);
+            item.SubItems.Add(actionLog);
             item.SubItems.Add(actionSummary);
             listMatchLog.Items.Add(item);
             // color for goal and stopage

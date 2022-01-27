@@ -5,7 +5,7 @@ using System.Text;
 
 namespace EliteTeam.Model
 {
-    public abstract class PlayerAI
+    public abstract class IPlayerAI
     {
         protected Double chooseToPassToDefence;
         protected Double chooseToPassToMidfield;

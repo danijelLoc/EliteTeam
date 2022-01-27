@@ -5,7 +5,7 @@ using System.Text;
 
 namespace EliteTeam.Model
 {
-    public class DefenderAI : PlayerAI
+    public class DefenderAI : IPlayerAI
     {
         public override void CalculateMoveWeights(Tactic tactic)
         {

@@ -12,7 +12,7 @@ namespace EliteTeam.Model
         public PlayerPosition Position { get { return _position; } }
         public string ClubId { get; set; }
         public Stats Stats { get; set; }
-        public PlayerAI PlayerAI { get; set; }
+        public IPlayerAI PlayerAI { get; set; }
 
         public PlayerDescription Description { get { return new PlayerDescription(Id, Name, Age.ToString(), _position.ToString()); } }
 

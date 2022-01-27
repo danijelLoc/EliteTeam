@@ -36,6 +36,7 @@ namespace EliteTeam.PresentationLayer
             this.scoreSeparator = new System.Windows.Forms.Label();
             this.progressBarTime = new System.Windows.Forms.ProgressBar();
             this.listMatchLog = new System.Windows.Forms.ListView();
+            this.headerTime = new System.Windows.Forms.ColumnHeader();
             this.headerAction = new System.Windows.Forms.ColumnHeader();
             this.headerType = new System.Windows.Forms.ColumnHeader();
             this.txtMinutes = new System.Windows.Forms.Label();
@@ -98,6 +99,7 @@ namespace EliteTeam.PresentationLayer
             // 
             // progressBarTime
             // 
+            this.progressBarTime.BackColor = System.Drawing.Color.Silver;
             this.progressBarTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.progressBarTime.Location = new System.Drawing.Point(91, 57);
             this.progressBarTime.Maximum = 90;
@@ -107,9 +109,10 @@ namespace EliteTeam.PresentationLayer
             // 
             // listMatchLog
             // 
-            this.listMatchLog.BackColor = System.Drawing.Color.Beige;
+            this.listMatchLog.BackColor = System.Drawing.Color.Gainsboro;
             this.listMatchLog.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.listMatchLog.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.headerTime,
             this.headerAction,
             this.headerType});
             this.listMatchLog.HideSelection = false;
@@ -120,15 +123,19 @@ namespace EliteTeam.PresentationLayer
             this.listMatchLog.UseCompatibleStateImageBehavior = false;
             this.listMatchLog.View = System.Windows.Forms.View.Details;
             // 
+            // headerTime
+            // 
+            this.headerTime.Text = "Time";
+            // 
             // headerAction
             // 
             this.headerAction.Text = "Event Description";
-            this.headerAction.Width = 500;
+            this.headerAction.Width = 490;
             // 
             // headerType
             // 
             this.headerType.Text = "Summary";
-            this.headerType.Width = 170;
+            this.headerType.Width = 120;
             // 
             // txtMinutes
             // 
@@ -222,5 +229,6 @@ namespace EliteTeam.PresentationLayer
         private System.Windows.Forms.Label txtSeconds;
         private System.Windows.Forms.Button buttonPause;
         private System.Windows.Forms.Button buttonResume;
+        private System.Windows.Forms.ColumnHeader headerTime;
     }
 }
