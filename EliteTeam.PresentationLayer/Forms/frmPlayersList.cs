@@ -65,15 +65,15 @@ namespace EliteTeam.PresentationLayer
             if (listViewPlayers.SelectedItems[0] != null)
             {
                 int ind = listViewPlayers.SelectedItems[0].Index;
-                string playerId = _listPlayers[ind].Id;
+                Player player = _listPlayers[ind];
 
-                _mainFormController.EditPlayer(playerId);
+                _mainFormController.ShowUpdatePlayer(player);
             }
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            _mainFormController.AddPlayer();
+            _mainFormController.ShowCreatePlayer();
         }
     }
 }

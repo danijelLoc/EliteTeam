@@ -2,9 +2,8 @@
 
 namespace EliteTeam.Model
 {
-    public class MatchResult
+    public class MatchResult : EntityBase<string>
     {
-        public string Id { get; }
         public string HomeClubName { get; }
         public string HomeClubId { get; }
         public string AwayClubName { get; }
@@ -13,9 +12,8 @@ namespace EliteTeam.Model
         public int AwayClubGoals { get; }
         public DateTime KickOffTime { get; }
 
-        public MatchResult(Club homeClub, Club awayClub, int homeClubGoals, int awayClubGoals, DateTime kickOffTime)
+        public MatchResult(Club homeClub, Club awayClub, int homeClubGoals, int awayClubGoals, DateTime kickOffTime) : base(Guid.NewGuid().ToString())
         {
-            Id = Guid.NewGuid().ToString();
             HomeClubName = homeClub.Name;
             HomeClubId = homeClub.Id;
             AwayClubName = awayClub.Name;

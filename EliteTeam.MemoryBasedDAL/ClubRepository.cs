@@ -10,7 +10,14 @@ namespace EliteTeam.MemoryBasedDAL
     public class ClubRepository : IClubRepository
     {
         private List<Club> _clubs = null;
-        public static ClubRepository Shared = new ClubRepository();
+        private static ClubRepository _instance;
+        public static ClubRepository Shared
+        {
+            get
+            {
+                return _instance ?? (_instance = new ClubRepository());
+            }
+        }
 
         private ClubRepository()
         {
@@ -81,6 +88,11 @@ namespace EliteTeam.MemoryBasedDAL
         {
             var club = _clubs.Find(x => x.Id == clubId);
             club.FirePlayer(playerId);
+        }
+        public void clubFiredAllPlayers(string clubId)
+        {
+            var club = _clubs.Find(x => x.Id == clubId);
+            club.FireAllPlayers();
         }
     }
 }

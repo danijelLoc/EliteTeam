@@ -14,9 +14,9 @@ namespace EliteTeam.BaseLib
         public void ShowPlayers();
         public void ShowClubs();
         public void ShowMatchResults();
-        public void AddPlayer();
-        public void AddClub();
-        void EditPlayer(string playerId);
-        void EditClub(string playerId);
+        public void ShowCreatePlayer();
+        public void ShowUpdatePlayer(Player player);
+        public void ShowCreateClub();
+        public void ShowUpdateClub(Club club);
     }
 }

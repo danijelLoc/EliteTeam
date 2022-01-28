@@ -128,5 +128,10 @@ namespace EliteTeam.PresentationLayer
             MessageBox.Show(message);
         }
 
+        private void frmMatch_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (matchTimer != null)
+                matchTimer.Stop();
+        }
     }
 }

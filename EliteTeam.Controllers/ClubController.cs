@@ -45,19 +45,36 @@ namespace EliteTeam.Controllers
             _playerRepository.playerSignedForClub(playerId, clubId);
         }
 
-        public object[] getTacticOptions()
+        public object[] GetTacticOptions()
         {
             return new object[2] { Tactic.counterAttack, Tactic.possesion };
         }
 
-        public void RemoveClub(string clubId)
+        public void TryToRemoveClub(IUpdateClubView inView, string clubId)
         {
-            _clubRepository.deleteClub(clubId);
+            try
+            {
+                var squad = _playerRepository.getAllPlayersInClub(clubId);
+                _clubRepository.clubFiredAllPlayers(clubId);
+                foreach (Player player in squad)
+                    _playerRepository.playerFiredFromClub(player.Id, clubId);
+                _clubRepository.deleteClub(clubId);
+                inView.CloseView();
+            }
+            catch (Exception exc)
+            {
+                inView.ShowMessage(exc.Message);
+            }
         }
 
         public void ShowAddNewClub(ICreateClubView inView)
         {
             inView.ShowModaless(this);
+        }
+
+        public void ShowUpdateClub(IUpdateClubView inView, Club club)
+        {
+            inView.ShowModaless(this, club);
         }
 
         public void ShowClubs(IClubsListView inView, IMainController mainController)
@@ -71,8 +88,10 @@ namespace EliteTeam.Controllers
             {
                 Tactic tactic = (Tactic)Enum.Parse(typeof(Tactic), inView.Tactic);
                 Club newClub = new Club(inView.ClubName, inView.ShortClubName, inView.ManagerName, tactic);
+
                 // register club
                 _clubRepository.addClub(newClub);
+
                 // sign players to new club
                 List<Player> squad = inView.SquadPlayers;
                 foreach (Player player in squad)
@@ -87,5 +106,36 @@ namespace EliteTeam.Controllers
                 inView.ShowMessage(exc.Message);
             }
         }
+        public void TryToUpdateClub(IUpdateClubView inView, Club oldClubInfo)
+        {
+            try
+            {
+                // update basic info
+                Tactic tactic = (Tactic)Enum.Parse(typeof(Tactic), inView.Tactic);
+                oldClubInfo.ClubManager = inView.ManagerName;
+                oldClubInfo.Name = inView.ClubName;
+                oldClubInfo.ShortName = inView.ShortClubName;
+                oldClubInfo.Tactic = tactic;
+
+                // update squad, fire old squad, sign new ones
+                foreach (String playerId in oldClubInfo.ClubSquad)
+                {
+                    _clubRepository.clubFiredPlayer(playerId, oldClubInfo.Id);
+                    _playerRepository.playerFiredFromClub(playerId, oldClubInfo.Id);
+                }
+                List<Player> squad = inView.SquadPlayers;
+                foreach (Player player in squad)
+                {
+                    _clubRepository.clubSignedPlayer(player.Id, oldClubInfo.Id);
+                    _playerRepository.playerSignedForClub(player.Id, oldClubInfo.Id);
+                }
+                inView.CloseView();
+            }
+            catch (Exception exc)
+            {
+                inView.ShowMessage(exc.Message);
+            }
+        }
+
     }
 }

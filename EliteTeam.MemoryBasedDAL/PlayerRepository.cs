@@ -6,12 +6,19 @@ namespace EliteTeam.MemoryBasedDAL
 {
     public class PlayerRepository : IPlayerRepository
     {
-        public static PlayerRepository Shared = new PlayerRepository();
-
-        private readonly List<Player> _players = new List<Player>();
+        private readonly List<Player> _players;
+        private static PlayerRepository _instance;
+        public static PlayerRepository Shared
+        {
+            get
+            {
+                return _instance ?? (_instance = new PlayerRepository());
+            }
+        }
 
         private PlayerRepository()
         {
+            _players = new List<Player>();
         }
 
         public void addPlayer(Player inPlayer)

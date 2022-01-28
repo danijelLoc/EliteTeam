@@ -57,7 +57,17 @@ namespace EliteTeam.PresentationLayer
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            _mainController.AddClub();
+            _mainController.ShowCreateClub();
+        }
+
+        private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (listView1.SelectedItems[0] != null)
+            {
+                int ind = listView1.SelectedItems[0].Index;
+                Club club = _clubs[ind];
+                _mainController.ShowUpdateClub(club);
+            }
         }
     }
 }

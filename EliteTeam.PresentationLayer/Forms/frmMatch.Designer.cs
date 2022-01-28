@@ -208,6 +208,7 @@ namespace EliteTeam.PresentationLayer
             this.Name = "frmMatch";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Match";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMatch_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

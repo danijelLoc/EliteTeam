@@ -20,9 +20,23 @@ namespace EliteTeam.PresentationLayer
             InitializeComponent();
         }
 
-        public string HomeClubName { get { return comboBoxHome.SelectedItem.ToString(); } }
+        public string HomeClubName
+        {
+            get
+            {
+                if (comboBoxHome.SelectedItem == null) throw new Exception("Home Club not selected");
+                return comboBoxHome.SelectedItem.ToString();
+            }
+        }
 
-        public string AwayClubName { get { return comboBoxAway.SelectedItem.ToString(); } }
+        public string AwayClubName
+        {
+            get
+            {
+                if (comboBoxAway.SelectedItem == null) throw new Exception("Away Club not selected");
+                return comboBoxAway.SelectedItem.ToString();
+            }
+        }
 
         public void CloseView()
         {
@@ -48,7 +62,6 @@ namespace EliteTeam.PresentationLayer
                 comboBoxHome.SelectedIndex = 0;
                 comboBoxAway.SelectedIndex = 1;
             }
-
             this.Show();
         }
 

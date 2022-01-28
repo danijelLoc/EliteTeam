@@ -12,12 +12,12 @@ namespace EliteTeam.BaseLib
         public List<Club> GetClubs();
         public List<Player> GetClubSquad(string clubId);
         public List<Player> GetFreeAgentPlayers();
-        public object[] getTacticOptions();
-        public void RemoveClub(string clubId);
+        public object[] GetTacticOptions();
         public void ShowAddNewClub(ICreateClubView inView);
-        public void TryToAddClub(ICreateClubView inView);
+        public void ShowUpdateClub(IUpdateClubView inView, Club club);
         public void ShowClubs(IClubsListView inView, IMainController mainController);
-        public void AddPlayerToClubSquad(string clubId, string playerId);
-        public void RemovePlayerFromClubSquad(string clubId, string playerId);
+        public void TryToRemoveClub(IUpdateClubView inView, string clubId);
+        public void TryToAddClub(ICreateClubView inView);
+        public void TryToUpdateClub(IUpdateClubView inView, Club oldClubInfo);
     }
 }

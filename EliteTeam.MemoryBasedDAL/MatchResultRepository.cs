@@ -10,7 +10,14 @@ namespace EliteTeam.MemoryBasedDAL
     public class MatchResultRepository : IMatchResultRepository
     {
         private List<MatchResult> _results;
-        public static MatchResultRepository Shared = new MatchResultRepository();
+        private static MatchResultRepository _instance;
+        public static MatchResultRepository Shared
+        {
+            get
+            {
+                return _instance ?? (_instance = new MatchResultRepository());
+            }
+        }
 
         private MatchResultRepository()
         {

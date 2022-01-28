@@ -39,5 +39,15 @@ namespace EliteTeam.PresentationLayer
         {
             return new frmMatchResultsList();
         }
+
+        public IUpdateClubView ClubUpdaterView()
+        {
+            return new frmUpdateClub();
+        }
+
+        public IUpdatePlayerView PlayerUpdaterView()
+        {
+            return new frmUpdatePlayer();
+        }
     }
 }

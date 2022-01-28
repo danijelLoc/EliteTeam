@@ -5,13 +5,12 @@ using System.Text;
 
 namespace EliteTeam.Model
 {
-    public class Club
+    public class Club : EntityBase<string>
     {
         public static readonly int MinNumberOfPlayers = 11;
 
         private List<string> _squad;
         private string _shortName;
-        public string Id { get; }
         public string Name { get; set; }
         public List<string> ClubSquad { get { return _squad; } }
         public string ClubManager { get; set; }
@@ -27,9 +26,8 @@ namespace EliteTeam.Model
             }
         }
 
-        public Club(string name, string shortName, String clubManager, Tactic tactic)
+        public Club(string name, string shortName, String clubManager, Tactic tactic) : base(Guid.NewGuid().ToString())
         {
-            Id = Guid.NewGuid().ToString();
             Name = name;
             ShortName = shortName;
             _squad = null;
@@ -53,6 +51,10 @@ namespace EliteTeam.Model
         {
             var removed = _squad.Remove(playerId);
             if (!removed) throw new Exception("Player was not in squad");
+        }
+        public void FireAllPlayers()
+        {
+            _squad.Clear();
         }
     }
 }

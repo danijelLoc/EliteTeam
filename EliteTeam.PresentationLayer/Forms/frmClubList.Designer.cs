@@ -34,6 +34,7 @@ namespace EliteTeam.PresentationLayer
             this.shortName = new System.Windows.Forms.ColumnHeader();
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.buttonAdd = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // listView1
@@ -50,6 +51,7 @@ namespace EliteTeam.PresentationLayer
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseDoubleClick);
             // 
             // clubName
             // 
@@ -76,17 +78,28 @@ namespace EliteTeam.PresentationLayer
             this.buttonAdd.UseVisualStyleBackColor = true;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 398);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(223, 19);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "* Double click on club name to edit";
+            // 
             // frmClubList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.listView1);
             this.Name = "frmClubList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Clubs";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -97,5 +110,6 @@ namespace EliteTeam.PresentationLayer
         private System.Windows.Forms.ColumnHeader shortName;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.Button buttonAdd;
+        private System.Windows.Forms.Label label1;
     }
 }

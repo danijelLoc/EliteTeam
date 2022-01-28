@@ -16,5 +16,6 @@ namespace EliteTeam.Model
         void deleteClubWithName(string name);
         void clubSignedPlayer(string playerId, string clubId);
         void clubFiredPlayer(string playerId, string clubId);
+        void clubFiredAllPlayers(string clubId);
     }
 }

@@ -13,25 +13,33 @@ using EliteTeam.Model;
 
 namespace EliteTeam.PresentationLayer
 {
-    public partial class frmCreateClub : Form, ICreateClubView
+    public partial class frmUpdateClub : Form, IUpdateClubView
     {
         private IClubController _clubController = null;
+        private Club _club;
         private List<Player> _clubSquad = new List<Player>();
         private List<Player> _freePlayers = new List<Player>();
-        public frmCreateClub()
+        public string ClubName { get { return textBoxName.Text; } }
+        public string ShortClubName { get { return textBoxShortName.Text; } }
+        public string ManagerName { get { return textBoxManager.Text; } }
+        public string Tactic { get { return comboBoxTactic.SelectedItem.ToString(); } }
+        public List<Player> SquadPlayers { get { return _clubSquad; } }
+        public frmUpdateClub()
         {
             InitializeComponent();
         }
 
-        public string ClubName { get { return textBoxName.Text; } }
-
-        public string ShortClubName { get { return textBoxShortName.Text; } }
-
-        public string ManagerName { get { return textBoxManager.Text; } }
-
-        public string Tactic { get { return comboBoxTactic.SelectedItem.ToString(); } }
-
-        public List<Player> SquadPlayers { get { return _clubSquad; } }
+        public void ShowModaless(IClubController clubController, Club club)
+        {
+            _club = club;
+            _clubController = clubController;
+            _clubSquad = clubController.GetClubSquad(club.Id);
+            _freePlayers = clubController.GetFreeAgentPlayers();
+            comboBoxTactic.Items.AddRange(_clubController.GetTacticOptions());
+            UpdateLists();
+            SetInitialElements();
+            this.Show();
+        }
 
         public void CloseView()
         {
@@ -43,13 +51,13 @@ namespace EliteTeam.PresentationLayer
             MessageBox.Show(message);
         }
 
-        public void ShowModaless(IClubController clubController)
+        private void SetInitialElements()
         {
-            _clubController = clubController;
-            _freePlayers = clubController.GetFreeAgentPlayers();
-            comboBoxTactic.Items.AddRange(_clubController.GetTacticOptions());
-            UpdateLists();
-            this.Show();
+            textBoxManager.Text = _club.ClubManager;
+            textBoxName.Text = _club.Name;
+            textBoxShortName.Text = _club.ShortName;
+            comboBoxTactic.SelectedIndex = comboBoxTactic.Items.IndexOf(_club.Tactic);
+
         }
 
         private void UpdateLists()
@@ -85,11 +93,6 @@ namespace EliteTeam.PresentationLayer
         }
 
 
-        private void buttonCreate_Click(object sender, EventArgs e)
-        {
-            _clubController.TryToAddClub(this);
-        }
-
         private void listViewFreePlayers_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (listViewFreePlayers.SelectedItems[0] != null)
@@ -112,6 +115,16 @@ namespace EliteTeam.PresentationLayer
                 _freePlayers.Add(player);
                 UpdateLists();
             }
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            _clubController.TryToRemoveClub(this, _club.Id);
+        }
+
+        private void buttonUpdate_Click(object sender, EventArgs e)
+        {
+            _clubController.TryToUpdateClub(this, _club);
         }
     }
 }

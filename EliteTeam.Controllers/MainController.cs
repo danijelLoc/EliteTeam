@@ -37,21 +37,23 @@ namespace EliteTeam.Controllers
 
         public void ShowPlayers()
         {
-            var playerController = new PlayerController(_playerRepository);
+            var playerController = new PlayerController(_playerRepository, _clubRepository);
             var listView = _viewsFactory.PlayersListView();
             playerController.ShowPlayers(listView, this);
         }
 
-        public void AddPlayer()
+        public void ShowCreatePlayer()
         {
-            var playerController = new PlayerController(_playerRepository);
+            var playerController = new PlayerController(_playerRepository, _clubRepository);
             var createView = _viewsFactory.PlayerCreatorView();
             playerController.ShowAddNewPlayer(createView);
         }
 
-        public void EditPlayer(string playerId)
+        public void ShowUpdatePlayer(Player player)
         {
-            throw new NotImplementedException();
+            var playerController = new PlayerController(_playerRepository, _clubRepository);
+            var updateView = _viewsFactory.PlayerUpdaterView();
+            playerController.ShowUpdatePlayer(updateView, player);
         }
 
         public void ShowClubs()
@@ -68,16 +70,18 @@ namespace EliteTeam.Controllers
             matchController.ShowMatchResults(matchResultsView, this);
         }
 
-        public void AddClub()
+        public void ShowCreateClub()
         {
             var clubController = new ClubController(_clubRepository, _playerRepository);
             var createClubView = _viewsFactory.ClubCreatorView();
             clubController.ShowAddNewClub(createClubView);
         }
 
-        public void EditClub(string playerId)
+        public void ShowUpdateClub(Club club)
         {
-            throw new NotImplementedException();
+            IClubController clubController = new ClubController(_clubRepository, _playerRepository);
+            var updateClubView = _viewsFactory.ClubUpdaterView();
+            clubController.ShowUpdateClub(updateClubView, club);
         }
 
         public void CreateRandomData()
@@ -90,8 +94,8 @@ namespace EliteTeam.Controllers
             _playerRepository.addPlayers(squad2);
             _playerRepository.addPlayers(squad3);
             _playerRepository.addPlayers(squad4);
-            Club homeClub = new Club("Dinamo", "DIN", "Danijel", Tactic.possesion);
-            Club awayClub = new Club("Rijeka", "RIJ", "Paulo", Tactic.counterAttack);
+            Club homeClub = new Club("Dinamo", "DIN", "Ragner", Tactic.possesion);
+            Club awayClub = new Club("Rijeka", "RIJ", "Filipo", Tactic.counterAttack);
             homeClub.SignPlayers(squad1.ConvertAll(x => x.Id));
             awayClub.SignPlayers(squad2.ConvertAll(x => x.Id));
             _playerRepository.playersSignedForClub(squad1.ConvertAll(x => x.Id), homeClub.Id);

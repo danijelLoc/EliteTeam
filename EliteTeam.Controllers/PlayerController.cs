@@ -11,10 +11,12 @@ namespace EliteTeam.Controllers
     public class PlayerController : IPlayerController
     {
         private IPlayerRepository _playerRepository;
+        private IClubRepository _clubRepository;
 
-        public PlayerController(IPlayerRepository playerRepository)
+        public PlayerController(IPlayerRepository playerRepository, IClubRepository clubRepository)
         {
             _playerRepository = playerRepository;
+            _clubRepository = clubRepository;
         }
 
         public List<Player> GetPlayers()
@@ -22,21 +24,21 @@ namespace EliteTeam.Controllers
             return _playerRepository.getAllPlayers();
         }
 
-        public object[] getPositionOptions()
+        public object[] GetPositionOptions()
         {
             object[] positions = new object[4] { PlayerPosition.attacker, PlayerPosition.midfielder, PlayerPosition.defender, PlayerPosition.goalkeeper };
             return positions;
         }
 
-        public object[] getStatsRangeOptions()
+        public object[] GetStatsRangeOptions()
         {
             object[] statsOptions = new object[5] { 1, 2, 3, 4, 5 };
             return statsOptions;
         }
 
-        public void RemovePlayer(string playerId)
+        public string PlayersClubName(string clubId)
         {
-            _playerRepository.deletePlayer(playerId);
+            return _clubRepository.getClubByID(clubId).Name;
         }
 
         public void ShowAddNewPlayer(ICreatePlayerView inView)
@@ -47,6 +49,11 @@ namespace EliteTeam.Controllers
         public void ShowPlayers(IPlayersListView inView, IMainController mainViewController)
         {
             inView.ShowModaless(this, mainViewController);
+        }
+
+        public void ShowUpdatePlayer(IUpdatePlayerView inView, Player player)
+        {
+            inView.ShowModaless(this, player);
         }
 
         public void TryToAddPlayer(ICreatePlayerView inView)
@@ -65,6 +72,52 @@ namespace EliteTeam.Controllers
                 PlayerPosition position = (PlayerPosition)Enum.Parse(typeof(PlayerPosition), inView.Position);
                 Player newPlayer = new Player(position, inView.PlayerName, inView.Age, inView.Country, playerStats);
                 _playerRepository.addPlayer(newPlayer);
+                inView.CloseView();
+            }
+            catch (Exception exc)
+            {
+                inView.ShowMessage(exc.Message);
+            }
+        }
+
+        public void TryToDeletePlayer(IUpdatePlayerView inView, Player playerToDelete)
+        {
+            try
+            {
+                // remove player from club
+                if (playerToDelete.ClubId != null)
+                    _clubRepository.clubFiredPlayer(playerToDelete.Id, playerToDelete.ClubId);
+                // delete player
+                _playerRepository.deletePlayer(playerToDelete.Id);
+            }
+            catch (Exception exc)
+            {
+                inView.ShowMessage(exc.Message);
+            }
+        }
+
+        public void TryToUpdatePlayer(IUpdatePlayerView inView, Player oldPlayerInfo)
+        {
+            try
+            {
+                Stats newStats = new Stats();
+                newStats.Passing = inView.Passing;
+                newStats.Shooting = inView.Shooting;
+                newStats.Dribling = inView.Dribling;
+                newStats.Speed = inView.Speed;
+                newStats.Strenght = inView.Strenght;
+                newStats.Interceptions = inView.Interceptions;
+                newStats.Goalkeeping = inView.Goalkeeping;
+                newStats.Stamina = inView.Stamina;
+
+                oldPlayerInfo.Stats = newStats;
+                oldPlayerInfo.Name = inView.PlayerName;
+                if (inView.Resigned)
+                {
+                    _clubRepository.clubFiredPlayer(oldPlayerInfo.Id, oldPlayerInfo.ClubId);
+                    _playerRepository.playerFiredFromClub(oldPlayerInfo.Id, oldPlayerInfo.ClubId);
+                }
+
                 inView.CloseView();
             }
             catch (Exception exc)
