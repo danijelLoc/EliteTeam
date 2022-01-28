@@ -88,14 +88,24 @@ namespace EliteTeam.PresentationLayer
             labelClub.Text = "Player is going to resign";
         }
 
+        private void UpdatePlayer()
+        {
+            _playerController.UpdatePlayer(this, _player);
+        }
+
+        private void DeletePlayer()
+        {
+            _playerController.DeletePlayer(this, _player);
+        }
+
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
-            _playerController.TryToUpdatePlayer(this, _player);
+            ExceptionHandler.HandleBlock(UpdatePlayer, this);
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            _playerController.TryToDeletePlayer(this, _player);
+            ExceptionHandler.HandleBlock(DeletePlayer, this);
         }
     }
 }

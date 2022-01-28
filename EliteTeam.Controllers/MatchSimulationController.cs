@@ -295,10 +295,17 @@ namespace EliteTeam.Controllers
 
         private void SaveMatchResult()
         {
-            int homeGoals = score[homeSquad.Club.Id];
-            int awayGoals = score[awaySquad.Club.Id];
-            MatchResult matchResult = new MatchResult(homeSquad.Club, awaySquad.Club, homeGoals, awayGoals, kickOffTime);
-            _matchController.TryToAddMatchResult(matchView, matchResult);
+            try
+            {
+                int homeGoals = score[homeSquad.Club.Id];
+                int awayGoals = score[awaySquad.Club.Id];
+                MatchResult matchResult = new MatchResult(homeSquad.Club, awaySquad.Club, homeGoals, awayGoals, kickOffTime);
+                _matchController.AddMatchResult(matchView, matchResult);
+            }
+            catch (Exception exc)
+            {
+                matchView.ShowMessage(exc.Message);
+            }
         }
 
         private void UpdateResultOnView()

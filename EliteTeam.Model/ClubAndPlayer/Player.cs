@@ -18,6 +18,14 @@ namespace EliteTeam.Model
 
         public Player(PlayerPosition position, string name, int age, string country, Stats stats) : base(name, age, country)
         {
+            if (age <= 16 || age >= 43) throw new PlayerAgeException();
+            ClubId = null;
+            _position = position;
+            Stats = stats;
+        }
+        public Player(PlayerPosition position, string name, DateTime birthday, string country, Stats stats) : base(name, birthday, country)
+        {
+            if (Age < 17) throw new PlayerAgeException();
             ClubId = null;
             _position = position;
             Stats = stats;

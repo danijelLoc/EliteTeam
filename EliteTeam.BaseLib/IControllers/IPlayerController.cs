@@ -15,9 +15,10 @@ namespace EliteTeam.BaseLib
         public object[] GetPositionOptions();
         public void ShowAddNewPlayer(ICreatePlayerView inView);
         public void ShowUpdatePlayer(IUpdatePlayerView inView, Player player);
-        public void TryToAddPlayer(ICreatePlayerView inView);
-        public void TryToDeletePlayer(IUpdatePlayerView inView, Player playerToDelete);
-        public void TryToUpdatePlayer(IUpdatePlayerView inView, Player oldPlayerInfo);
         public void ShowPlayers(IPlayersListView inView, IMainController mainController);
+        public void AddPlayer(ICreatePlayerView inView);
+        public void DeletePlayer(IUpdatePlayerView inView, Player playerToDelete);
+        public void UpdatePlayer(IUpdatePlayerView inView, Player oldPlayerInfo);
+
     }
 }

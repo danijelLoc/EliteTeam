@@ -48,6 +48,7 @@ namespace EliteTeam.PresentationLayer
             _clubController = clubController;
             _freePlayers = clubController.GetFreeAgentPlayers();
             comboBoxTactic.Items.AddRange(_clubController.GetTacticOptions());
+            comboBoxTactic.SelectedIndex = 0;
             UpdateLists();
             this.Show();
         }
@@ -87,7 +88,12 @@ namespace EliteTeam.PresentationLayer
 
         private void buttonCreate_Click(object sender, EventArgs e)
         {
-            _clubController.TryToAddClub(this);
+            ExceptionHandler.HandleBlock(AddClub, this);
+        }
+
+        private void AddClub()
+        {
+            _clubController.AddClub(this);
         }
 
         private void listViewFreePlayers_MouseDoubleClick(object sender, MouseEventArgs e)

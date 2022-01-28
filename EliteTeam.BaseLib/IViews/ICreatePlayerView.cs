@@ -12,7 +12,7 @@ namespace EliteTeam.BaseLib
         void ShowModaless(IPlayerController playerController);
         string PlayerName { get; }
         string Country { get; }
-        int Age { get; }
+        string Age { get; }
         string Position { get; }
 
         int Passing { get; }

@@ -8,21 +8,40 @@ namespace EliteTeam.Model
     public class Club : EntityBase<string>
     {
         public static readonly int MinNumberOfPlayers = 11;
-
         private List<string> _squad;
+        private string _name;
         private string _shortName;
-        public string Name { get; set; }
+        private string _clubManagerName;
         public List<string> ClubSquad { get { return _squad; } }
-        public string ClubManager { get; set; }
+        public string Name
+        {
+            get { return _name; }
+            set
+            {
+                if (value.Trim().Length < 3)
+                    throw new ClubInvalidNameException();
+                _name = value.Trim();
+            }
+        }
+        public string ClubManager
+        {
+            get { return _clubManagerName; }
+            set
+            {
+                if (value.Length < 2)
+                    throw new HumanNameLengthException();
+                _clubManagerName = value;
+            }
+        }
         public Tactic Tactic { get; set; }
         public string ShortName
         {
             get { return _shortName; }
             set
             {
-                if (value.Length != 3)
-                    throw new ArgumentException("Short name must be 3 characters long");
-                _shortName = value.ToUpper();
+                if (value.Trim().Length != 3)
+                    throw new ClubInvalidShortNameException();
+                _shortName = value.Trim().ToUpper();
             }
         }
 
@@ -30,19 +49,18 @@ namespace EliteTeam.Model
         {
             Name = name;
             ShortName = shortName;
-            _squad = null;
+            _squad = new List<string>();
             ClubManager = clubManager;
+            Tactic = tactic;
         }
 
         public void SignPlayer(string playerId)
         {
-            if (ClubSquad == null) _squad = new List<string>();
-            _squad.Append(playerId);
+            _squad.Add(playerId);
         }
 
         public void SignPlayers(List<string> playerIds)
         {
-            if (ClubSquad == null) _squad = new List<string>();
             foreach (string playerId in playerIds)
                 SignPlayer(playerId);
         }
@@ -50,7 +68,7 @@ namespace EliteTeam.Model
         public void FirePlayer(string playerId)
         {
             var removed = _squad.Remove(playerId);
-            if (!removed) throw new Exception("Player was not in squad");
+            if (!removed) throw new ClubPlayerMissingException();
         }
         public void FireAllPlayers()
         {

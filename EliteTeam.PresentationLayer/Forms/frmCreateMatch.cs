@@ -24,7 +24,6 @@ namespace EliteTeam.PresentationLayer
         {
             get
             {
-                if (comboBoxHome.SelectedItem == null) throw new Exception("Home Club not selected");
                 return comboBoxHome.SelectedItem.ToString();
             }
         }
@@ -33,7 +32,6 @@ namespace EliteTeam.PresentationLayer
         {
             get
             {
-                if (comboBoxAway.SelectedItem == null) throw new Exception("Away Club not selected");
                 return comboBoxAway.SelectedItem.ToString();
             }
         }
@@ -65,9 +63,14 @@ namespace EliteTeam.PresentationLayer
             this.Show();
         }
 
+        private void CreateMatch()
+        {
+            _matchController.CreateMatch(this, _mainFormController);
+        }
+
         private void buttonSimulate_Click(object sender, EventArgs e)
         {
-            _matchController.TryToCreateMatch(this, _mainFormController);
+            ExceptionHandler.HandleBlock(CreateMatch, this);
         }
     }
 }

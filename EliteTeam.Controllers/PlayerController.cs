@@ -56,74 +56,58 @@ namespace EliteTeam.Controllers
             inView.ShowModaless(this, player);
         }
 
-        public void TryToAddPlayer(ICreatePlayerView inView)
+        public void AddPlayer(ICreatePlayerView inView)
         {
-            try
+            Stats playerStats = new Stats();
+            playerStats.Passing = inView.Passing;
+            playerStats.Shooting = inView.Shooting;
+            playerStats.Dribling = inView.Dribling;
+            playerStats.Speed = inView.Speed;
+            playerStats.Strenght = inView.Strenght;
+            playerStats.Interceptions = inView.Interceptions;
+            playerStats.Goalkeeping = inView.Goalkeeping;
+            playerStats.Stamina = inView.Stamina;
+            PlayerPosition position = (PlayerPosition)Enum.Parse(typeof(PlayerPosition), inView.Position);
+            int age;
+            if (!int.TryParse(inView.Age, out age))
             {
-                Stats playerStats = new Stats();
-                playerStats.Passing = inView.Passing;
-                playerStats.Shooting = inView.Shooting;
-                playerStats.Dribling = inView.Dribling;
-                playerStats.Speed = inView.Speed;
-                playerStats.Strenght = inView.Strenght;
-                playerStats.Interceptions = inView.Interceptions;
-                playerStats.Goalkeeping = inView.Goalkeeping;
-                playerStats.Stamina = inView.Stamina;
-                PlayerPosition position = (PlayerPosition)Enum.Parse(typeof(PlayerPosition), inView.Position);
-                Player newPlayer = new Player(position, inView.PlayerName, inView.Age, inView.Country, playerStats);
-                _playerRepository.addPlayer(newPlayer);
-                inView.CloseView();
+                throw new ArgumentException("Age must be integer");
             }
-            catch (Exception exc)
-            {
-                inView.ShowMessage(exc.Message);
-            }
+            Player newPlayer = new Player(position, inView.PlayerName, age, inView.Country, playerStats);
+            _playerRepository.addPlayer(newPlayer);
+            inView.CloseView();
         }
 
-        public void TryToDeletePlayer(IUpdatePlayerView inView, Player playerToDelete)
+        public void DeletePlayer(IUpdatePlayerView inView, Player playerToDelete)
         {
-            try
-            {
-                // remove player from club
-                if (playerToDelete.ClubId != null)
-                    _clubRepository.clubFiredPlayer(playerToDelete.Id, playerToDelete.ClubId);
-                // delete player
-                _playerRepository.deletePlayer(playerToDelete.Id);
-            }
-            catch (Exception exc)
-            {
-                inView.ShowMessage(exc.Message);
-            }
+            // remove player from club
+            if (playerToDelete.ClubId != null)
+                _clubRepository.clubFiredPlayer(playerToDelete.Id, playerToDelete.ClubId);
+            // delete player
+            _playerRepository.deletePlayer(playerToDelete.Id);
         }
 
-        public void TryToUpdatePlayer(IUpdatePlayerView inView, Player oldPlayerInfo)
+        public void UpdatePlayer(IUpdatePlayerView inView, Player oldPlayerInfo)
         {
-            try
-            {
-                Stats newStats = new Stats();
-                newStats.Passing = inView.Passing;
-                newStats.Shooting = inView.Shooting;
-                newStats.Dribling = inView.Dribling;
-                newStats.Speed = inView.Speed;
-                newStats.Strenght = inView.Strenght;
-                newStats.Interceptions = inView.Interceptions;
-                newStats.Goalkeeping = inView.Goalkeeping;
-                newStats.Stamina = inView.Stamina;
+            Stats newStats = new Stats();
+            newStats.Passing = inView.Passing;
+            newStats.Shooting = inView.Shooting;
+            newStats.Dribling = inView.Dribling;
+            newStats.Speed = inView.Speed;
+            newStats.Strenght = inView.Strenght;
+            newStats.Interceptions = inView.Interceptions;
+            newStats.Goalkeeping = inView.Goalkeeping;
+            newStats.Stamina = inView.Stamina;
 
-                oldPlayerInfo.Stats = newStats;
-                oldPlayerInfo.Name = inView.PlayerName;
-                if (inView.Resigned)
-                {
-                    _clubRepository.clubFiredPlayer(oldPlayerInfo.Id, oldPlayerInfo.ClubId);
-                    _playerRepository.playerFiredFromClub(oldPlayerInfo.Id, oldPlayerInfo.ClubId);
-                }
-
-                inView.CloseView();
-            }
-            catch (Exception exc)
+            oldPlayerInfo.Stats = newStats;
+            oldPlayerInfo.Name = inView.PlayerName;
+            if (inView.Resigned)
             {
-                inView.ShowMessage(exc.Message);
+                _clubRepository.clubFiredPlayer(oldPlayerInfo.Id, oldPlayerInfo.ClubId);
+                _playerRepository.playerFiredFromClub(oldPlayerInfo.Id, oldPlayerInfo.ClubId);
             }
+
+            inView.CloseView();
         }
     }
 }

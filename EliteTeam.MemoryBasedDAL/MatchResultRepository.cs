@@ -27,7 +27,7 @@ namespace EliteTeam.MemoryBasedDAL
         public void addMatchResult(MatchResult inMatchResult)
         {
             if (_results.Find(x => x.Id == inMatchResult.Id) != null)
-                return;
+                throw new MatchResultTakenIdException();
             _results.Add(inMatchResult);
         }
 

@@ -24,7 +24,7 @@ namespace EliteTeam.MemoryBasedDAL
         public void addPlayer(Player inPlayer)
         {
             if (_players.Find(x => x.Id == inPlayer.Id) != null)
-                return;
+                throw new PlayerTakenIdException();
             _players.Add(inPlayer);
         }
 
@@ -87,7 +87,7 @@ namespace EliteTeam.MemoryBasedDAL
         {
             var player = _players.Find(x => x.Id == playerId);
             if (player == null)
-                return null;
+                throw new PlayerDeletedException();
             return player.ClubId;
         }
 
@@ -99,7 +99,7 @@ namespace EliteTeam.MemoryBasedDAL
         public void playerSignedForClub(string playerId, string clubId)
         {
             var player = _players.Find(x => x.Id == playerId);
-            if (player == null) throw new ArgumentException();
+            if (player == null) throw new PlayerDeletedException();
             player.ClubId = clubId;
         }
 
@@ -118,7 +118,7 @@ namespace EliteTeam.MemoryBasedDAL
         public void playerFiredFromClub(string playerId, string clubId)
         {
             var player = _players.Find(x => x.Id == playerId);
-            if (player == null) throw new ArgumentException();
+            if (player == null) throw new PlayerDeletedException();
             player.ClubId = null;
         }
     }

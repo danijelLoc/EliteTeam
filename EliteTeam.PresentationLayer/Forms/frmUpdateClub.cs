@@ -117,14 +117,24 @@ namespace EliteTeam.PresentationLayer
             }
         }
 
+        private void RemoveClub()
+        {
+            _clubController.RemoveClub(this, _club.Id);
+        }
+
+        private void UpdateClub()
+        {
+            _clubController.UpdateClub(this, _club);
+        }
+
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            _clubController.TryToRemoveClub(this, _club.Id);
+            ExceptionHandler.HandleBlock(RemoveClub, this);
         }
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
-            _clubController.TryToUpdateClub(this, _club);
+            ExceptionHandler.HandleBlock(UpdateClub, this);
         }
     }
 }

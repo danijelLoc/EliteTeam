@@ -22,7 +22,7 @@ namespace EliteTeam.PresentationLayer
         public string PlayerName { get { return textBoxName.Text; } }
         public string Country { get { return textBoxCountry.Text; } }
 
-        public int Age { get { return int.Parse(textBoxAge.Text); } }
+        public string Age { get { return textBoxAge.Text; } }
 
         public string Position { get { return comboBoxPosition.SelectedItem.ToString(); } }
 
@@ -47,14 +47,23 @@ namespace EliteTeam.PresentationLayer
             _playerController = playerController;
             var statsBoxes = new List<ComboBox>() { comboBoxPassing, comboBoxDribbling, comboBoxShooting, comboBoxSpeed, comboBoxStrenght, comboBoxInterception, comboBoxGoalkeeping, comboBoxStamina };
             foreach (var box in statsBoxes)
+            {
                 box.Items.AddRange(_playerController.GetStatsRangeOptions());
+                box.SelectedIndex = 0;
+            }
             comboBoxPosition.Items.AddRange(_playerController.GetPositionOptions());
+            comboBoxPosition.SelectedIndex = 0;
             this.Show();
+        }
+
+        private void AddPlayer()
+        {
+            _playerController.AddPlayer(this);
         }
 
         private void buttonCreate_Click(object sender, EventArgs e)
         {
-            _playerController.TryToAddPlayer(this);
+            ExceptionHandler.HandleBlock(AddPlayer, this);
         }
 
         public void CloseView()

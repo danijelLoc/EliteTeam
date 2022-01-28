@@ -39,7 +39,7 @@ namespace EliteTeam.PresentationLayer
 
         private void button1_Click(object sender, EventArgs e)
         {
-            _mainController.ShowMatchCreator();
+            ExceptionHandler.HandleBlock(_mainController.ShowMatchCreator, this);
         }
 
         private void button4_Click(object sender, EventArgs e)

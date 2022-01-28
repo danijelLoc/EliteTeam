@@ -26,8 +26,12 @@ namespace EliteTeam.MemoryBasedDAL
 
         public void addClub(Club inClub)
         {
-            if (_clubs.Find(x => x.Id == inClub.Id || x.Name == inClub.Name) != null)
-                return;
+            if (_clubs.Find(x => x.Id == inClub.Id) != null)
+                throw new ClubTakenIdException();
+            if (_clubs.Find(x => x.Name == inClub.Name) != null)
+                throw new ClubTakenNameException();
+            if (_clubs.Find(x => x.ShortName == inClub.ShortName) != null)
+                throw new ClubTakenShortNameException();
             _clubs.Add(inClub);
         }
 

@@ -16,8 +16,8 @@ namespace EliteTeam.BaseLib
         public void ShowAddNewClub(ICreateClubView inView);
         public void ShowUpdateClub(IUpdateClubView inView, Club club);
         public void ShowClubs(IClubsListView inView, IMainController mainController);
-        public void TryToRemoveClub(IUpdateClubView inView, string clubId);
-        public void TryToAddClub(ICreateClubView inView);
-        public void TryToUpdateClub(IUpdateClubView inView, Club oldClubInfo);
+        public void RemoveClub(IUpdateClubView inView, string clubId);
+        public void AddClub(ICreateClubView inView);
+        public void UpdateClub(IUpdateClubView inView, Club oldClubInfo);
     }
 }

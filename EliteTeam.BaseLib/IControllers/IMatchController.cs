@@ -13,8 +13,8 @@ namespace EliteTeam.BaseLib
         void ShowMatch(IMatchView matchView, MatchSquad homeSquad, MatchSquad awaySquad);
         public List<Club> GetClubs();
         public List<MatchResult> GetMatchResults();
-        public void TryToCreateMatch(ICreateMatchView matchCreatorView, IMainController mainController);
-        public void TryToAddMatchResult(IMatchView matchView, MatchResult matchResult);
+        public void CreateMatch(ICreateMatchView matchCreatorView, IMainController mainController);
+        public void AddMatchResult(IMatchView matchView, MatchResult matchResult);
         public void ShowMatchResults(IMatchResultsListView inView, IMainController mainController);
 
     }
