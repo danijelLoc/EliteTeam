@@ -50,7 +50,7 @@ namespace EliteTeam.PresentationLayer
             // 
             this.txtHomeClubName.AutoSize = true;
             this.txtHomeClubName.Font = new System.Drawing.Font("Segoe UI", 13.74545F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtHomeClubName.Location = new System.Drawing.Point(91, 82);
+            this.txtHomeClubName.Location = new System.Drawing.Point(127, 106);
             this.txtHomeClubName.Name = "txtHomeClubName";
             this.txtHomeClubName.Size = new System.Drawing.Size(167, 30);
             this.txtHomeClubName.TabIndex = 0;
@@ -59,7 +59,7 @@ namespace EliteTeam.PresentationLayer
             // txtAwayClubName
             // 
             this.txtAwayClubName.Font = new System.Drawing.Font("Segoe UI", 13.74545F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtAwayClubName.Location = new System.Drawing.Point(533, 82);
+            this.txtAwayClubName.Location = new System.Drawing.Point(569, 106);
             this.txtAwayClubName.Name = "txtAwayClubName";
             this.txtAwayClubName.Size = new System.Drawing.Size(249, 30);
             this.txtAwayClubName.TabIndex = 1;
@@ -71,7 +71,7 @@ namespace EliteTeam.PresentationLayer
             this.txtHomeGoals.AutoSize = true;
             this.txtHomeGoals.BackColor = System.Drawing.SystemColors.Control;
             this.txtHomeGoals.Font = new System.Drawing.Font("Segoe UI", 15.70909F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtHomeGoals.Location = new System.Drawing.Point(395, 80);
+            this.txtHomeGoals.Location = new System.Drawing.Point(431, 104);
             this.txtHomeGoals.Name = "txtHomeGoals";
             this.txtHomeGoals.Size = new System.Drawing.Size(27, 32);
             this.txtHomeGoals.TabIndex = 2;
@@ -82,7 +82,7 @@ namespace EliteTeam.PresentationLayer
             this.txtAwayGoals.AutoSize = true;
             this.txtAwayGoals.BackColor = System.Drawing.SystemColors.Control;
             this.txtAwayGoals.Font = new System.Drawing.Font("Segoe UI", 15.70909F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtAwayGoals.Location = new System.Drawing.Point(446, 80);
+            this.txtAwayGoals.Location = new System.Drawing.Point(482, 104);
             this.txtAwayGoals.Name = "txtAwayGoals";
             this.txtAwayGoals.Size = new System.Drawing.Size(27, 32);
             this.txtAwayGoals.TabIndex = 3;
@@ -91,7 +91,7 @@ namespace EliteTeam.PresentationLayer
             // scoreSeparator
             // 
             this.scoreSeparator.AutoSize = true;
-            this.scoreSeparator.Location = new System.Drawing.Point(428, 85);
+            this.scoreSeparator.Location = new System.Drawing.Point(464, 109);
             this.scoreSeparator.Name = "scoreSeparator";
             this.scoreSeparator.Size = new System.Drawing.Size(12, 19);
             this.scoreSeparator.TabIndex = 4;
@@ -101,7 +101,7 @@ namespace EliteTeam.PresentationLayer
             // 
             this.progressBarTime.BackColor = System.Drawing.Color.Silver;
             this.progressBarTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.progressBarTime.Location = new System.Drawing.Point(91, 57);
+            this.progressBarTime.Location = new System.Drawing.Point(127, 57);
             this.progressBarTime.Maximum = 90;
             this.progressBarTime.Name = "progressBarTime";
             this.progressBarTime.Size = new System.Drawing.Size(691, 10);
@@ -116,7 +116,7 @@ namespace EliteTeam.PresentationLayer
             this.headerAction,
             this.headerType});
             this.listMatchLog.HideSelection = false;
-            this.listMatchLog.Location = new System.Drawing.Point(91, 170);
+            this.listMatchLog.Location = new System.Drawing.Point(125, 195);
             this.listMatchLog.Name = "listMatchLog";
             this.listMatchLog.Size = new System.Drawing.Size(691, 346);
             this.listMatchLog.TabIndex = 8;
@@ -141,7 +141,7 @@ namespace EliteTeam.PresentationLayer
             // 
             this.txtMinutes.AutoSize = true;
             this.txtMinutes.Font = new System.Drawing.Font("Segoe UI", 22.25455F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtMinutes.Location = new System.Drawing.Point(373, 9);
+            this.txtMinutes.Location = new System.Drawing.Point(409, 9);
             this.txtMinutes.Name = "txtMinutes";
             this.txtMinutes.Size = new System.Drawing.Size(58, 47);
             this.txtMinutes.TabIndex = 9;
@@ -151,7 +151,7 @@ namespace EliteTeam.PresentationLayer
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 18.32727F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(424, 12);
+            this.label1.Location = new System.Drawing.Point(460, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(23, 38);
             this.label1.TabIndex = 10;
@@ -161,7 +161,7 @@ namespace EliteTeam.PresentationLayer
             // 
             this.txtSeconds.AutoSize = true;
             this.txtSeconds.Font = new System.Drawing.Font("Segoe UI", 22.25455F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtSeconds.Location = new System.Drawing.Point(437, 9);
+            this.txtSeconds.Location = new System.Drawing.Point(473, 9);
             this.txtSeconds.Name = "txtSeconds";
             this.txtSeconds.Size = new System.Drawing.Size(58, 47);
             this.txtSeconds.TabIndex = 11;
@@ -170,7 +170,7 @@ namespace EliteTeam.PresentationLayer
             // buttonPause
             // 
             this.buttonPause.Enabled = false;
-            this.buttonPause.Location = new System.Drawing.Point(361, 128);
+            this.buttonPause.Location = new System.Drawing.Point(397, 152);
             this.buttonPause.Name = "buttonPause";
             this.buttonPause.Size = new System.Drawing.Size(86, 26);
             this.buttonPause.TabIndex = 12;
@@ -180,7 +180,7 @@ namespace EliteTeam.PresentationLayer
             // 
             // buttonResume
             // 
-            this.buttonResume.Location = new System.Drawing.Point(453, 128);
+            this.buttonResume.Location = new System.Drawing.Point(489, 152);
             this.buttonResume.Name = "buttonResume";
             this.buttonResume.Size = new System.Drawing.Size(86, 26);
             this.buttonResume.TabIndex = 13;
@@ -192,7 +192,7 @@ namespace EliteTeam.PresentationLayer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(882, 556);
+            this.ClientSize = new System.Drawing.Size(927, 591);
             this.Controls.Add(this.buttonResume);
             this.Controls.Add(this.buttonPause);
             this.Controls.Add(this.txtSeconds);

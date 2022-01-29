@@ -15,7 +15,7 @@ namespace EliteTeam.BaseLib
         public string ShortClubName { get; }
         public string ManagerName { get; }
         public string Tactic { get; }
-        public List<Player> SquadPlayers { get; }
+        public List<PlayerDescriptor> SquadPlayers { get; }
 
     }
 }

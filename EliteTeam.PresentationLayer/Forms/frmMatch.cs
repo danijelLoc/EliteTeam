@@ -23,12 +23,12 @@ namespace EliteTeam.PresentationLayer
             InitializeComponent();
         }
 
-        public void ShowModaless(IMatchSimulationController simulationController, IMatchController matchController, MatchSquad homeSquad, MatchSquad awaySquad)
+        public void ShowModaless(IMatchSimulationController simulationController, IMatchController matchController, String homeClubName, String awayClubName)
         {
             _matchSimulationController = simulationController;
             _matchController = matchController;
-            txtHomeClubName.Text = homeSquad.Club.Name;
-            txtAwayClubName.Text = awaySquad.Club.Name;
+            txtHomeClubName.Text = homeClubName;
+            txtAwayClubName.Text = awayClubName;
             progressBarTime.Maximum = 90;
             progressBarTime.Value = 0;
             this.Show();

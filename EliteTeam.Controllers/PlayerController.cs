@@ -19,9 +19,9 @@ namespace EliteTeam.Controllers
             _clubRepository = clubRepository;
         }
 
-        public List<Player> GetPlayers()
+        public List<PlayerDescriptor> GetPlayers()
         {
-            return _playerRepository.getAllPlayers();
+            return _playerRepository.getAllPlayers().ConvertAll(x => new PlayerDescriptor(x));
         }
 
         public object[] GetPositionOptions()
@@ -48,10 +48,11 @@ namespace EliteTeam.Controllers
 
         public void ShowPlayers(IPlayersListView inView, IMainController mainViewController)
         {
-            inView.ShowModaless(this, mainViewController);
+            // repository passed as ISubject
+            inView.ShowModaless(this, mainViewController, _playerRepository);
         }
 
-        public void ShowUpdatePlayer(IUpdatePlayerView inView, Player player)
+        public void ShowUpdatePlayer(IUpdatePlayerView inView, PlayerDescriptor player)
         {
             inView.ShowModaless(this, player);
         }
@@ -78,16 +79,17 @@ namespace EliteTeam.Controllers
             inView.CloseView();
         }
 
-        public void DeletePlayer(IUpdatePlayerView inView, Player playerToDelete)
+        public void DeletePlayer(IUpdatePlayerView inView, PlayerDescriptor playerToDelete)
         {
             // remove player from club
             if (playerToDelete.ClubId != null)
                 _clubRepository.clubFiredPlayer(playerToDelete.Id, playerToDelete.ClubId);
             // delete player
             _playerRepository.deletePlayer(playerToDelete.Id);
+            inView.CloseView();
         }
 
-        public void UpdatePlayer(IUpdatePlayerView inView, Player oldPlayerInfo)
+        public void UpdatePlayer(IUpdatePlayerView inView, PlayerDescriptor oldPlayerInfo)
         {
             Stats newStats = new Stats();
             newStats.Passing = inView.Passing;
@@ -98,15 +100,13 @@ namespace EliteTeam.Controllers
             newStats.Interceptions = inView.Interceptions;
             newStats.Goalkeeping = inView.Goalkeeping;
             newStats.Stamina = inView.Stamina;
+            _playerRepository.updatePlayerStatsAndName(oldPlayerInfo.Id, newStats, inView.PlayerName);
 
-            oldPlayerInfo.Stats = newStats;
-            oldPlayerInfo.Name = inView.PlayerName;
             if (inView.Resigned)
             {
                 _clubRepository.clubFiredPlayer(oldPlayerInfo.Id, oldPlayerInfo.ClubId);
                 _playerRepository.playerFiredFromClub(oldPlayerInfo.Id, oldPlayerInfo.ClubId);
             }
-
             inView.CloseView();
         }
     }

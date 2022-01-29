@@ -4,13 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EliteTeam.Model;
+using System.Collections.ObjectModel;
 
 namespace EliteTeam.MemoryBasedDAL
 {
-    public class ClubRepository : IClubRepository
+    public class ClubRepository : Subject, IClubRepository
     {
         private List<Club> _clubs = null;
         private static ClubRepository _instance;
+
         public static ClubRepository Shared
         {
             get
@@ -22,6 +24,7 @@ namespace EliteTeam.MemoryBasedDAL
         private ClubRepository()
         {
             _clubs = new List<Club>();
+            _observers = new List<IObserver>();
         }
 
         public void addClub(Club inClub)
@@ -33,16 +36,20 @@ namespace EliteTeam.MemoryBasedDAL
             if (_clubs.Find(x => x.ShortName == inClub.ShortName) != null)
                 throw new ClubTakenShortNameException();
             _clubs.Add(inClub);
+
+            NotifyObservers();
         }
 
         public void deleteClub(string inClubID)
         {
             _clubs.RemoveAll(x => x.Id == inClubID);
+            NotifyObservers();
         }
 
         public void deleteClubWithName(string name)
         {
             _clubs.RemoveAll(x => x.Name == name);
+            NotifyObservers();
         }
 
         public bool doesClubExists(string name)
@@ -97,6 +104,29 @@ namespace EliteTeam.MemoryBasedDAL
         {
             var club = _clubs.Find(x => x.Id == clubId);
             club.FireAllPlayers();
+        }
+
+        public void updateClub(string clubId, ClubDescriptor updatedInfo)
+        {
+            // UPDATES BASIC INFO, SQUAD IS UPDATED THROUGH TRANSFERS(clubFiredPlayer, clubSignedPlayer) 
+            // AND NOT DIRECTLY !!
+            Club club = getClubByID(clubId);
+            if (club == null) throw new ClubIdMissingException();
+            List<Club> otherClubs = _clubs.FindAll(x => x.Id != clubId);
+
+            if (otherClubs.FindAll(x => x.Name == updatedInfo.Name).Count != 0)
+                throw new ClubTakenNameException();
+            if (otherClubs.FindAll(x => x.ShortName == updatedInfo.ShortName).Count != 0)
+                throw new ClubTakenShortNameException();
+            if (otherClubs.FindAll(x => x.ClubManager == updatedInfo.ClubManager).Count != 0)
+                throw new ClubTakenManagerException();
+
+            club.Name = updatedInfo.Name;
+            club.ShortName = updatedInfo.ShortName;
+            club.ClubManager = updatedInfo.ClubManager;
+            club.Tactic = updatedInfo.Tactic;
+
+            NotifyObservers();
         }
     }
 }

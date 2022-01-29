@@ -19,6 +19,12 @@ namespace EliteTeam.Model
     }
 
     [Serializable]
+    public class ClubIdMissingException : EliteTeamBaseException
+    {
+        public ClubIdMissingException() : base("Club with given id is not in repository.") { }
+    }
+
+    [Serializable]
     public class ClubTakenNameException : EliteTeamBaseException
     {
         public ClubTakenNameException() : base("Club name already taken.") { }
@@ -28,6 +34,12 @@ namespace EliteTeam.Model
     public class ClubTakenShortNameException : EliteTeamBaseException
     {
         public ClubTakenShortNameException() : base("Club short name already taken.") { }
+    }
+
+    [Serializable]
+    public class ClubTakenManagerException : EliteTeamBaseException
+    {
+        public ClubTakenManagerException() : base("Club manager already taken.") { }
     }
 
     [Serializable]

@@ -2,7 +2,7 @@
 
 namespace EliteTeam.Model
 {
-    public interface IClubRepository
+    public interface IClubRepository : ISubject
     {
         int getNumberOfClubs();
         Club getClubByID(string ClubId);
@@ -12,6 +12,7 @@ namespace EliteTeam.Model
         List<string> getAllClubsIDs();
         bool doesClubExists(string name);
         void addClub(Club inClub);
+        void updateClub(string clubId, ClubDescriptor updatedInfo);
         void deleteClub(string inClubID);
         void deleteClubWithName(string name);
         void clubSignedPlayer(string playerId, string clubId);

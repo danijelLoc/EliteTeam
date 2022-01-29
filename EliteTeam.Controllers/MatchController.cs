@@ -34,7 +34,7 @@ namespace EliteTeam.Controllers
         public void ShowMatch(IMatchView matchView, MatchSquad homeSquad, MatchSquad awaySquad)
         {
             IMatchSimulationController simulator = new MatchSimulationController(this);
-            matchView.ShowModaless(simulator, this, homeSquad, awaySquad);
+            matchView.ShowModaless(simulator, this, homeSquad.Club.Name, awaySquad.Club.Name);
             simulator.CreateSimulation(matchView, homeSquad, awaySquad);
         }
 

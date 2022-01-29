@@ -63,9 +63,9 @@ namespace EliteTeam.PresentationLayer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap cover {
+        internal static System.Drawing.Bitmap coverBlur {
             get {
-                object obj = ResourceManager.GetObject("cover", resourceCulture);
+                object obj = ResourceManager.GetObject("coverBlur", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

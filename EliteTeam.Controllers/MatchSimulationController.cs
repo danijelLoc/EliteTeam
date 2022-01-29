@@ -76,7 +76,7 @@ namespace EliteTeam.Controllers
             {
                 case PlayerActionType.shoot:
                     successProbability = shooting / (shooting + oppositionGoalkeeping);
-                    successProbability *= 0.5; // its hard to score a goal in football...
+                    successProbability *= 0.35; // its hard to score a goal in football...
                     break;
                 case PlayerActionType.passToAttack:
                     double oppositionMidDefBallRecovery = 0.001;

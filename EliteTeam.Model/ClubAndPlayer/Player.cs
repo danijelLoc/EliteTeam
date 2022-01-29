@@ -14,8 +14,6 @@ namespace EliteTeam.Model
         public Stats Stats { get; set; }
         public IPlayerAI PlayerAI { get; set; }
 
-        public PlayerDescription Description { get { return new PlayerDescription(Id, Name, Age.ToString(), _position.ToString()); } }
-
         public Player(PlayerPosition position, string name, int age, string country, Stats stats) : base(name, age, country)
         {
             if (age <= 16 || age >= 43) throw new PlayerAgeException();

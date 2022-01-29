@@ -16,7 +16,7 @@ namespace EliteTeam.PresentationLayer
     {
         IPlayerController _playerController = null;
         bool _resigned = false;
-        Player _player = null;
+        PlayerDescriptor _player;
         public frmUpdatePlayer()
         {
             InitializeComponent();
@@ -40,7 +40,7 @@ namespace EliteTeam.PresentationLayer
 
         public int Stamina { get { return int.Parse(comboBoxStamina.SelectedItem.ToString()); } }
 
-        public void ShowModaless(IPlayerController playerController, Player player)
+        public void ShowModaless(IPlayerController playerController, PlayerDescriptor player)
         {
             _player = player;
             _playerController = playerController;

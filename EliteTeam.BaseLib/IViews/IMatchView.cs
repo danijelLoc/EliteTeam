@@ -9,7 +9,7 @@ namespace EliteTeam.BaseLib
 {
     public interface IMatchView : IView
     {
-        void ShowModaless(IMatchSimulationController simulationController, IMatchController matchController, MatchSquad homeSquad, MatchSquad awaySquad);
+        void ShowModaless(IMatchSimulationController simulationController, IMatchController matchController, String homeClubName, String awayClubName);
         void Start();
         void Resume();
         void Pause();

@@ -16,26 +16,36 @@ namespace EliteTeam.PresentationLayer
     {
         private IClubController _clubController = null;
         private IMainController _mainController = null;
-        private List<Club> _clubs = null;
+        private List<ClubDescriptor> _clubs = null;
+        private ISubject _clubsListSubject = null;
+
+        public void UpdateView()
+        {
+            UpdateList();
+        }
+
         public frmClubList()
         {
             InitializeComponent();
         }
 
-        public void ShowModaless(IClubController clubController, IMainController mainController)
+        public void ShowModaless(IClubController clubController, IMainController mainController, ISubject clubsListSubject)
         {
             _clubController = clubController;
             _mainController = mainController;
+            _clubsListSubject = clubsListSubject;
+            clubsListSubject.Subscribe(this);
             UpdateList();
             this.Show();
         }
 
         public void UpdateList()
         {
+            listView1.Items.Clear();
             _clubs = _clubController.GetClubs();
             for (int i = 0; i < _clubs.Count(); i++)
             {
-                Club club = _clubs[i];
+                ClubDescriptor club = _clubs[i];
 
                 ListViewItem lvt = new ListViewItem(club.Name);
                 lvt.SubItems.Add(club.ShortName);
@@ -47,6 +57,7 @@ namespace EliteTeam.PresentationLayer
 
         public void CloseView()
         {
+            _clubsListSubject.Unsubscribe(this);
             this.Close();
         }
 
@@ -65,9 +76,11 @@ namespace EliteTeam.PresentationLayer
             if (listView1.SelectedItems[0] != null)
             {
                 int ind = listView1.SelectedItems[0].Index;
-                Club club = _clubs[ind];
+                ClubDescriptor club = _clubs[ind];
                 _mainController.ShowUpdateClub(club);
             }
         }
+
+
     }
 }

@@ -9,7 +9,7 @@ namespace EliteTeam.BaseLib
 {
     public interface IUpdatePlayerView : IView
     {
-        void ShowModaless(IPlayerController playerController, Player player);
+        void ShowModaless(IPlayerController playerController, PlayerDescriptor player);
         string PlayerName { get; }
         bool Resigned { get; }
 

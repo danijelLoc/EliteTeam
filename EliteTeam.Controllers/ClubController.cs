@@ -18,19 +18,19 @@ namespace EliteTeam.Controllers
             _clubRepository = clubRepository;
             _playerRepository = playerRepository;
         }
-        public List<Club> GetClubs()
+        public List<ClubDescriptor> GetClubs()
         {
-            return _clubRepository.getAllClubs();
+            return _clubRepository.getAllClubs().ConvertAll(x => new ClubDescriptor(x));
         }
 
-        public List<Player> GetClubSquad(string clubId)
+        public List<PlayerDescriptor> GetClubSquad(string clubId)
         {
-            return _playerRepository.getAllPlayersInClub(clubId);
+            return _playerRepository.getAllPlayersInClub(clubId).ConvertAll(x => new PlayerDescriptor(x));
         }
 
-        public List<Player> GetFreeAgentPlayers()
+        public List<PlayerDescriptor> GetFreeAgentPlayers()
         {
-            return _playerRepository.getAllFreeAgentPlayers();
+            return _playerRepository.getAllFreeAgentPlayers().ConvertAll(x => new PlayerDescriptor(x));
         }
 
         public void RemovePlayerFromClubSquad(string clubId, string playerId)
@@ -72,14 +72,15 @@ namespace EliteTeam.Controllers
             inView.ShowModaless(this);
         }
 
-        public void ShowUpdateClub(IUpdateClubView inView, Club club)
+        public void ShowUpdateClub(IUpdateClubView inView, ClubDescriptor club)
         {
             inView.ShowModaless(this, club);
         }
 
         public void ShowClubs(IClubsListView inView, IMainController mainController)
         {
-            inView.ShowModaless(this, mainController);
+            // repository passed as ISubject
+            inView.ShowModaless(this, mainController, _clubRepository);
         }
 
         public void AddClub(ICreateClubView inView)
@@ -91,36 +92,35 @@ namespace EliteTeam.Controllers
             _clubRepository.addClub(newClub);
 
             // sign players to new club
-            List<Player> squad = inView.SquadPlayers;
-            foreach (Player player in squad)
+            List<PlayerDescriptor> squad = inView.SquadPlayers;
+            foreach (PlayerDescriptor player in squad)
             {
                 _clubRepository.clubSignedPlayer(player.Id, newClub.Id);
                 _playerRepository.playerSignedForClub(player.Id, newClub.Id);
             }
             inView.CloseView();
         }
-        public void UpdateClub(IUpdateClubView inView, Club oldClubInfo)
+        public void UpdateClub(IUpdateClubView inView, ClubDescriptor oldClubInfo)
         {
             // update basic info
             Tactic tactic = (Tactic)Enum.Parse(typeof(Tactic), inView.Tactic);
-            oldClubInfo.ClubManager = inView.ManagerName;
-            oldClubInfo.Name = inView.ClubName;
-            oldClubInfo.ShortName = inView.ShortClubName;
-            oldClubInfo.Tactic = tactic;
-            var oldClubSquad = new List<string>(oldClubInfo.ClubSquad);
+            ClubDescriptor newInfo = new ClubDescriptor(oldClubInfo.Id, oldClubInfo.ClubSquad, inView.ClubName, inView.ManagerName, tactic, inView.ShortClubName);
+            _clubRepository.updateClub(oldClubInfo.Id, newInfo);
 
             // update squad, fire old squad, sign new ones
+            var oldClubSquad = new List<string>(oldClubInfo.ClubSquad);
+            List<PlayerDescriptor> newSquad = inView.SquadPlayers;
             foreach (String playerId in oldClubSquad)
             {
                 _clubRepository.clubFiredPlayer(playerId, oldClubInfo.Id);
                 _playerRepository.playerFiredFromClub(playerId, oldClubInfo.Id);
             }
-            List<Player> squad = inView.SquadPlayers;
-            foreach (Player player in squad)
+            foreach (PlayerDescriptor player in newSquad)
             {
                 _clubRepository.clubSignedPlayer(player.Id, oldClubInfo.Id);
                 _playerRepository.playerSignedForClub(player.Id, oldClubInfo.Id);
             }
+
             inView.CloseView();
 
         }

@@ -49,9 +49,9 @@ namespace EliteTeam.Controllers
             playerController.ShowAddNewPlayer(createView);
         }
 
-        public void ShowUpdatePlayer(Player player)
+        public void ShowUpdatePlayer(PlayerDescriptor player)
         {
-            var playerController = new PlayerController(_playerRepository, _clubRepository);
+            IPlayerController playerController = new PlayerController(_playerRepository, _clubRepository);
             var updateView = _viewsFactory.PlayerUpdaterView();
             playerController.ShowUpdatePlayer(updateView, player);
         }
@@ -77,7 +77,7 @@ namespace EliteTeam.Controllers
             clubController.ShowAddNewClub(createClubView);
         }
 
-        public void ShowUpdateClub(Club club)
+        public void ShowUpdateClub(ClubDescriptor club)
         {
             IClubController clubController = new ClubController(_clubRepository, _playerRepository);
             var updateClubView = _viewsFactory.ClubUpdaterView();
@@ -98,7 +98,7 @@ namespace EliteTeam.Controllers
             _playerRepository.addPlayers(squad5);
             Club dinamo = new Club("Dinamo", "DIN", "Željko Kopić", Tactic.possesion);
             Club hajduk = new Club("Hajduk", "HAJ", "Jens Gustafsson", Tactic.possesion);
-            Club rijeka = new Club("Rijeka", "RIJ", "Filipo", Tactic.counterAttack);
+            Club rijeka = new Club("Rijeka", "RIJ", "Goran Tomić", Tactic.counterAttack);
             dinamo.SignPlayers(squad1.ConvertAll(x => x.Id));
             hajduk.SignPlayers(squad2.ConvertAll(x => x.Id));
             rijeka.SignPlayers(squad3.ConvertAll(x => x.Id));
@@ -108,9 +108,6 @@ namespace EliteTeam.Controllers
             _clubRepository.addClub(dinamo);
             _clubRepository.addClub(hajduk);
             _clubRepository.addClub(rijeka);
-
-            // IMatchSimulator matchSimulator = new MyMatchSimulator();
-            // matchSimulator.Simulate(homeClub, awayClub, _playerRepository, null, null);
         }
 
 

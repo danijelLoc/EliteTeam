@@ -7,9 +7,9 @@ using EliteTeam.Model;
 
 namespace EliteTeam.BaseLib
 {
-    public interface IPlayersListView : IView
+    public interface IPlayersListView : IView, IObserver
     {
         public void UpdateList();
-        void ShowModaless(IPlayerController playerController, IMainController mainController);
+        void ShowModaless(IPlayerController playerController, IMainController mainController, ISubject playersListSubject);
     }
 }

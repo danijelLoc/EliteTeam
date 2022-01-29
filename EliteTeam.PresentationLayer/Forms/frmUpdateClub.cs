@@ -16,20 +16,20 @@ namespace EliteTeam.PresentationLayer
     public partial class frmUpdateClub : Form, IUpdateClubView
     {
         private IClubController _clubController = null;
-        private Club _club;
-        private List<Player> _clubSquad = new List<Player>();
-        private List<Player> _freePlayers = new List<Player>();
+        private ClubDescriptor _club;
+        private List<PlayerDescriptor> _clubSquad = new List<PlayerDescriptor>();
+        private List<PlayerDescriptor> _freePlayers = new List<PlayerDescriptor>();
         public string ClubName { get { return textBoxName.Text; } }
         public string ShortClubName { get { return textBoxShortName.Text; } }
         public string ManagerName { get { return textBoxManager.Text; } }
         public string Tactic { get { return comboBoxTactic.SelectedItem.ToString(); } }
-        public List<Player> SquadPlayers { get { return _clubSquad; } }
+        public List<PlayerDescriptor> SquadPlayers { get { return _clubSquad; } }
         public frmUpdateClub()
         {
             InitializeComponent();
         }
 
-        public void ShowModaless(IClubController clubController, Club club)
+        public void ShowModaless(IClubController clubController, ClubDescriptor club)
         {
             _club = club;
             _clubController = clubController;
@@ -66,7 +66,7 @@ namespace EliteTeam.PresentationLayer
             listViewFreePlayers.Items.Clear();
             for (int i = 0; i < _clubSquad.Count(); i++)
             {
-                Player player = _clubSquad[i];
+                PlayerDescriptor player = _clubSquad[i];
 
                 string position = player.Position.ToString();
                 string age = player.Age.ToString();
@@ -79,7 +79,7 @@ namespace EliteTeam.PresentationLayer
             }
             for (int i = 0; i < _freePlayers.Count(); i++)
             {
-                Player player = _freePlayers[i];
+                PlayerDescriptor player = _freePlayers[i];
 
                 string position = player.Position.ToString();
                 string age = player.Age.ToString();
@@ -98,7 +98,7 @@ namespace EliteTeam.PresentationLayer
             if (listViewFreePlayers.SelectedItems[0] != null)
             {
                 int ind = listViewFreePlayers.SelectedItems[0].Index;
-                Player player = _freePlayers[ind];
+                PlayerDescriptor player = _freePlayers[ind];
                 _freePlayers.Remove(player);
                 _clubSquad.Add(player);
                 UpdateLists();
@@ -110,7 +110,7 @@ namespace EliteTeam.PresentationLayer
             if (listViewSquadPlayers.SelectedItems[0] != null)
             {
                 int ind = listViewSquadPlayers.SelectedItems[0].Index;
-                Player player = _clubSquad[ind];
+                PlayerDescriptor player = _clubSquad[ind];
                 _clubSquad.Remove(player);
                 _freePlayers.Add(player);
                 UpdateLists();

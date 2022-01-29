@@ -4,7 +4,7 @@ using EliteTeam.Model;
 
 namespace EliteTeam.MemoryBasedDAL
 {
-    public class PlayerRepository : IPlayerRepository
+    public class PlayerRepository : Subject, IPlayerRepository
     {
         private readonly List<Player> _players;
         private static PlayerRepository _instance;
@@ -18,6 +18,7 @@ namespace EliteTeam.MemoryBasedDAL
 
         private PlayerRepository()
         {
+            _observers = new List<IObserver>();
             _players = new List<Player>();
         }
 
@@ -26,11 +27,13 @@ namespace EliteTeam.MemoryBasedDAL
             if (_players.Find(x => x.Id == inPlayer.Id) != null)
                 throw new PlayerTakenIdException();
             _players.Add(inPlayer);
+            NotifyObservers();
         }
 
         public void deletePlayer(string inPlyerID)
         {
             _players.RemoveAll(x => x.Id == inPlyerID);
+            NotifyObservers();
         }
 
         public bool doesPlayerExists(string name)
@@ -41,11 +44,6 @@ namespace EliteTeam.MemoryBasedDAL
         public int getNumberOfPlayers()
         {
             return _players.Count;
-        }
-
-        public List<PlayerDescription> getAllPlayersDescriptions()
-        {
-            return _players.ConvertAll(x => x.Description);
         }
 
         public List<string> getAllPlayersIDs()
@@ -101,18 +99,21 @@ namespace EliteTeam.MemoryBasedDAL
             var player = _players.Find(x => x.Id == playerId);
             if (player == null) throw new PlayerDeletedException();
             player.ClubId = clubId;
+            NotifyObservers();
         }
 
         public void playersSignedForClub(List<string> playerIds, string clubId)
         {
             foreach (string playerId in playerIds)
                 playerSignedForClub(playerId, clubId);
+            NotifyObservers();
         }
 
         public void addPlayers(List<Player> inPlayers)
         {
             foreach (Player player in inPlayers)
                 addPlayer(player);
+            NotifyObservers();
         }
 
         public void playerFiredFromClub(string playerId, string clubId)
@@ -120,6 +121,16 @@ namespace EliteTeam.MemoryBasedDAL
             var player = _players.Find(x => x.Id == playerId);
             if (player == null) throw new PlayerDeletedException();
             player.ClubId = null;
+            NotifyObservers();
+        }
+
+        public void updatePlayerStatsAndName(string plyerID, Stats stats, string name)
+        {
+            var player = _players.Find(x => x.Id == plyerID);
+            if (player == null) throw new PlayerDeletedException();
+            player.Name = name;
+            player.Stats = stats;
+            NotifyObservers();
         }
     }
 }

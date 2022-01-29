@@ -284,13 +284,12 @@ namespace EliteTeam.PresentationLayer
             // 
             // buttonResign
             // 
-            this.buttonResign.BackColor = System.Drawing.Color.Firebrick;
+            this.buttonResign.BackColor = System.Drawing.SystemColors.GrayText;
             this.buttonResign.Enabled = false;
-            this.buttonResign.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonResign.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.buttonResign.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.buttonResign.Location = new System.Drawing.Point(570, 125);
             this.buttonResign.Name = "buttonResign";
-            this.buttonResign.Size = new System.Drawing.Size(140, 27);
+            this.buttonResign.Size = new System.Drawing.Size(140, 34);
             this.buttonResign.TabIndex = 25;
             this.buttonResign.Text = "Resign";
             this.buttonResign.UseVisualStyleBackColor = false;

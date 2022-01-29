@@ -10,12 +10,12 @@ namespace EliteTeam.BaseLib
 {
     public interface IUpdateClubView : IView
     {
-        void ShowModaless(IClubController clubController, Club club);
+        void ShowModaless(IClubController clubController, ClubDescriptor club);
         public string ClubName { get; }
         public string ShortClubName { get; }
         public string ManagerName { get; }
         public string Tactic { get; }
-        public List<Player> SquadPlayers { get; }
+        public List<PlayerDescriptor> SquadPlayers { get; }
 
     }
 }

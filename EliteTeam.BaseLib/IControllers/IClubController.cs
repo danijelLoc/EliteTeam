@@ -9,15 +9,15 @@ namespace EliteTeam.BaseLib
 {
     public interface IClubController
     {
-        public List<Club> GetClubs();
-        public List<Player> GetClubSquad(string clubId);
-        public List<Player> GetFreeAgentPlayers();
+        public List<ClubDescriptor> GetClubs();
+        public List<PlayerDescriptor> GetClubSquad(string clubId);
+        public List<PlayerDescriptor> GetFreeAgentPlayers();
         public object[] GetTacticOptions();
         public void ShowAddNewClub(ICreateClubView inView);
-        public void ShowUpdateClub(IUpdateClubView inView, Club club);
+        public void ShowUpdateClub(IUpdateClubView inView, ClubDescriptor club);
         public void ShowClubs(IClubsListView inView, IMainController mainController);
         public void RemoveClub(IUpdateClubView inView, string clubId);
         public void AddClub(ICreateClubView inView);
-        public void UpdateClub(IUpdateClubView inView, Club oldClubInfo);
+        public void UpdateClub(IUpdateClubView inView, ClubDescriptor oldClubInfo);
     }
 }

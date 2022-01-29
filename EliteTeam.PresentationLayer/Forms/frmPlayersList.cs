@@ -9,9 +9,10 @@ namespace EliteTeam.PresentationLayer
 {
     public partial class frmPlayersList : Form, IPlayersListView
     {
-        private List<Player> _listPlayers = null;
+        private List<PlayerDescriptor> _listPlayers = null;
         private IMainController _mainFormController = null;
         private IPlayerController _playerController = null;
+        private ISubject _playersListSubject;
         public frmPlayersList()
         {
 
@@ -23,13 +24,19 @@ namespace EliteTeam.PresentationLayer
 
         }
 
-        public void ShowModaless(IPlayerController playerController, IMainController mainFormController)
+        public void ShowModaless(IPlayerController playerController, IMainController mainFormController, ISubject playersListSubject)
         {
             _mainFormController = mainFormController;
             _playerController = playerController;
-            UpdateList();
+            _playersListSubject = playersListSubject;
+            playersListSubject.Subscribe(this);
 
+            UpdateList();
             this.Show();
+        }
+        public void UpdateView()
+        {
+            UpdateList();
         }
 
         public void CloseView()
@@ -44,10 +51,11 @@ namespace EliteTeam.PresentationLayer
 
         public void UpdateList()
         {
+            listViewPlayers.Items.Clear();
             _listPlayers = _playerController.GetPlayers();
             for (int i = 0; i < _listPlayers.Count(); i++)
             {
-                Player player = _listPlayers[i];
+                PlayerDescriptor player = _listPlayers[i];
 
                 string position = player.Position.ToString();
                 string age = player.Age.ToString();
@@ -65,7 +73,7 @@ namespace EliteTeam.PresentationLayer
             if (listViewPlayers.SelectedItems[0] != null)
             {
                 int ind = listViewPlayers.SelectedItems[0].Index;
-                Player player = _listPlayers[ind];
+                PlayerDescriptor player = _listPlayers[ind];
 
                 _mainFormController.ShowUpdatePlayer(player);
             }
@@ -75,5 +83,8 @@ namespace EliteTeam.PresentationLayer
         {
             _mainFormController.ShowCreatePlayer();
         }
+
+
+
     }
 }
