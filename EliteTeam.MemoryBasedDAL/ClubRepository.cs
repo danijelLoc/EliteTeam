@@ -24,7 +24,6 @@ namespace EliteTeam.MemoryBasedDAL
         private ClubRepository()
         {
             _clubs = new List<Club>();
-            _observers = new List<IObserver>();
         }
 
         public void addClub(Club inClub)

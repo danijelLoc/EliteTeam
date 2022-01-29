@@ -8,7 +8,7 @@ namespace EliteTeam.Model
 {
     public abstract class Subject : ISubject
     {
-        protected List<IObserver> _observers;
+        protected List<IObserver> _observers = new List<IObserver>();
 
         public void Subscribe(IObserver obs)
         {

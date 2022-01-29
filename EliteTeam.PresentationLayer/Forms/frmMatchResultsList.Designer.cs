@@ -34,12 +34,14 @@ namespace EliteTeam.PresentationLayer
             this.homeClubGoals = new System.Windows.Forms.ColumnHeader();
             this.awayClubGoals = new System.Windows.Forms.ColumnHeader();
             this.awayClub = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderDate = new System.Windows.Forms.ColumnHeader();
             this.SuspendLayout();
             // 
             // listView1
             // 
             this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeaderDate,
             this.homeClub,
             this.homeClubGoals,
             this.awayClubGoals,
@@ -55,7 +57,7 @@ namespace EliteTeam.PresentationLayer
             // homeClub
             // 
             this.homeClub.Text = "Home Club";
-            this.homeClub.Width = 250;
+            this.homeClub.Width = 190;
             // 
             // homeClubGoals
             // 
@@ -71,7 +73,12 @@ namespace EliteTeam.PresentationLayer
             // 
             this.awayClub.Text = "Away Club";
             this.awayClub.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.awayClub.Width = 250;
+            this.awayClub.Width = 190;
+            // 
+            // columnHeaderDate
+            // 
+            this.columnHeaderDate.Text = "Kickoff Date";
+            this.columnHeaderDate.Width = 180;
             // 
             // frmMatchResultsList
             // 
@@ -93,5 +100,6 @@ namespace EliteTeam.PresentationLayer
         private System.Windows.Forms.ColumnHeader awayClub;
         private System.Windows.Forms.ColumnHeader homeClubGoals;
         private System.Windows.Forms.ColumnHeader awayClubGoals;
+        private System.Windows.Forms.ColumnHeader columnHeaderDate;
     }
 }

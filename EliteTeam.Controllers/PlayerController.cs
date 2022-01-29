@@ -75,6 +75,7 @@ namespace EliteTeam.Controllers
                 throw new ArgumentException("Age must be integer");
             }
             Player newPlayer = new Player(position, inView.PlayerName, age, inView.Country, playerStats);
+            newPlayer.PlayerAI = AIFactory.CreateAI(newPlayer.Position);
             _playerRepository.addPlayer(newPlayer);
             inView.CloseView();
         }

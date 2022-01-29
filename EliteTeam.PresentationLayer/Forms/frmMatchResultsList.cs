@@ -37,7 +37,8 @@ namespace EliteTeam.PresentationLayer
             {
                 var result = _results[i];
 
-                ListViewItem lvt = new ListViewItem(result.HomeClubName);
+                ListViewItem lvt = new ListViewItem(result.KickOffTime.ToString());
+                lvt.SubItems.Add(result.HomeClubName);
                 lvt.SubItems.Add(result.HomeClubGoals.ToString());
                 lvt.SubItems.Add(result.AwayClubGoals.ToString());
                 lvt.SubItems.Add(result.AwayClubName);

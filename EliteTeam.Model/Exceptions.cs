@@ -84,6 +84,12 @@ namespace EliteTeam.Model
     }
 
     [Serializable]
+    public class PlayerAIMissingException : EliteTeamBaseException
+    {
+        public PlayerAIMissingException() : base("Player must have AI.") { }
+    }
+
+    [Serializable]
     public class HumanNameLengthException : EliteTeamBaseException
     {
         public HumanNameLengthException() : base("Name must be at least 2 characters long.") { }

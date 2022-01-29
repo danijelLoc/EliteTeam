@@ -18,7 +18,6 @@ namespace EliteTeam.MemoryBasedDAL
 
         private PlayerRepository()
         {
-            _observers = new List<IObserver>();
             _players = new List<Player>();
         }
 
@@ -26,6 +25,8 @@ namespace EliteTeam.MemoryBasedDAL
         {
             if (_players.Find(x => x.Id == inPlayer.Id) != null)
                 throw new PlayerTakenIdException();
+            if (inPlayer.PlayerAI == null)
+                throw new PlayerAIMissingException();
             _players.Add(inPlayer);
             NotifyObservers();
         }

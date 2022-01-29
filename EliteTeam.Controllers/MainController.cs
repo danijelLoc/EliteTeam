@@ -86,11 +86,11 @@ namespace EliteTeam.Controllers
 
         public void CreateRandomData()
         {
-            List<Player> squad1 = PlayerFactory.GetRandomSquad();
-            List<Player> squad2 = PlayerFactory.GetRandomSquad();
-            List<Player> squad3 = PlayerFactory.GetRandomSquad();
-            List<Player> squad4 = PlayerFactory.GetRandomSquad();
-            List<Player> squad5 = PlayerFactory.GetRandomSquad();
+            List<Player> squad1 = RandomPlayerFactory.GetRandomSquad();
+            List<Player> squad2 = RandomPlayerFactory.GetRandomSquad();
+            List<Player> squad3 = RandomPlayerFactory.GetRandomSquad();
+            List<Player> squad4 = RandomPlayerFactory.GetRandomSquad();
+            List<Player> squad5 = RandomPlayerFactory.GetRandomSquad();
             _playerRepository.addPlayers(squad1);
             _playerRepository.addPlayers(squad2);
             _playerRepository.addPlayers(squad3);

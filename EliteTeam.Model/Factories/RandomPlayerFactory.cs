@@ -5,7 +5,7 @@ using System.Text;
 
 namespace EliteTeam.Model
 {
-    public class PlayerFactory
+    public class RandomPlayerFactory
     {
         static Random r = MathHelper.r;
         public static Player GetRandomPlayer(PlayerPosition position)
@@ -90,7 +90,7 @@ namespace EliteTeam.Model
 
         public static string RandomName(int len)
         {
-            string[] suglasnici = { "b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "l", "n", "p", "q", "r", "s", "t", "v", "z", "w", "x" };
+            string[] suglasnici = { "b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "l", "n", "p", "q", "r", "s", "t", "v", "z", "w", "x", "ć", "č", "đ", "ž", "š" };
             string[] samoglasnici = { "a", "e", "i", "o", "u" };
             string Name = "";
             Name += suglasnici[r.Next(suglasnici.Length)].ToUpper();
