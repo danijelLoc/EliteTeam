@@ -12,8 +12,9 @@ namespace EliteTeam.Model
         List<string> getAllClubsIDs();
         bool doesClubExists(string name);
         void addClub(Club inClub);
-        void updateClub(string clubId, ClubDescriptor updatedInfo);
+        void updateClub(ClubDescriptor updatedInfo);
         void deleteClub(string inClubID);
+        void deleteAllClubs();
         void deleteClubWithName(string name);
         void clubSignedPlayer(string playerId, string clubId);
         void clubFiredPlayer(string playerId, string clubId);

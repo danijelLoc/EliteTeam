@@ -49,7 +49,7 @@ namespace EliteTeam.Model
         {
             Name = name;
             ShortName = shortName;
-            _squad = new List<string>();
+            _squad = new List<string>(); // squad is filled additionaly
             ClubManager = clubManager;
             Tactic = tactic;
         }

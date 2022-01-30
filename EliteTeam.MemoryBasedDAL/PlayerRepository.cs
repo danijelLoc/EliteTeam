@@ -33,7 +33,8 @@ namespace EliteTeam.MemoryBasedDAL
 
         public void deletePlayer(string inPlyerID)
         {
-            _players.RemoveAll(x => x.Id == inPlyerID);
+            int i = _players.RemoveAll(x => x.Id == inPlyerID);
+            if (i == 0) throw new PlayerDeletedException();
             NotifyObservers();
         }
 
@@ -99,6 +100,7 @@ namespace EliteTeam.MemoryBasedDAL
         {
             var player = _players.Find(x => x.Id == playerId);
             if (player == null) throw new PlayerDeletedException();
+            if (player.ClubId != null) throw new PlayerIsTakenException();
             player.ClubId = clubId;
             NotifyObservers();
         }
@@ -117,10 +119,11 @@ namespace EliteTeam.MemoryBasedDAL
             NotifyObservers();
         }
 
-        public void playerFiredFromClub(string playerId, string clubId)
+        public void playerLeavesClub(string playerId)
         {
             var player = _players.Find(x => x.Id == playerId);
             if (player == null) throw new PlayerDeletedException();
+            if (player.ClubId == null) throw new PlayerIsFreeAgentException();
             player.ClubId = null;
             NotifyObservers();
         }
@@ -131,6 +134,12 @@ namespace EliteTeam.MemoryBasedDAL
             if (player == null) throw new PlayerDeletedException();
             player.Name = name;
             player.Stats = stats;
+            NotifyObservers();
+        }
+
+        public void deleteAllPlayers()
+        {
+            _players.Clear();
             NotifyObservers();
         }
     }

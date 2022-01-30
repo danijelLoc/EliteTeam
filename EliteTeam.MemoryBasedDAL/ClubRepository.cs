@@ -34,6 +34,8 @@ namespace EliteTeam.MemoryBasedDAL
                 throw new ClubTakenNameException();
             if (_clubs.Find(x => x.ShortName == inClub.ShortName) != null)
                 throw new ClubTakenShortNameException();
+            if (_clubs.Find(x => x.ClubManager == inClub.ClubManager) != null)
+                throw new ClubTakenManagerException();
             _clubs.Add(inClub);
 
             NotifyObservers();
@@ -41,13 +43,15 @@ namespace EliteTeam.MemoryBasedDAL
 
         public void deleteClub(string inClubID)
         {
-            _clubs.RemoveAll(x => x.Id == inClubID);
+            int i = _clubs.RemoveAll(x => x.Id == inClubID);
+            if (i == 0) throw new ClubIdMissingException();
             NotifyObservers();
         }
 
         public void deleteClubWithName(string name)
         {
-            _clubs.RemoveAll(x => x.Name == name);
+            int i = _clubs.RemoveAll(x => x.Name == name);
+            if (i == 0) throw new ClubIdMissingException();
             NotifyObservers();
         }
 
@@ -74,7 +78,7 @@ namespace EliteTeam.MemoryBasedDAL
         public List<string> getClubPlayersIds(string ClubId)
         {
             var club = _clubs.Find(x => x.Id == ClubId);
-            if (club == null) return null;
+            if (club == null) throw new ClubIdMissingException();
             return club.ClubSquad;
         }
 
@@ -91,27 +95,30 @@ namespace EliteTeam.MemoryBasedDAL
         public void clubSignedPlayer(string playerId, string clubId)
         {
             var club = _clubs.Find(x => x.Id == clubId);
+            if (club == null) throw new ClubIdMissingException();
             club.SignPlayer(playerId);
         }
 
         public void clubFiredPlayer(string playerId, string clubId)
         {
             var club = _clubs.Find(x => x.Id == clubId);
+            if (club == null) throw new ClubIdMissingException();
             club.FirePlayer(playerId);
         }
         public void clubFiredAllPlayers(string clubId)
         {
             var club = _clubs.Find(x => x.Id == clubId);
+            if (club == null) throw new ClubIdMissingException();
             club.FireAllPlayers();
         }
 
-        public void updateClub(string clubId, ClubDescriptor updatedInfo)
+        public void updateClub(ClubDescriptor updatedInfo)
         {
             // UPDATES BASIC INFO, SQUAD IS UPDATED THROUGH TRANSFERS(clubFiredPlayer, clubSignedPlayer) 
             // AND NOT DIRECTLY !!
-            Club club = getClubByID(clubId);
+            Club club = getClubByID(updatedInfo.Id);
             if (club == null) throw new ClubIdMissingException();
-            List<Club> otherClubs = _clubs.FindAll(x => x.Id != clubId);
+            List<Club> otherClubs = _clubs.FindAll(x => x.Id != updatedInfo.Id);
 
             if (otherClubs.FindAll(x => x.Name == updatedInfo.Name).Count != 0)
                 throw new ClubTakenNameException();
@@ -125,6 +132,12 @@ namespace EliteTeam.MemoryBasedDAL
             club.ClubManager = updatedInfo.ClubManager;
             club.Tactic = updatedInfo.Tactic;
 
+            NotifyObservers();
+        }
+
+        public void deleteAllClubs()
+        {
+            _clubs.Clear();
             NotifyObservers();
         }
     }

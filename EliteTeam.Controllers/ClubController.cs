@@ -36,7 +36,7 @@ namespace EliteTeam.Controllers
         public void RemovePlayerFromClubSquad(string clubId, string playerId)
         {
             _clubRepository.clubFiredPlayer(playerId, clubId);
-            _playerRepository.playerFiredFromClub(playerId, clubId);
+            _playerRepository.playerLeavesClub(playerId);
         }
 
         public void AddPlayerToClubSquad(string clubId, string playerId)
@@ -57,7 +57,7 @@ namespace EliteTeam.Controllers
                 var squad = _playerRepository.getAllPlayersInClub(clubId);
                 _clubRepository.clubFiredAllPlayers(clubId);
                 foreach (Player player in squad)
-                    _playerRepository.playerFiredFromClub(player.Id, clubId);
+                    _playerRepository.playerLeavesClub(player.Id);
                 _clubRepository.deleteClub(clubId);
                 inView.CloseView();
             }
@@ -105,7 +105,7 @@ namespace EliteTeam.Controllers
             // update basic info
             Tactic tactic = (Tactic)Enum.Parse(typeof(Tactic), inView.Tactic);
             ClubDescriptor newInfo = new ClubDescriptor(oldClubInfo.Id, oldClubInfo.ClubSquad, inView.ClubName, inView.ManagerName, tactic, inView.ShortClubName);
-            _clubRepository.updateClub(oldClubInfo.Id, newInfo);
+            _clubRepository.updateClub(newInfo);
 
             // update squad, fire old squad, sign new ones
             var oldClubSquad = new List<string>(oldClubInfo.ClubSquad);
@@ -113,7 +113,7 @@ namespace EliteTeam.Controllers
             foreach (String playerId in oldClubSquad)
             {
                 _clubRepository.clubFiredPlayer(playerId, oldClubInfo.Id);
-                _playerRepository.playerFiredFromClub(playerId, oldClubInfo.Id);
+                _playerRepository.playerLeavesClub(playerId);
             }
             foreach (PlayerDescriptor player in newSquad)
             {

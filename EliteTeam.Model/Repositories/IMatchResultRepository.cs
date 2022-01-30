@@ -9,5 +9,6 @@ namespace EliteTeam.Model
         List<MatchResult> getAllMatchResults();
         List<MatchResult> getAllMatchResultsWithClub(string clubId);
         void addMatchResult(MatchResult inMatchResult);
+        void deleteAll();
     }
 }

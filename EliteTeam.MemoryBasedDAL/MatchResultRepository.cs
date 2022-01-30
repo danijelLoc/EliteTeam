@@ -51,5 +51,10 @@ namespace EliteTeam.MemoryBasedDAL
         {
             return _results.Count;
         }
+
+        public void deleteAll()
+        {
+            _results.Clear();
+        }
     }
 }

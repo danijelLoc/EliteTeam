@@ -14,19 +14,21 @@ namespace EliteTeam.Model
         public Stats Stats { get; set; }
         public IPlayerAI PlayerAI { get; set; }
 
-        public Player(PlayerPosition position, string name, int age, string country, Stats stats) : base(name, age, country)
+        public Player(PlayerPosition position, string name, int age, string country, Stats stats, IPlayerAI playerAI = null) : base(name, age, country)
         {
             if (age <= 16 || age >= 43) throw new PlayerAgeException();
             ClubId = null;
             _position = position;
             Stats = stats;
+            PlayerAI = playerAI;
         }
-        public Player(PlayerPosition position, string name, DateTime birthday, string country, Stats stats) : base(name, birthday, country)
+        public Player(PlayerPosition position, string name, DateTime birthday, string country, Stats stats, IPlayerAI playerAI = null) : base(name, birthday, country)
         {
             if (Age < 17) throw new PlayerAgeException();
             ClubId = null;
             _position = position;
             Stats = stats;
+            PlayerAI = playerAI;
         }
     }
 }

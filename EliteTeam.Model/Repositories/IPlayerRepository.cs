@@ -21,9 +21,10 @@ namespace EliteTeam.Model
         void addPlayer(Player inPlayer);
         void addPlayers(List<Player> inPlayers);
         void deletePlayer(string inPlyerID);
+        void deleteAllPlayers();
         void updatePlayerStatsAndName(string plyerID, Stats stats, string name);
         void playerSignedForClub(string playerId, string clubId);
-        void playerFiredFromClub(string playerId, string clubId);
+        void playerLeavesClub(string playerId);
         void playersSignedForClub(List<string> playerIds, string clubId);
         bool doesPlayerExists(string name);
 

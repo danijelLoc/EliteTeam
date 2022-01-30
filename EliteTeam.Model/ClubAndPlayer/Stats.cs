@@ -52,5 +52,16 @@ namespace EliteTeam.Model
             Dribling = MinValue;
             Goalkeeping = MinValue;
         }
+        public Stats(Stats otherStats)
+        {
+            Shooting = otherStats.Shooting;
+            Speed = otherStats.Speed;
+            Stamina = otherStats.Stamina;
+            Strenght = otherStats.Strenght;
+            Passing = otherStats.Passing;
+            Interceptions = otherStats.Interceptions;
+            Dribling = otherStats.Dribling;
+            Goalkeeping = otherStats.Goalkeeping;
+        }
     }
 }

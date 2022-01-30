@@ -72,6 +72,18 @@ namespace EliteTeam.Model
     }
 
     [Serializable]
+    public class PlayerIsFreeAgentException : EliteTeamBaseException
+    {
+        public PlayerIsFreeAgentException() : base("Player doesn't play for any club.") { }
+    }
+
+    [Serializable]
+    public class PlayerIsTakenException : EliteTeamBaseException
+    {
+        public PlayerIsTakenException() : base("Player plays for a club and cannot be signed before resignation.") { }
+    }
+
+    [Serializable]
     public class NegativeAgeException : EliteTeamBaseException
     {
         public NegativeAgeException() : base("Age must be positive.") { }

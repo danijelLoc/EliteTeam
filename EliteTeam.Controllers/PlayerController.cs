@@ -106,7 +106,7 @@ namespace EliteTeam.Controllers
             if (inView.Resigned)
             {
                 _clubRepository.clubFiredPlayer(oldPlayerInfo.Id, oldPlayerInfo.ClubId);
-                _playerRepository.playerFiredFromClub(oldPlayerInfo.Id, oldPlayerInfo.ClubId);
+                _playerRepository.playerLeavesClub(oldPlayerInfo.Id);
             }
             inView.CloseView();
         }
