@@ -9,7 +9,6 @@
   <ItemGroup>
     <ProjectReference Include="..\EliteTeam.Controllers\EliteTeam.Controllers.csproj" />
     <ProjectReference Include="..\EliteTeam.MamoryBasedDAL.Tests\EliteTeam.MamoryBasedDAL.Tests.csproj" />
-    <ProjectReference Include="..\EliteTeam.Model\EliteTeam.Model.csproj" />
     <ProjectReference Include="..\EliteTeam.PresentationLayer\EliteTeam.PresentationLayer.csproj" />
   </ItemGroup>
 
