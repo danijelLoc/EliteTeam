@@ -55,9 +55,10 @@ namespace EliteTeam.Controllers
             try
             {
                 var squad = _playerRepository.getAllPlayersInClub(clubId);
-                _clubRepository.clubFiredAllPlayers(clubId);
                 foreach (Player player in squad)
-                    _playerRepository.playerLeavesClub(player.Id);
+                {
+                    RemovePlayerFromClubSquad(clubId, player.Id);
+                }
                 _clubRepository.deleteClub(clubId);
                 inView.CloseView();
             }
@@ -95,8 +96,7 @@ namespace EliteTeam.Controllers
             List<PlayerDescriptor> squad = inView.SquadPlayers;
             foreach (PlayerDescriptor player in squad)
             {
-                _clubRepository.clubSignedPlayer(player.Id, newClub.Id);
-                _playerRepository.playerSignedForClub(player.Id, newClub.Id);
+                AddPlayerToClubSquad(newClub.Id, player.Id);
             }
             inView.CloseView();
         }
@@ -112,13 +112,11 @@ namespace EliteTeam.Controllers
             List<PlayerDescriptor> newSquad = inView.SquadPlayers;
             foreach (String playerId in oldClubSquad)
             {
-                _clubRepository.clubFiredPlayer(playerId, oldClubInfo.Id);
-                _playerRepository.playerLeavesClub(playerId);
+                RemovePlayerFromClubSquad(oldClubInfo.Id, playerId);
             }
             foreach (PlayerDescriptor player in newSquad)
             {
-                _clubRepository.clubSignedPlayer(player.Id, oldClubInfo.Id);
-                _playerRepository.playerSignedForClub(player.Id, oldClubInfo.Id);
+                AddPlayerToClubSquad(oldClubInfo.Id, player.Id);
             }
 
             inView.CloseView();

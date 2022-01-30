@@ -128,13 +128,13 @@ namespace EliteTeam.Model
     [Serializable]
     public class MatchInvalidHomeSquad : EliteTeamBaseException
     {
-        public MatchInvalidHomeSquad() : base("Home match squad is not valid, lack of outfield players or goalkeeper missing.") { }
+        public MatchInvalidHomeSquad() : base("Home match squad is not valid, 4-3-3 formation is not possible with given players or goalkeeper is missing.") { }
     }
 
     [Serializable]
     public class MatchInvalidAwaySquad : EliteTeamBaseException
     {
-        public MatchInvalidAwaySquad() : base("Away match squad is not valid, lack of outfield players or goalkeeper missing.") { }
+        public MatchInvalidAwaySquad() : base("Away match squad is not valid,  4-3-3 formation is not possible with given players or goalkeeper is missing.") { }
     }
 
     [Serializable]

@@ -47,9 +47,9 @@ namespace EliteTeam.PresentationLayer
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(359, 334);
+            this.button2.Location = new System.Drawing.Point(359, 327);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(206, 36);
+            this.button2.Size = new System.Drawing.Size(206, 42);
             this.button2.TabIndex = 1;
             this.button2.Text = "Players Editor";
             this.button2.UseVisualStyleBackColor = true;
@@ -57,9 +57,9 @@ namespace EliteTeam.PresentationLayer
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(359, 277);
+            this.button3.Location = new System.Drawing.Point(359, 270);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(206, 35);
+            this.button3.Size = new System.Drawing.Size(206, 42);
             this.button3.TabIndex = 2;
             this.button3.Text = "Clubs Editor";
             this.button3.UseVisualStyleBackColor = true;
@@ -67,9 +67,9 @@ namespace EliteTeam.PresentationLayer
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(359, 394);
+            this.button4.Location = new System.Drawing.Point(359, 388);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(206, 34);
+            this.button4.Size = new System.Drawing.Size(206, 42);
             this.button4.TabIndex = 3;
             this.button4.Text = "Show Match History";
             this.button4.UseVisualStyleBackColor = true;
