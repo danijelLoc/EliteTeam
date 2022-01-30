@@ -262,7 +262,7 @@ namespace EliteTeam.PresentationLayer
             this.Controls.Add(this.label1);
             this.Name = "frmUpdateClub";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Club Creator";
+            this.Text = "Club Editor";
             this.ResumeLayout(false);
             this.PerformLayout();
 

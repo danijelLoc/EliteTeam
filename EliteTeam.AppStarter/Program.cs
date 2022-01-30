@@ -19,7 +19,10 @@ namespace EliteTeam.AppStarter
         static void Main()
         {
             WindowsFormsFactory _formsFactory = new WindowsFormsFactory();
-            MainController mainController = new MainController(_formsFactory, PlayerRepository.Shared, ClubRepository.Shared, MatchResultRepository.Shared);
+            MainController mainController = new MainController(_formsFactory,
+                PlayerRepository.Shared,
+                ClubRepository.Shared,
+                MatchResultRepository.Shared);
 
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
