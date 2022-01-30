@@ -49,7 +49,7 @@ namespace EliteTeam.MamoryBasedDAL.Tests
             Assert.AreEqual(0, repository.getAllPlayers().Count);
 
             // already deleted
-            Assert.Throws<PlayerDeletedException>(delegate { repository.deletePlayer(player1.Id); });
+            Assert.Throws<PlayerIdMissingException>(delegate { repository.deletePlayer(player1.Id); });
 
         }
 
@@ -80,7 +80,7 @@ namespace EliteTeam.MamoryBasedDAL.Tests
             Assert.AreEqual("Amir Khan", repository.getPlayerByID(player1.Id).Name);
 
             // trying to update non existant player
-            Assert.Throws<PlayerDeletedException>(delegate { repository.updatePlayerStatsAndName("iddd", null, ""); });
+            Assert.Throws<PlayerIdMissingException>(delegate { repository.updatePlayerStatsAndName("iddd", null, ""); });
         }
     }
 }

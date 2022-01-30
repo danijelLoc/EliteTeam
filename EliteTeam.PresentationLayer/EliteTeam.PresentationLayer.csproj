@@ -8,8 +8,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EliteTeam.BaseLib\EliteTeam.BaseLib.csproj" />
-    <ProjectReference Include="..\EliteTeam.Controllers\EliteTeam.Controllers.csproj" />
-    <ProjectReference Include="..\EliteTeam.MemoryBasedDAL\EliteTeam.MemoryBasedDAL.csproj" />
   </ItemGroup>
 
   <ItemGroup>

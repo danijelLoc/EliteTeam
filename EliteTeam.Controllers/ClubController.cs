@@ -13,8 +13,10 @@ namespace EliteTeam.Controllers
 
         private IClubRepository _clubRepository;
         private IPlayerRepository _playerRepository;
-        public ClubController(IClubRepository clubRepository, IPlayerRepository playerRepository)
+        private ITransferService _transferService;
+        public ClubController(IClubRepository clubRepository, IPlayerRepository playerRepository, ITransferService transferService)
         {
+            _transferService = transferService;
             _clubRepository = clubRepository;
             _playerRepository = playerRepository;
         }
@@ -33,17 +35,6 @@ namespace EliteTeam.Controllers
             return _playerRepository.getAllFreeAgentPlayers().ConvertAll(x => new PlayerDescriptor(x));
         }
 
-        public void RemovePlayerFromClubSquad(string clubId, string playerId)
-        {
-            _clubRepository.clubFiredPlayer(playerId, clubId);
-            _playerRepository.playerLeavesClub(playerId);
-        }
-
-        public void AddPlayerToClubSquad(string clubId, string playerId)
-        {
-            _clubRepository.clubSignedPlayer(playerId, clubId);
-            _playerRepository.playerSignedForClub(playerId, clubId);
-        }
 
         public object[] GetTacticOptions()
         {
@@ -57,7 +48,7 @@ namespace EliteTeam.Controllers
                 var squad = _playerRepository.getAllPlayersInClub(clubId);
                 foreach (Player player in squad)
                 {
-                    RemovePlayerFromClubSquad(clubId, player.Id);
+                    _transferService.RemovePlayerFromClubSquad(clubId, player.Id);
                 }
                 _clubRepository.deleteClub(clubId);
                 inView.CloseView();
@@ -96,7 +87,7 @@ namespace EliteTeam.Controllers
             List<PlayerDescriptor> squad = inView.SquadPlayers;
             foreach (PlayerDescriptor player in squad)
             {
-                AddPlayerToClubSquad(newClub.Id, player.Id);
+                _transferService.AddPlayerToClubSquad(newClub.Id, player.Id);
             }
             inView.CloseView();
         }
@@ -108,15 +99,15 @@ namespace EliteTeam.Controllers
             _clubRepository.updateClub(newInfo);
 
             // update squad, fire old squad, sign new ones
-            var oldClubSquad = new List<string>(oldClubInfo.ClubSquad);
+            var oldClubSquad = oldClubInfo.ClubSquad;
             List<PlayerDescriptor> newSquad = inView.SquadPlayers;
             foreach (String playerId in oldClubSquad)
             {
-                RemovePlayerFromClubSquad(oldClubInfo.Id, playerId);
+                _transferService.RemovePlayerFromClubSquad(oldClubInfo.Id, playerId);
             }
             foreach (PlayerDescriptor player in newSquad)
             {
-                AddPlayerToClubSquad(oldClubInfo.Id, player.Id);
+                _transferService.AddPlayerToClubSquad(oldClubInfo.Id, player.Id);
             }
 
             inView.CloseView();

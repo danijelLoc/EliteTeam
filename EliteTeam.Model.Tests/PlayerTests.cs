@@ -3,7 +3,7 @@ using System;
 
 namespace EliteTeam.Model.Tests
 {
-    public class PlayerTest
+    public class PlayerTests
     {
         Stats stats = RandomPlayerFactory.RandomStats(PlayerPosition.attacker);
 

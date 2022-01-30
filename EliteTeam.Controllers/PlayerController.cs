@@ -12,9 +12,10 @@ namespace EliteTeam.Controllers
     {
         private IPlayerRepository _playerRepository;
         private IClubRepository _clubRepository;
-
-        public PlayerController(IPlayerRepository playerRepository, IClubRepository clubRepository)
+        private ITransferService _transferService;
+        public PlayerController(IPlayerRepository playerRepository, IClubRepository clubRepository, ITransferService transferService)
         {
+            _transferService = transferService;
             _playerRepository = playerRepository;
             _clubRepository = clubRepository;
         }
@@ -84,7 +85,7 @@ namespace EliteTeam.Controllers
         {
             // remove player from club
             if (playerToDelete.ClubId != null)
-                _clubRepository.clubFiredPlayer(playerToDelete.Id, playerToDelete.ClubId);
+                _transferService.RemovePlayerFromClubSquad(playerToDelete.ClubId, playerToDelete.Id);
             // delete player
             _playerRepository.deletePlayer(playerToDelete.Id);
             inView.CloseView();
@@ -104,8 +105,7 @@ namespace EliteTeam.Controllers
             _playerRepository.updatePlayerStatsAndName(oldPlayerInfo.Id, newStats, inView.PlayerName);
             if (inView.Resigned)
             {
-                _clubRepository.clubFiredPlayer(oldPlayerInfo.Id, oldPlayerInfo.ClubId);
-                _playerRepository.playerLeavesClub(oldPlayerInfo.Id);
+                _transferService.RemovePlayerFromClubSquad(oldPlayerInfo.ClubId, oldPlayerInfo.Id);
             }
             inView.CloseView();
         }

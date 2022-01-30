@@ -1,47 +1,47 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="EliteTeam.Model.AttackerAI">
-    <Position X="19" Y="29.75" Width="2" />
+    <Position X="1" Y="21.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
       <FileName>AI\AttackerAI.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EliteTeam.Model.DefenderAI">
-    <Position X="21.25" Y="29.75" Width="1.5" />
+    <Position X="3.25" Y="21.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
       <FileName>AI\DefenderAI.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EliteTeam.Model.GoalkeeperAI">
-    <Position X="23.5" Y="29.75" Width="1.5" />
+    <Position X="5.5" Y="21.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
       <FileName>AI\GoalkeeperAI.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EliteTeam.Model.IPlayerAI">
-    <Position X="22.25" Y="27" Width="2" />
+    <Position X="4.25" Y="19" Width="2" />
     <TypeIdentifier>
       <HashCode>AAEAAAAAAAAAAAAAAAAAAAAIQAAAAAAAAAIAAAAAAEI=</HashCode>
       <FileName>AI\IPlayerAI.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EliteTeam.Model.MidfielderAI">
-    <Position X="25.75" Y="29.75" Width="1.5" />
+    <Position X="7.75" Y="21.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
       <FileName>AI\MidfielderAI.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EliteTeam.Model.Club">
-    <Position X="21.25" Y="17.5" Width="1.5" />
+    <Position X="3.25" Y="9.5" Width="1.5" />
     <AssociationLine Name="Tactic" Type="EliteTeam.Model.Tactic" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="21.25" Y="20.938" />
-        <Point X="19.875" Y="20.938" />
-        <Point X="19.875" Y="22" />
+        <Point X="3.25" Y="12.938" />
+        <Point X="1.875" Y="12.938" />
+        <Point X="1.875" Y="14" />
       </Path>
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="-0.864" Y="0.766" />
@@ -56,20 +56,20 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="EliteTeam.Model.Human">
-    <Position X="23.5" Y="17.5" Width="1.5" />
+    <Position X="5.5" Y="9.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAQEAAAAQAAAMAAAAAAACAAAAAAAA=</HashCode>
       <FileName>ClubAndPlayer\Human.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EliteTeam.Model.Player">
-    <Position X="23.5" Y="22.25" Width="1.5" />
+    <Position X="5.5" Y="14.25" Width="1.5" />
     <AssociationLine Name="Position" Type="EliteTeam.Model.PlayerPosition" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="23.5" Y="24.313" />
-        <Point X="23.125" Y="24.313" />
-        <Point X="23.125" Y="25.974" />
-        <Point X="21.5" Y="25.974" />
+        <Point X="5.5" Y="16.313" />
+        <Point X="5.125" Y="16.313" />
+        <Point X="5.125" Y="17.974" />
+        <Point X="3.5" Y="17.974" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
@@ -77,41 +77,41 @@
       <FileName>ClubAndPlayer\Player.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Stats" />
-      <Property Name="PlayerAI" />
       <Property Name="Position" />
+      <Property Name="PlayerAI" />
+      <Property Name="Stats" />
     </ShowAsAssociation>
   </Class>
   <Class Name="EliteTeam.Model.Stats">
-    <Position X="26.75" Y="23.5" Width="1.5" />
+    <Position X="8.75" Y="15.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>gAAAAAAAAAAAAgwAAAAASACVAAAgAAUABCAwAAAAAAA=</HashCode>
       <FileName>ClubAndPlayer\Stats.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EliteTeam.Model.AIFactory">
-    <Position X="39.5" Y="9.25" Width="1.5" />
+    <Position X="21.5" Y="1.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Factories\AIFactory.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EliteTeam.Model.RandomPlayerFactory">
-    <Position X="41.25" Y="9.25" Width="2" />
+    <Position X="23.25" Y="1.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAJAAAAAAAAAAAAAAAAAAAAAAABAAAAAAABAAAEAAA=</HashCode>
       <FileName>Factories\RandomPlayerFactory.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EliteTeam.Model.MatchResult">
-    <Position X="19" Y="17.5" Width="1.5" />
+    <Position X="1" Y="9.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAEAAAAIAAAAAAEAAAAAAAIAAAAAAAAEAAAIAAAABAA=</HashCode>
       <FileName>Match\MatchResult.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EliteTeam.Model.EntityBase&lt;TId&gt;">
-    <Position X="21.25" Y="14.75" Width="1.5" />
+    <Position X="3.25" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAgAAAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
       <FileName>EntityBase.cs</FileName>
@@ -119,42 +119,45 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="EliteTeam.Model.MathHelper">
-    <Position X="43.75" Y="9.25" Width="1.5" />
+    <Position X="25.75" Y="1.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAABAAAAAAA=</HashCode>
       <FileName>MathHelper.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EliteTeam.Model.Subject" BaseTypeListCollapsed="true">
-    <Position X="28.75" Y="12" Width="1.5" />
+    <Position X="12" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAQAAAAAQgAAA=</HashCode>
       <FileName>Subject.cs</FileName>
     </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="_observers" />
+    </ShowAsCollectionAssociation>
     <Lollipop Position="0.256" />
   </Class>
   <Class Name="EliteTeam.Model.EliteTeamBaseException">
-    <Position X="58.75" Y="21" Width="2.25" />
+    <Position X="34.25" Y="12" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Exceptions.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EliteTeam.Model.ClubBaseException" Collapsed="true">
-    <Position X="51.25" Y="23.5" Width="2" />
+    <Position X="26.75" Y="14.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Exceptions.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EliteTeam.Model.HumanBaseException" Collapsed="true">
-    <Position X="63" Y="23.25" Width="2" />
+    <Position X="36.25" Y="14.25" Width="2" />
     <InheritanceLine Type="EliteTeam.Model.EliteTeamBaseException" FixedFromPoint="true">
       <Path>
-        <Point X="59.875" Y="22.248" />
-        <Point X="59.875" Y="22.875" />
-        <Point X="64" Y="22.875" />
-        <Point X="64" Y="23.25" />
+        <Point X="35.375" Y="13.248" />
+        <Point X="35.375" Y="14.125" />
+        <Point X="37.25" Y="14.125" />
+        <Point X="37.25" Y="14.25" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
@@ -163,69 +166,77 @@
     </TypeIdentifier>
   </Class>
   <Class Name="EliteTeam.Model.PlayerBaseException" Collapsed="true">
-    <Position X="63.5" Y="24.75" Width="2.25" />
+    <Position X="39" Y="15.75" Width="2.25" />
+    <InheritanceLine Type="EliteTeam.Model.HumanBaseException" FixedFromPoint="true">
+      <Path>
+        <Point X="37.125" Y="14.949" />
+        <Point X="37.125" Y="15.375" />
+        <Point X="40.125" Y="15.375" />
+        <Point X="40.125" Y="15.75" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Exceptions.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EliteTeam.Model.MatchBaseException" Collapsed="true">
-    <Position X="74.25" Y="23.25" Width="2.5" />
+    <Position X="48" Y="14.25" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Exceptions.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EliteTeam.Model.ClubTakenIdException" Collapsed="true">
-    <Position X="53" Y="25" Width="2.5" />
+    <Position X="28.5" Y="16" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Exceptions.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EliteTeam.Model.ClubIdMissingException" Collapsed="true">
-    <Position X="44" Y="25" Width="2" />
+    <Position X="19.5" Y="16" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Exceptions.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EliteTeam.Model.ClubTakenNameException" Collapsed="true">
-    <Position X="46.5" Y="25" Width="2" />
+    <Position X="22" Y="16" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Exceptions.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EliteTeam.Model.ClubTakenShortNameException" Collapsed="true">
-    <Position X="48" Y="26" Width="2.25" />
+    <Position X="23.5" Y="17" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Exceptions.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EliteTeam.Model.ClubTakenManagerException" Collapsed="true">
-    <Position X="49.5" Y="25" Width="2.75" />
+    <Position X="25" Y="16" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Exceptions.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EliteTeam.Model.ClubInvalidNameException" Collapsed="true">
-    <Position X="51.5" Y="26" Width="2.25" />
+    <Position X="27" Y="17" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Exceptions.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EliteTeam.Model.ClubInvalidShortNameException" Collapsed="true">
-    <Position X="54.75" Y="26" Width="2.5" />
+    <Position X="30.25" Y="17" Width="2.5" />
     <InheritanceLine Type="EliteTeam.Model.ClubBaseException" FixedToPoint="true">
       <Path>
-        <Point X="52.25" Y="24.199" />
-        <Point X="52.25" Y="24.625" />
-        <Point X="55.792" Y="24.625" />
-        <Point X="55.792" Y="26" />
+        <Point X="27.75" Y="15.199" />
+        <Point X="27.75" Y="15.625" />
+        <Point X="31.292" Y="15.625" />
+        <Point X="31.292" Y="17" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
@@ -234,62 +245,63 @@
     </TypeIdentifier>
   </Class>
   <Class Name="EliteTeam.Model.ClubPlayerMissingException" Collapsed="true">
-    <Position X="45.25" Y="26" Width="2" />
+    <Position X="20.75" Y="17" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Exceptions.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EliteTeam.Model.PlayerTakenIdException" Collapsed="true">
-    <Position X="60.75" Y="26.25" Width="2" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Exceptions.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="EliteTeam.Model.PlayerDeletedException" Collapsed="true">
-    <Position X="64.25" Y="26.25" Width="2.25" />
+    <Position X="36.25" Y="17.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Exceptions.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EliteTeam.Model.PlayerIsFreeAgentException" Collapsed="true">
-    <Position X="65.75" Y="27.25" Width="2.25" />
+    <Position X="41.25" Y="18.25" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Exceptions.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EliteTeam.Model.PlayerIsTakenException" Collapsed="true">
-    <Position X="67.5" Y="26.25" Width="2.25" />
+    <Position X="43" Y="17.25" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Exceptions.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EliteTeam.Model.NegativeAgeException" Collapsed="true">
-    <Position X="66.5" Y="24.75" Width="2.5" />
+    <Position X="42" Y="15.75" Width="2.5" />
+    <InheritanceLine Type="EliteTeam.Model.HumanBaseException" FixedFromPoint="true">
+      <Path>
+        <Point X="37.125" Y="14.949" />
+        <Point X="37.125" Y="15.375" />
+        <Point X="43.25" Y="15.375" />
+        <Point X="43.25" Y="15.75" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Exceptions.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EliteTeam.Model.PlayerAgeException" Collapsed="true">
-    <Position X="59" Y="27.25" Width="2.75" />
+    <Position X="34.5" Y="18.25" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Exceptions.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EliteTeam.Model.PlayerAIMissingException" Collapsed="true">
-    <Position X="62.25" Y="27.25" Width="2.5" />
+    <Position X="37.75" Y="18.25" Width="2.5" />
     <InheritanceLine Type="EliteTeam.Model.PlayerBaseException" ManuallyRouted="true" FixedToPoint="true">
       <Path>
-        <Point X="64.625" Y="25.449" />
-        <Point X="64.625" Y="25.866" />
-        <Point X="63.5" Y="25.866" />
-        <Point X="63.5" Y="27.25" />
+        <Point X="40.125" Y="16.449" />
+        <Point X="40.125" Y="16.875" />
+        <Point X="39" Y="16.875" />
+        <Point X="39" Y="18.25" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
@@ -298,27 +310,41 @@
     </TypeIdentifier>
   </Class>
   <Class Name="EliteTeam.Model.HumanNameLengthException" Collapsed="true">
-    <Position X="56.75" Y="24.75" Width="2.75" />
+    <Position X="32.25" Y="15.75" Width="2.75" />
+    <InheritanceLine Type="EliteTeam.Model.HumanBaseException" FixedFromPoint="true">
+      <Path>
+        <Point X="37.125" Y="14.949" />
+        <Point X="37.125" Y="15.375" />
+        <Point X="33.625" Y="15.375" />
+        <Point X="33.625" Y="15.75" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Exceptions.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EliteTeam.Model.CountryNameLengthException" Collapsed="true">
-    <Position X="60.25" Y="24.75" Width="2.75" />
+    <Position X="35.75" Y="15.75" Width="2.75" />
+    <InheritanceLine Type="EliteTeam.Model.HumanBaseException" FixedFromPoint="true">
+      <Path>
+        <Point X="37.125" Y="14.949" />
+        <Point X="37.125" Y="15.75" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Exceptions.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EliteTeam.Model.MatchResultTakenIdException" Collapsed="true">
-    <Position X="74.75" Y="26" Width="3" />
+    <Position X="50.25" Y="17" Width="3" />
     <InheritanceLine Type="EliteTeam.Model.MatchBaseException" FixedFromPoint="true">
       <Path>
-        <Point X="75.5" Y="23.949" />
-        <Point X="75.5" Y="24.374" />
-        <Point X="76.25" Y="24.374" />
-        <Point X="76.25" Y="26" />
+        <Point X="49.125" Y="14.949" />
+        <Point X="49.125" Y="15.324" />
+        <Point X="51.75" Y="15.324" />
+        <Point X="51.75" Y="17" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
@@ -327,13 +353,13 @@
     </TypeIdentifier>
   </Class>
   <Class Name="EliteTeam.Model.MatchSameClubsException" Collapsed="true">
-    <Position X="76.75" Y="24.75" Width="2.75" />
+    <Position X="52.25" Y="15.75" Width="2.75" />
     <InheritanceLine Type="EliteTeam.Model.MatchBaseException" FixedFromPoint="true">
       <Path>
-        <Point X="75.5" Y="23.949" />
-        <Point X="75.5" Y="24.374" />
-        <Point X="78.125" Y="24.374" />
-        <Point X="78.125" Y="24.75" />
+        <Point X="49.125" Y="14.949" />
+        <Point X="49.125" Y="15.324" />
+        <Point X="53.625" Y="15.324" />
+        <Point X="53.625" Y="15.75" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
@@ -342,20 +368,28 @@
     </TypeIdentifier>
   </Class>
   <Class Name="EliteTeam.Model.MatchInvalidHomeSquad" Collapsed="true">
-    <Position X="70" Y="24.75" Width="2.25" />
+    <Position X="45.5" Y="15.75" Width="2.25" />
+    <InheritanceLine Type="EliteTeam.Model.MatchBaseException" FixedFromPoint="true">
+      <Path>
+        <Point X="49.125" Y="14.949" />
+        <Point X="49.125" Y="15.324" />
+        <Point X="46.625" Y="15.324" />
+        <Point X="46.625" Y="15.75" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Exceptions.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EliteTeam.Model.MatchInvalidAwaySquad" Collapsed="true">
-    <Position X="71" Y="26" Width="3" />
-    <InheritanceLine Type="EliteTeam.Model.MatchBaseException" ManuallyRouted="true">
+    <Position X="46.5" Y="17" Width="3" />
+    <InheritanceLine Type="EliteTeam.Model.MatchBaseException" ManuallyRouted="true" FixedFromPoint="true">
       <Path>
-        <Point X="75.5" Y="23.949" />
-        <Point X="75.5" Y="24.374" />
-        <Point X="72.5" Y="24.374" />
-        <Point X="72.5" Y="26" />
+        <Point X="49.125" Y="14.949" />
+        <Point X="49.125" Y="15.324" />
+        <Point X="48" Y="15.324" />
+        <Point X="48" Y="17" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
@@ -364,13 +398,13 @@
     </TypeIdentifier>
   </Class>
   <Class Name="EliteTeam.Model.NotEnoughClubsForMatchCreator" Collapsed="true">
-    <Position X="73.25" Y="24.75" Width="2.5" />
-    <InheritanceLine Type="EliteTeam.Model.MatchBaseException" ManuallyRouted="true">
+    <Position X="48.75" Y="15.75" Width="2.5" />
+    <InheritanceLine Type="EliteTeam.Model.MatchBaseException" ManuallyRouted="true" FixedFromPoint="true">
       <Path>
-        <Point X="75.5" Y="23.949" />
-        <Point X="75.5" Y="24.378" />
-        <Point X="74.5" Y="24.378" />
-        <Point X="74.5" Y="24.75" />
+        <Point X="49.125" Y="14.949" />
+        <Point X="49.125" Y="15.324" />
+        <Point X="50" Y="15.324" />
+        <Point X="50" Y="15.75" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
@@ -378,122 +412,144 @@
       <FileName>Exceptions.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="EliteTeam.Model.TransferService">
+    <Position X="3.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAIAAAAAAAAAAAABAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Service\TransferService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="EliteTeam.Model.PlayerIdMissingException" Collapsed="true">
+    <Position X="39.75" Y="17.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Exceptions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Struct Name="EliteTeam.Model.PlayerAction">
-    <Position X="29.5" Y="27.5" Width="2.25" />
+    <Position X="11.5" Y="19.5" Width="2.25" />
+    <AssociationLine Name="Type" Type="EliteTeam.Model.PlayerActionType" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="11.5" Y="20.25" />
+        <Point X="11.5" Y="20.242" />
+        <Point X="11" Y="20.242" />
+        <Point X="11" Y="21.5" />
+      </Path>
+    </AssociationLine>
     <AssociationLine Name="OpositionReactionType" Type="EliteTeam.Model.PossibleReactionType" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="31.125" Y="28.617" />
-        <Point X="31.125" Y="28.992" />
-        <Point X="32.375" Y="28.992" />
-        <Point X="32.375" Y="29.5" />
+        <Point X="13.75" Y="20.125" />
+        <Point X="13.75" Y="20.242" />
+        <Point X="14.375" Y="20.242" />
+        <Point X="14.375" Y="21.5" />
       </Path>
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="-1.729" Y="0.183" />
       </MemberNameLabel>
-    </AssociationLine>
-    <AssociationLine Name="Type" Type="EliteTeam.Model.PlayerActionType" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="30.594" Y="28.617" />
-        <Point X="30.594" Y="28.992" />
-        <Point X="29" Y="28.992" />
-        <Point X="29" Y="29.5" />
-      </Path>
     </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAQAAAAAAAAA=</HashCode>
       <FileName>ClubAndPlayer\PlayerAction.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="OpositionReactionType" />
       <Property Name="Type" />
+      <Property Name="OpositionReactionType" />
     </ShowAsAssociation>
   </Struct>
   <Struct Name="EliteTeam.Model.ClubDescriptor">
-    <Position X="43" Y="12.25" Width="2.5" />
+    <Position X="25" Y="4.25" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAABAAAAAAQAAAAEAIAAAAAABAAAAAA=</HashCode>
       <FileName>Descriptors\ClubDescriptor.cs</FileName>
     </TypeIdentifier>
   </Struct>
   <Struct Name="EliteTeam.Model.PlayerDescriptor">
-    <Position X="46" Y="12.25" Width="1.5" />
+    <Position X="28" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ABACEAAAAAAAAAAgAEAAAAQAAAIAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Descriptors\PlayerDescriptor.cs</FileName>
     </TypeIdentifier>
   </Struct>
   <Struct Name="EliteTeam.Model.MatchFormation">
-    <Position X="39.25" Y="12.25" Width="1.5" />
+    <Position X="21.25" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAACCAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Match\MatchFormation.cs</FileName>
     </TypeIdentifier>
   </Struct>
   <Struct Name="EliteTeam.Model.MatchSquad">
-    <Position X="41" Y="12.25" Width="1.5" />
+    <Position X="23" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABICAAAAABAAAAgCAAAA=</HashCode>
       <FileName>Match\MatchSquad.cs</FileName>
     </TypeIdentifier>
   </Struct>
   <Interface Name="EliteTeam.Model.IClubRepository">
-    <Position X="27" Y="16" Width="1.5" />
+    <Position X="9" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>CQACAAAgCEgAEAAEAAAAAIAAAAACAAQAAAAABEAAABE=</HashCode>
       <FileName>Repositories\IClubRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="EliteTeam.Model.IMatchResultRepository">
-    <Position X="31.25" Y="16" Width="2.25" />
+    <Position X="13.25" Y="6.25" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAIAAAAKA=</HashCode>
       <FileName>Repositories\IMatchResultRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="EliteTeam.Model.IPlayerRepository">
-    <Position X="29.25" Y="16" Width="1.5" />
+    <Position X="11.25" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ABAABABCEAAAQxAAQAIAAEAAAAAACALgAAAAACAAABA=</HashCode>
       <FileName>Repositories\IPlayerRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="EliteTeam.Model.IObserver">
-    <Position X="26.75" Y="12" Width="1.5" />
+    <Position X="8.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
       <FileName>IObserver.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="EliteTeam.Model.ISubject" Collapsed="true">
-    <Position X="28.25" Y="14.5" Width="1.5" />
+    <Position X="10.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAQAAAAAAgAAA=</HashCode>
       <FileName>ISubject.cs</FileName>
     </TypeIdentifier>
   </Interface>
+  <Interface Name="EliteTeam.Model.ITransferService">
+    <Position X="3.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Service\ITransferService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
   <Enum Name="EliteTeam.Model.PlayerActionType">
-    <Position X="28" Y="29.5" Width="2" />
+    <Position X="10" Y="21.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAgAAgAIAAAEAAAAAAAAA=</HashCode>
       <FileName>ClubAndPlayer\PlayerActionType.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="EliteTeam.Model.PlayerPosition">
-    <Position X="20" Y="25.25" Width="1.5" />
+    <Position X="2" Y="17.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAEAAAAAAABCAAAACAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ClubAndPlayer\PlayerPosition.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="EliteTeam.Model.PossibleReactionType">
-    <Position X="31.25" Y="29.5" Width="2" />
+    <Position X="13.25" Y="21.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAABAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAk=</HashCode>
       <FileName>ClubAndPlayer\PossibleReactionType.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="EliteTeam.Model.Tactic">
-    <Position X="19" Y="22" Width="1.5" />
+    <Position X="1" Y="14" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAAAAAIAAAAAAAAAAAA=</HashCode>
       <FileName>ClubAndPlayer\Tactic.cs</FileName>

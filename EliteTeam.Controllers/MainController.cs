@@ -11,6 +11,7 @@ namespace EliteTeam.Controllers
         private readonly IPlayerRepository _playerRepository = null;
         private readonly IClubRepository _clubRepository = null;
         private readonly IMatchResultRepository _matchResultRepository = null;
+        private readonly ITransferService _transferService = null;
 
         public MainController(IViewsFactory viewsFactory, IPlayerRepository playerRepository, IClubRepository clubRepository, IMatchResultRepository matchResultRepository)
         {
@@ -18,6 +19,7 @@ namespace EliteTeam.Controllers
             _playerRepository = playerRepository;
             _clubRepository = clubRepository;
             _matchResultRepository = matchResultRepository;
+            _transferService = new TransferService(_clubRepository, _playerRepository);
             CreateRandomData();
         }
 
@@ -37,28 +39,28 @@ namespace EliteTeam.Controllers
 
         public void ShowPlayers()
         {
-            var playerController = new PlayerController(_playerRepository, _clubRepository);
+            var playerController = new PlayerController(_playerRepository, _clubRepository, _transferService);
             var listView = _viewsFactory.PlayersListView();
             playerController.ShowPlayers(listView, this);
         }
 
         public void ShowCreatePlayer()
         {
-            var playerController = new PlayerController(_playerRepository, _clubRepository);
+            var playerController = new PlayerController(_playerRepository, _clubRepository, _transferService);
             var createView = _viewsFactory.PlayerCreatorView();
             playerController.ShowAddNewPlayer(createView);
         }
 
         public void ShowUpdatePlayer(PlayerDescriptor player)
         {
-            IPlayerController playerController = new PlayerController(_playerRepository, _clubRepository);
+            IPlayerController playerController = new PlayerController(_playerRepository, _clubRepository, _transferService);
             var updateView = _viewsFactory.PlayerUpdaterView();
             playerController.ShowUpdatePlayer(updateView, player);
         }
 
         public void ShowClubs()
         {
-            var clubController = new ClubController(_clubRepository, _playerRepository);
+            var clubController = new ClubController(_clubRepository, _playerRepository, _transferService);
             var clubListView = _viewsFactory.ClubsListView();
             clubController.ShowClubs(clubListView, this);
         }
@@ -72,14 +74,14 @@ namespace EliteTeam.Controllers
 
         public void ShowCreateClub()
         {
-            var clubController = new ClubController(_clubRepository, _playerRepository);
+            var clubController = new ClubController(_clubRepository, _playerRepository, _transferService);
             var createClubView = _viewsFactory.ClubCreatorView();
             clubController.ShowAddNewClub(createClubView);
         }
 
         public void ShowUpdateClub(ClubDescriptor club)
         {
-            IClubController clubController = new ClubController(_clubRepository, _playerRepository);
+            IClubController clubController = new ClubController(_clubRepository, _playerRepository, _transferService);
             var updateClubView = _viewsFactory.ClubUpdaterView();
             clubController.ShowUpdateClub(updateClubView, club);
         }

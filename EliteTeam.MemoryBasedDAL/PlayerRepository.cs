@@ -34,7 +34,7 @@ namespace EliteTeam.MemoryBasedDAL
         public void deletePlayer(string inPlyerID)
         {
             int i = _players.RemoveAll(x => x.Id == inPlyerID);
-            if (i == 0) throw new PlayerDeletedException();
+            if (i == 0) throw new PlayerIdMissingException();
             NotifyObservers();
         }
 
@@ -87,7 +87,7 @@ namespace EliteTeam.MemoryBasedDAL
         {
             var player = _players.Find(x => x.Id == playerId);
             if (player == null)
-                throw new PlayerDeletedException();
+                throw new PlayerIdMissingException();
             return player.ClubId;
         }
 
@@ -99,7 +99,7 @@ namespace EliteTeam.MemoryBasedDAL
         public void playerSignedForClub(string playerId, string clubId)
         {
             var player = _players.Find(x => x.Id == playerId);
-            if (player == null) throw new PlayerDeletedException();
+            if (player == null) throw new PlayerIdMissingException();
             if (player.ClubId != null) throw new PlayerIsTakenException();
             player.ClubId = clubId;
             NotifyObservers();
@@ -122,7 +122,7 @@ namespace EliteTeam.MemoryBasedDAL
         public void playerLeavesClub(string playerId)
         {
             var player = _players.Find(x => x.Id == playerId);
-            if (player == null) throw new PlayerDeletedException();
+            if (player == null) throw new PlayerIdMissingException();
             if (player.ClubId == null) throw new PlayerIsFreeAgentException();
             player.ClubId = null;
             NotifyObservers();
@@ -131,7 +131,7 @@ namespace EliteTeam.MemoryBasedDAL
         public void updatePlayerStatsAndName(string plyerID, Stats stats, string name)
         {
             var player = _players.Find(x => x.Id == plyerID);
-            if (player == null) throw new PlayerDeletedException();
+            if (player == null) throw new PlayerIdMissingException();
             player.Name = name;
             player.Stats = stats;
             NotifyObservers();

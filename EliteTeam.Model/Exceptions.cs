@@ -96,9 +96,9 @@ namespace EliteTeam.Model
     }
 
     [Serializable]
-    public class PlayerDeletedException : PlayerBaseException
+    public class PlayerIdMissingException : PlayerBaseException
     {
-        public PlayerDeletedException() : base("Player doesn't exist in repository.") { }
+        public PlayerIdMissingException() : base("Player doesn't exist in repository.") { }
     }
 
     [Serializable]

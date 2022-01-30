@@ -6,8 +6,9 @@ using System.Windows.Forms;
 using EliteTeam.Controllers;
 using EliteTeam.Model;
 using EliteTeam.MemoryBasedDAL;
+using EliteTeam.PresentationLayer;
 
-namespace EliteTeam.PresentationLayer
+namespace EliteTeam.AppStarter
 {
     static class Program
     {
@@ -24,7 +25,6 @@ namespace EliteTeam.PresentationLayer
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmMainForm(mainController));
-
         }
     }
 }

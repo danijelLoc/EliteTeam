@@ -9,14 +9,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using EliteTeam.BaseLib;
-using EliteTeam.Controllers;
 
 namespace EliteTeam.PresentationLayer
 {
     public partial class frmMainForm : Form, IMainView
     {
-        private MainController _mainController;
-        public frmMainForm(MainController mainFormController)
+        private IMainController _mainController;
+        public frmMainForm(IMainController mainFormController)
         {
             _mainController = mainFormController;
             InitializeComponent();

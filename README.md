@@ -1,4 +1,4 @@
 # Elite Team
 
 
-> Startup Project is PresentationLayer
+> Startup Project is AppStarter
