@@ -85,7 +85,7 @@ namespace EliteTeam.PresentationLayer
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(223, 19);
             this.label1.TabIndex = 3;
-            this.label1.Text = "* Double click on club name to edit";
+            this.label1.Text = "* Double click on name to edit club";
             // 
             // frmClubList
             // 

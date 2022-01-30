@@ -92,7 +92,7 @@ namespace EliteTeam.Model
     [Serializable]
     public class PlayerAgeException : EliteTeamBaseException
     {
-        public PlayerAgeException() : base("Player must be over 16 and below 43 year old.") { }
+        public PlayerAgeException() : base("Player must be over 17(including) and below 43 year old.") { }
     }
 
     [Serializable]
@@ -104,7 +104,7 @@ namespace EliteTeam.Model
     [Serializable]
     public class HumanNameLengthException : EliteTeamBaseException
     {
-        public HumanNameLengthException() : base("Name must be at least 2 characters long.") { }
+        public HumanNameLengthException() : base("Human name must be at least 2 characters long.") { }
     }
 
     [Serializable]

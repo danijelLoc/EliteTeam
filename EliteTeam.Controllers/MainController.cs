@@ -99,15 +99,16 @@ namespace EliteTeam.Controllers
             Club dinamo = new Club("Dinamo", "DIN", "Željko Kopić", Tactic.possesion);
             Club hajduk = new Club("Hajduk", "HAJ", "Jens Gustafsson", Tactic.possesion);
             Club rijeka = new Club("Rijeka", "RIJ", "Goran Tomić", Tactic.counterAttack);
-            dinamo.SignPlayers(squad1.ConvertAll(x => x.Id));
-            hajduk.SignPlayers(squad2.ConvertAll(x => x.Id));
-            rijeka.SignPlayers(squad3.ConvertAll(x => x.Id));
-            _playerRepository.playersSignedForClub(squad1.ConvertAll(x => x.Id), dinamo.Id);
-            _playerRepository.playersSignedForClub(squad2.ConvertAll(x => x.Id), hajduk.Id);
-            _playerRepository.playersSignedForClub(squad3.ConvertAll(x => x.Id), rijeka.Id);
             _clubRepository.addClub(dinamo);
             _clubRepository.addClub(hajduk);
             _clubRepository.addClub(rijeka);
+            _clubRepository.clubSignedPlayers(squad1.ConvertAll(x => x.Id), dinamo.Id);
+            _clubRepository.clubSignedPlayers(squad2.ConvertAll(x => x.Id), hajduk.Id);
+            _clubRepository.clubSignedPlayers(squad3.ConvertAll(x => x.Id), rijeka.Id);
+            _playerRepository.playersSignedForClub(squad1.ConvertAll(x => x.Id), dinamo.Id);
+            _playerRepository.playersSignedForClub(squad2.ConvertAll(x => x.Id), hajduk.Id);
+            _playerRepository.playersSignedForClub(squad3.ConvertAll(x => x.Id), rijeka.Id);
+
         }
 
 

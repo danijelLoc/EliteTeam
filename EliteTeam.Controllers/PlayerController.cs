@@ -102,7 +102,6 @@ namespace EliteTeam.Controllers
             newStats.Goalkeeping = inView.Goalkeeping;
             newStats.Stamina = inView.Stamina;
             _playerRepository.updatePlayerStatsAndName(oldPlayerInfo.Id, newStats, inView.PlayerName);
-
             if (inView.Resigned)
             {
                 _clubRepository.clubFiredPlayer(oldPlayerInfo.Id, oldPlayerInfo.ClubId);

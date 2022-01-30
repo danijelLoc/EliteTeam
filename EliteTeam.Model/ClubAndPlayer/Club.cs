@@ -28,9 +28,9 @@ namespace EliteTeam.Model
             get { return _clubManagerName; }
             set
             {
-                if (value.Length < 2)
+                if (value.Trim().Length < 2)
                     throw new HumanNameLengthException();
-                _clubManagerName = value;
+                _clubManagerName = value.Trim();
             }
         }
         public Tactic Tactic { get; set; }

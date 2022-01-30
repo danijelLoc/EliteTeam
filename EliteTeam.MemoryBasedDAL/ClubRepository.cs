@@ -140,5 +140,11 @@ namespace EliteTeam.MemoryBasedDAL
             _clubs.Clear();
             NotifyObservers();
         }
+
+        public void clubSignedPlayers(List<string> playerIds, string clubId)
+        {
+            foreach (string playerId in playerIds)
+                clubSignedPlayer(playerId, clubId);
+        }
     }
 }
