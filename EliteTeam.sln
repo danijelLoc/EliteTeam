@@ -13,9 +13,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EliteTeam.BaseLib", "EliteT
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EliteTeam.PresentationLayer", "EliteTeam.PresentationLayer\EliteTeam.PresentationLayer.csproj", "{0CD5060F-A6C1-400E-AC9B-D4B72F3D32C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EliteTeam.MamoryBasedDAL.Tests", "EliteTeam.MamoryBasedDAL.Tests\EliteTeam.MamoryBasedDAL.Tests.csproj", "{E7EF121F-005E-48EB-B676-273CEF155E7D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EliteTeam.MamoryBasedDAL.Tests", "EliteTeam.MamoryBasedDAL.Tests\EliteTeam.MamoryBasedDAL.Tests.csproj", "{E7EF121F-005E-48EB-B676-273CEF155E7D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EliteTeam.Model.Tests", "EliteTeam.Model.Tests\EliteTeam.Model.Tests.csproj", "{F294B439-8EB1-4724-826C-D174F9A04145}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EliteTeam.Model.Tests", "EliteTeam.Model.Tests\EliteTeam.Model.Tests.csproj", "{F294B439-8EB1-4724-826C-D174F9A04145}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B79EF3B1-1447-47DF-945A-4C07047775F6}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
