@@ -23,7 +23,7 @@ namespace EliteTeam.Model
         public void NotifyObservers()
         {
             foreach (IObserver obs in _observers)
-                obs.UpdateView();
+                obs.UpdateYourself();
         }
 
     }

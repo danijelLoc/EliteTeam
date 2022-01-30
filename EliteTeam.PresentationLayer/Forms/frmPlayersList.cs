@@ -34,7 +34,7 @@ namespace EliteTeam.PresentationLayer
             UpdateList();
             this.Show();
         }
-        public void UpdateView()
+        public void UpdateYourself()
         {
             UpdateList();
         }

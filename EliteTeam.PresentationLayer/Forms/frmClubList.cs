@@ -19,7 +19,7 @@ namespace EliteTeam.PresentationLayer
         private List<ClubDescriptor> _clubs = null;
         private ISubject _clubsListSubject = null;
 
-        public void UpdateView()
+        public void UpdateYourself()
         {
             UpdateList();
         }

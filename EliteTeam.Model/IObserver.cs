@@ -8,6 +8,6 @@ namespace EliteTeam.Model
 {
     public interface IObserver
     {
-        void UpdateView();
+        void UpdateYourself();
     }
 }
