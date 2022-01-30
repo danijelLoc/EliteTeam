@@ -31,12 +31,14 @@ namespace EliteTeam.Model.Tests
         public void TestCountry()
         {
             Assert.Throws<CountryNameLengthException>(delegate { new Player(PlayerPosition.attacker, "Yi", 23, "C", stats); });
+            Assert.DoesNotThrow(delegate { new Player(PlayerPosition.attacker, "Take", 23, "Japan", stats); });
         }
 
         [Test]
         public void TestStats()
         {
             Assert.Throws<ArgumentNullException>(delegate { new Player(PlayerPosition.attacker, "Jozo", 17, "Croatia", null); });
+            Assert.DoesNotThrow(delegate { new Player(PlayerPosition.attacker, "Jozo", 17, "Croatia", stats); });
         }
     }
 }

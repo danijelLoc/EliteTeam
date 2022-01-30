@@ -70,7 +70,7 @@ namespace EliteTeam.MamoryBasedDAL.Tests
             repository.addClub(club);
             repository.clubSignedPlayer("TEST_PLAYER1_ID", club.Id);
             repository.clubSignedPlayer("TEST_PLAYER2_ID", club.Id);
-            // this is not consistency test, controller has that obligation, it has to 
+            // this is not consistency test, transfer service has that obligation, it has to 
             // call both player and club repositories and save changes after transfer
             Assert.AreEqual("TEST_PLAYER1_ID", repository.getClubPlayersIds(club.Id)[0]);
             repository.clubFiredPlayer("TEST_PLAYER1_ID", club.Id);

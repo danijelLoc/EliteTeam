@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="EliteTeam.Model.AttackerAI">
-    <Position X="1" Y="21.75" Width="2" />
+    <Position X="0.5" Y="21.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
       <FileName>AI\AttackerAI.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EliteTeam.Model.DefenderAI">
-    <Position X="3.25" Y="21.75" Width="1.5" />
+    <Position X="3" Y="21.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
       <FileName>AI\DefenderAI.cs</FileName>
@@ -36,10 +36,10 @@
     </TypeIdentifier>
   </Class>
   <Class Name="EliteTeam.Model.Club">
-    <Position X="3.25" Y="9.5" Width="1.5" />
+    <Position X="3" Y="9.5" Width="2" />
     <AssociationLine Name="Tactic" Type="EliteTeam.Model.Tactic" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="3.25" Y="12.938" />
+        <Point X="3" Y="12.938" />
         <Point X="1.875" Y="12.938" />
         <Point X="1.875" Y="14" />
       </Path>
@@ -90,21 +90,21 @@
     </TypeIdentifier>
   </Class>
   <Class Name="EliteTeam.Model.AIFactory">
-    <Position X="21.5" Y="1.25" Width="1.5" />
+    <Position X="20.5" Y="1.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Factories\AIFactory.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EliteTeam.Model.RandomPlayerFactory">
-    <Position X="23.25" Y="1.25" Width="2" />
+    <Position X="22.25" Y="1.25" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAJAAAAAAAAAAAAAAAAAAAAAAABAAAAAAABAAAEAAA=</HashCode>
       <FileName>Factories\RandomPlayerFactory.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EliteTeam.Model.MatchResult">
-    <Position X="1" Y="9.5" Width="1.5" />
+    <Position X="0.5" Y="9.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAEAAAAIAAAAAAEAAAAAAAIAAAAAAAAEAAAIAAAABAA=</HashCode>
       <FileName>Match\MatchResult.cs</FileName>
@@ -119,7 +119,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="EliteTeam.Model.MathHelper">
-    <Position X="25.75" Y="1.25" Width="1.5" />
+    <Position X="20" Y="11.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAABAAAAAAA=</HashCode>
       <FileName>MathHelper.cs</FileName>
@@ -413,7 +413,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="EliteTeam.Model.TransferService">
-    <Position X="3.25" Y="3.5" Width="1.5" />
+    <Position X="3.25" Y="3.5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAEAIAAAAAAAAAAAABAAAAAAAAAAAAAAAACAAA=</HashCode>
       <FileName>Service\TransferService.cs</FileName>
@@ -441,8 +441,8 @@
       <Path>
         <Point X="13.75" Y="20.125" />
         <Point X="13.75" Y="20.242" />
-        <Point X="14.375" Y="20.242" />
-        <Point X="14.375" Y="21.5" />
+        <Point X="14.656" Y="20.242" />
+        <Point X="14.656" Y="21.5" />
       </Path>
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="-1.729" Y="0.183" />
@@ -458,21 +458,21 @@
     </ShowAsAssociation>
   </Struct>
   <Struct Name="EliteTeam.Model.ClubDescriptor">
-    <Position X="25" Y="4.25" Width="2.5" />
+    <Position X="20" Y="8.25" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAABAAAAAAQAAAAEAIAAAAAABAAAAAA=</HashCode>
       <FileName>Descriptors\ClubDescriptor.cs</FileName>
     </TypeIdentifier>
   </Struct>
   <Struct Name="EliteTeam.Model.PlayerDescriptor">
-    <Position X="28" Y="4.25" Width="1.5" />
+    <Position X="22.75" Y="8.25" Width="2" />
     <TypeIdentifier>
       <HashCode>ABACEAAAAAAAAAAgAEAAAAQAAAIAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Descriptors\PlayerDescriptor.cs</FileName>
     </TypeIdentifier>
   </Struct>
   <Struct Name="EliteTeam.Model.MatchFormation">
-    <Position X="21.25" Y="4.25" Width="1.5" />
+    <Position X="20.25" Y="4.25" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAACCAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Match\MatchFormation.cs</FileName>
@@ -486,7 +486,7 @@
     </TypeIdentifier>
   </Struct>
   <Interface Name="EliteTeam.Model.IClubRepository">
-    <Position X="9" Y="6.25" Width="1.5" />
+    <Position X="8.25" Y="6.25" Width="2.25" />
     <TypeIdentifier>
       <HashCode>CQACAAAgCEgAEAAEAAAAAIAAAAACAAQAAAAABEAAABE=</HashCode>
       <FileName>Repositories\IClubRepository.cs</FileName>
@@ -500,7 +500,7 @@
     </TypeIdentifier>
   </Interface>
   <Interface Name="EliteTeam.Model.IPlayerRepository">
-    <Position X="11.25" Y="6.25" Width="1.5" />
+    <Position X="10.75" Y="6.25" Width="2" />
     <TypeIdentifier>
       <HashCode>ABAABABCEAAAQxAAQAIAAEAAAAAACALgAAAAACAAABA=</HashCode>
       <FileName>Repositories\IPlayerRepository.cs</FileName>
@@ -513,15 +513,15 @@
       <FileName>IObserver.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="EliteTeam.Model.ISubject" Collapsed="true">
-    <Position X="10.25" Y="4.75" Width="1.5" />
+  <Interface Name="EliteTeam.Model.ISubject">
+    <Position X="10.25" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAQAAAAAAgAAA=</HashCode>
       <FileName>ISubject.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="EliteTeam.Model.ITransferService">
-    <Position X="3.25" Y="1.5" Width="1.5" />
+    <Position X="3.25" Y="1.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
       <FileName>Service\ITransferService.cs</FileName>
@@ -542,7 +542,7 @@
     </TypeIdentifier>
   </Enum>
   <Enum Name="EliteTeam.Model.PossibleReactionType">
-    <Position X="13.25" Y="21.5" Width="2" />
+    <Position X="13.25" Y="21.5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAABAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAk=</HashCode>
       <FileName>ClubAndPlayer\PossibleReactionType.cs</FileName>

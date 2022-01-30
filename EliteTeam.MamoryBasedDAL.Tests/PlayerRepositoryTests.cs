@@ -58,8 +58,8 @@ namespace EliteTeam.MamoryBasedDAL.Tests
         {
             Player player1 = new Player(PlayerPosition.attacker, "Aamir Khan", 32, "India", RandomPlayerFactory.RandomStats(PlayerPosition.attacker), AIFactory.CreateAI(PlayerPosition.attacker));
             repository.addPlayer(player1);
-            // consistancy between clubs and players are controllers job
-            // controllers(playerC clubC) call both repositories and update players and clubs after signing or resignation
+            // consistancy between clubs and players are transfere service job
+            // controllers(playerC clubC) call transfer service and update players and clubs after signing or resignation
             repository.playerSignedForClub(player1.Id, "TEST_CLUB_ID"); // only testing saving changes on player repo part
             Assert.AreEqual("TEST_CLUB_ID", repository.getPlayerByID(player1.Id).ClubId);
 

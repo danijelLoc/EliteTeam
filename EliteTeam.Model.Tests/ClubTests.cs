@@ -41,7 +41,7 @@ namespace EliteTeam.Model.Tests
         public void TestSigned()
         {
             Club club = new Club("Real Madrid", "  RMA ", "Rtagdrd", Tactic.counterAttack);
-            // transfers are done through controllers that are checking for consistancy with both player and club repos
+            // transfers are done through controllers that are calling transfer service that is checking for consistancy with both player and club repos
             // final change is done in those repositories who are the only ones to change models directly like this 
             club.SignPlayer("TEST_MBAPPE_ID");
             Assert.AreEqual("TEST_MBAPPE_ID", club.ClubSquad[0]);
